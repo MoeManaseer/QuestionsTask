@@ -1,0 +1,10 @@
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\bin\Debug\QuestionsFormsTest.exe.config
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\bin\Debug\QuestionsFormsTest.exe
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\bin\Debug\QuestionsFormsTest.pdb
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.csprojAssemblyReference.cache
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.Form1.resources
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.Properties.Resources.resources
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.csproj.GenerateResource.cache
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.csproj.CoreCompileInputs.cache
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.exe
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.pdb

@@ -326,6 +326,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.questionText);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(389, 493);
+            this.MinimumSize = new System.Drawing.Size(389, 493);
             this.Name = "QuestionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QuestionsForm";

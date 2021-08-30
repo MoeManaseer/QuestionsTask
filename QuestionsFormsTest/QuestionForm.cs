@@ -315,12 +315,7 @@ namespace QuestionsFormsTest
 
         private void input_EndStartValues_ValueChanged(object sender, EventArgs e)
         {
-            input_EndValue.Value = Math.Max(input_EndValue.Value, input_StartValue.Value + 1);
-
-            if (input_StartValue.Value == 100)
-            {
-                input_EndValue.Value = 100;
-            }
+            input_EndValue.Value = Math.Max(input_EndValue.Value, Math.Min(input_StartValue.Value + 1, 100));
         }
     }
 }

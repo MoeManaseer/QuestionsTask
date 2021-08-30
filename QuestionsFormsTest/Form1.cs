@@ -103,6 +103,10 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Helper function that adds an on click event listener to all controls except the refreshBtn
+        /// </summary>
+        /// <param name="coll">Controls to loop thro</param>
         private void initControlsRecursive(Control.ControlCollection coll)
         {
             foreach (Control c in coll)

@@ -8,6 +8,10 @@ namespace QuestionsFormsTest
         private DataSet questionsDataSet;
         private DatabaseController dbController = new DatabaseController();
 
+        /// <summary>
+        /// Formats and returns the dataset on which to be used in the application
+        /// </summary>
+        /// <returns>A formatted dataset to be used in the application</returns>
         public DataSet getData()
         {
             questionsDataSet = dbController.GetAllQuestions();
@@ -20,6 +24,9 @@ namespace QuestionsFormsTest
             return questionsDataSet;
         }
 
+        /// <summary>
+        /// Constructs the allQuestiosn table
+        /// </summary>
         private void ConstructAllQuestionsTable()
         {
             DataTable allTable = new DataTable();
@@ -50,6 +57,10 @@ namespace QuestionsFormsTest
             questionsDataSet.Tables.Add(allTable);
         }
 
+        /// <summary>
+        /// Fills the allTable table with data
+        /// </summary>
+        /// <param name="allTable">The reference to the allTable table</param>
         private void FillAllQuestionsTable(DataTable allTable)
         {
             foreach (DataTable dt in questionsDataSet.Tables)
@@ -67,6 +78,13 @@ namespace QuestionsFormsTest
             allTable.AcceptChanges();
         }
 
+        /// <summary>
+        /// Constructs a formattedQuestion to be inserted into the curTable table
+        /// </summary>
+        /// <param name="curTable">The current table</param>
+        /// <param name="dataRow">The datarow of which to take data from</param>
+        /// <param name="type">The question type</param>
+        /// <returns>A formatted DataRow</returns>
         private DataRow CreateNewFormattedQuestion(DataTable curTable, DataRow dataRow, string type)
         {
             DataRow formattedQuestionDR = curTable.NewRow();
@@ -75,6 +93,12 @@ namespace QuestionsFormsTest
             return formattedQuestionDR;
         }
 
+        /// <summary>
+        /// Updates a allTable row with data from an old DataRow
+        /// </summary>
+        /// <param name="newDataRow">The new datarow to be updated</param>
+        /// <param name="oldDataRow">The old datarow from which to take data from</param>
+        /// <param name="type">The old datarow table type</param>
         private void UpdateRowValues(DataRow newDataRow, DataRow oldDataRow, string type = "")
         {
             newDataRow["Text"] = oldDataRow["Text"];
@@ -88,6 +112,13 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Removes a question from the database and the dataset
+        /// </summary>
+        /// <param name="index">The index of the question in the allTable table</param>
+        /// <param name="type">The question type</param>
+        /// <param name="originalId">The originalId of the question in it's table</param>
+        /// <returns>Wether or not the question got removed or not</returns>
         public bool RemoveQuestion(int index, string type, int originalId)
         {
             bool sqlExecuted = dbController.DeleteQuestion(type, originalId);
@@ -112,6 +143,14 @@ namespace QuestionsFormsTest
             return sqlExecuted;
         }
 
+        /// <summary>
+        /// Updates a specific question with new data
+        /// </summary>
+        /// <param name="updatedQuestion">The updated Datarow</param>
+        /// <param name="index">The index of the question in the allTable table</param>
+        /// <param name="originalId">The original Id of the question in it's table</param>
+        /// <param name="type">The question type</param>
+        /// <returns>Wether the question got updated or not</returns>
         public bool EditQuestion(DataRow updatedQuestion, int index, int originalId, string type)
         {
             bool didUpdateQuestion = dbController.EditQuestion(updatedQuestion, type, originalId);
@@ -128,6 +167,12 @@ namespace QuestionsFormsTest
             return didUpdateQuestion;
         }
 
+        /// <summary>
+        /// Adds a new question to the database and to the dataset
+        /// </summary>
+        /// <param name="newQuestion">The new datarow to be inserted</param>
+        /// <param name="type">The question type</param>
+        /// <returns>Wether or not the question got added</returns>
         public bool AddQuestion(DataRow newQuestion, string type)
         {
             int newQuestionId = dbController.AddNewQuestion(newQuestion, type);
@@ -155,11 +200,22 @@ namespace QuestionsFormsTest
             return newQuestionId != -1;
         }
         
+        /// <summary>
+        /// Helper function to return a specific row based on the id
+        /// </summary>
+        /// <param name="id">The id of the row to find</param>
+        /// <param name="tableName">The table name of the question</param>
+        /// <returns>A datarow object</returns>
         public DataRow GetQuestion(int id, string tableName)
         {
             return questionsDataSet.Tables[tableName].Rows.Find(id);
         }
 
+        /// <summary>
+        /// Returns an empty datarow object
+        /// </summary>
+        /// <param name="tableName">The table name of the new question</param>
+        /// <returns>an empty DataRow</returns>
         public DataRow GetDataRowObject(string tableName)
         {
             return questionsDataSet.Tables[tableName].NewRow();

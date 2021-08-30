@@ -12,6 +12,10 @@ namespace QuestionsFormsTest
         private readonly string CS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         private SqlConnection con;
 
+        /// <summary>
+        /// Gets the tables from the database and returns it as a dataset to be used
+        /// </summary>
+        /// <returns>DataSet the data from the database</returns>
         public DataSet GetAllQuestions()
         {
             DataSet tempSet = new DataSet();
@@ -51,6 +55,12 @@ namespace QuestionsFormsTest
             return tempSet;
         }
 
+        /// <summary>
+        /// Adds a new question to the database
+        /// </summary>
+        /// <param name="newRow">The datarow to be added to the database</param>
+        /// <param name="tableName">The table in which the question should be inserted to</param>
+        /// <returns>Int the new question Id from the database</returns>
         public int AddNewQuestion(DataRow newRow, string tableName)
         {
             int newQuestionId = 0;
@@ -89,6 +99,13 @@ namespace QuestionsFormsTest
             return newQuestionId;
         }
 
+        /// <summary>
+        /// Edits a question in the database
+        /// </summary>
+        /// <param name="updatedRow">The updated datarow</param>
+        /// <param name="tableName">The table name of which the datarow belongs to</param>
+        /// <param name="id">The question original id in the database</param>
+        /// <returns>Bool wehether the question was updated in the database or not</returns>
         public bool EditQuestion(DataRow updatedRow, string tableName, int id)
         {
             bool didUpdate = false;
@@ -152,6 +169,9 @@ namespace QuestionsFormsTest
             return affectedRows == 1;
         }
 
+        /// <summary>
+        /// Helper function to close the connection if it was open
+        /// </summary>
         private void CloseConnection()
         {
             if (con.State == ConnectionState.Open)

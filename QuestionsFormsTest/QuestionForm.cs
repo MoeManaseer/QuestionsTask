@@ -53,6 +53,9 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Fills the dicitonary with the table names
+        /// </summary>
         private void FillDictionaryItems()
         {
             comboBoxDic.Add("SmileyQuestions", "Smiley Question");
@@ -60,6 +63,9 @@ namespace QuestionsFormsTest
             comboBoxDic.Add("StarQuestions", "Star Question");
         }
 
+        /// <summary>
+        /// Binds the ComboBox to the dictionary data
+        /// </summary>
         private void BindComboBox()
         {
             questionTypeCombo.DataSource = new BindingSource(comboBoxDic, null);
@@ -67,6 +73,10 @@ namespace QuestionsFormsTest
             questionTypeCombo.ValueMember = "Key";
         }
 
+        /// <summary>
+        /// Adds a new question
+        /// </summary>
+        /// <returns>wehether or not the question got added</returns>
         private bool AddQuestion()
         {
             FillQuestionRow();
@@ -80,6 +90,10 @@ namespace QuestionsFormsTest
             return didAdd;
         }
 
+        /// <summary>
+        /// Updates a question
+        /// </summary>
+        /// <returns>Wehether or not the question got updated</returns>
         private bool UpdateQuestion()
         {
             bool shouldUpdate = CheckQuestionFields();
@@ -101,6 +115,9 @@ namespace QuestionsFormsTest
             return shouldUpdate ? qc.EditQuestion(curQuestion, index, originalId, curType) : false;
         }
 
+        /// <summary>
+        /// Updates the form fields with data from the dataRow
+        /// </summary>
         private void UpdateQuestionFields()
         {
             ShowExtraQuestionFields();
@@ -125,6 +142,9 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Picks and shows the current question extra data
+        /// </summary>
         private void ShowExtraQuestionFields()
         {
             foreach (var value in comboBoxDic)
@@ -135,6 +155,10 @@ namespace QuestionsFormsTest
             questionsController.Controls["container" + curType].Visible = true;
         }
 
+        /// <summary>
+        /// Checks the form fields for empty values, if they exist show the user
+        /// </summary>
+        /// <returns></returns>
         private bool ValidateFields()
         {
             bool fieldsValid = true;
@@ -179,6 +203,9 @@ namespace QuestionsFormsTest
             return fieldsValid;
         }
 
+        /// <summary>
+        /// Updates the datarow object with the current data in the form
+        /// </summary>
         private void FillQuestionRow()
         {
             foreach (Control questionControl in questionsController.Controls)
@@ -200,6 +227,10 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Checks wehether the data from the dataRow is different than the data in the form inputs
+        /// </summary>
+        /// <returns>wehether or not the data is the same</returns>
         private bool CheckQuestionFields()
         {
             bool isUpdatable = false;

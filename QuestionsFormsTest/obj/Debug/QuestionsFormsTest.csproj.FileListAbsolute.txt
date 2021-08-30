@@ -8,3 +8,4 @@ C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\Q
 C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.csproj.CoreCompileInputs.cache
 C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.exe
 C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.pdb
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.QuestionForm.resources

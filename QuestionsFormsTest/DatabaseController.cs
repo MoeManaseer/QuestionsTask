@@ -2,13 +2,14 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Text;
 
 namespace QuestionsFormsTest
 {
-    class DatabaseController
+    public class DatabaseController
     {
         private readonly string CS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
-        private readonly SqlConnection con;
+        private SqlConnection con;
 
         public DatabaseController()
         {
@@ -18,57 +19,82 @@ namespace QuestionsFormsTest
         public DataSet GetAllQuestions()
         {
             DataSet tempSet = new DataSet();
-            try
+            using (con = new SqlConnection(CS))
             {
-                string sqlStatment = "select * from SmileyQuestions;select * from SliderQuestions;select * from StarsQuestions";
+                string sqlStatment = "select * from SmileyQuestions;select * from SliderQuestions;select * from StarQuestions";
                 SqlDataAdapter dAdapter = new SqlDataAdapter(sqlStatment, con);
                 dAdapter.TableMappings.Add("Table", "SmileyQuestions");
                 dAdapter.TableMappings.Add("Table1", "SliderQuestions");
                 dAdapter.TableMappings.Add("Table2", "StarQuestions");
                 dAdapter.Fill(tempSet);
             }
-            catch (SqlException e)
-            {
-                
-            }
 
             return tempSet;
         }
 
-        public bool AddNewQuestion(string tableName)
+        public int AddNewQuestion(DataRow newRow, string tableName)
         {
-            using (con)
-            {
-                string sqlStatment = "";
-            }
+            int newQuestionId = 0;
 
-            return true;
+            using (con = new SqlConnection(CS))
+            {
+                SqlCommand addCmd = new SqlCommand("Add_" + tableName, con);
+                addCmd.CommandType = CommandType.StoredProcedure;
+
+                foreach (DataColumn curCol in newRow.Table.Columns)
+                {
+                    string colName = curCol.ToString();
+                    if (!colName.Equals("Id"))
+                    {
+                        addCmd.Parameters.Add(new SqlParameter("@" + colName, newRow[colName]));
+                    }
+                }
+
+                addCmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int));
+                addCmd.Parameters["@Id"].Direction = ParameterDirection.Output;
+
+                con.Open();
+                addCmd.ExecuteNonQuery();
+                newQuestionId = Convert.ToInt32(addCmd.Parameters["@Id"].Value);
+            }
+            
+
+            return newQuestionId;
         }
 
-        public bool EditQuestion(string tableName, int id)
+        public bool EditQuestion(DataRow updatedRow, string tableName, int id)
         {
-            return true;
+            bool didUpdate = false;
+
+            using (con = new SqlConnection(CS))
+            {
+                SqlCommand editCmd = new SqlCommand("Update_" + tableName, con);
+                editCmd.CommandType = CommandType.StoredProcedure;
+
+                foreach (DataColumn curCol in updatedRow.Table.Columns)
+                {
+                    string colName = curCol.ToString();
+                    editCmd.Parameters.Add(new SqlParameter("@" + colName, updatedRow[colName]));
+                }
+
+                con.Open();
+                editCmd.ExecuteNonQuery();
+                didUpdate = true;
+            }
+
+            return didUpdate;
         }
 
         public bool DeleteQuestion(string tableName, int id)
         {
             int affectedRows = 0;
-
-            try
+            
+            using (con = new SqlConnection(CS))
             {
                 SqlCommand deleteCmd = new SqlCommand("delete from " + tableName + " where id = " + id, con);
 
                 con.Open();
                 affectedRows = deleteCmd.ExecuteNonQuery();
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine("tomato");
-                Console.WriteLine(e);
-            }
-            finally
-            {
-                con.Close();
             }
 
             return affectedRows == 1;

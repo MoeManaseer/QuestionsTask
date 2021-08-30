@@ -16,10 +16,12 @@ namespace QuestionsFormsTest
         {
             qc = new QuestionsController();
             allQuestionsGrid.DataSource = qc.getData().Tables["allTable"];
-            allQuestionsGrid.Columns["Text"].Width = 500;
+            allQuestionsGrid.Columns["Text"].Width = 403;
             allQuestionsGrid.Columns["Order"].Width = 114;
+            allQuestionsGrid.Columns["QuestionType"].Width = 114;
             allQuestionsGrid.Columns["OriginalId"].Visible = false;
-            allQuestionsGrid.Columns["QuestionType"].Visible = false;
+            allQuestionsGrid.Columns["Index"].Visible = false;
+            allQuestionsGrid.Columns["QuestionTable"].Visible = false;
         }
 
         private void allQuestionsGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -40,17 +42,31 @@ namespace QuestionsFormsTest
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-
+            QuestionForm qf = new QuestionForm(qc);
+            LaunchQuestionsForm(qf);
         }
 
         private void editBtn_Click(object sender, EventArgs e)
         {
+            string curType = allQuestionsGrid.CurrentRow.Cells["QuestionTable"].Value.ToString();
+            int originalIndex = (int)allQuestionsGrid.CurrentRow.Cells["OriginalId"].Value;
+            int curIndex = allQuestionsGrid.CurrentRow.Index;
+            QuestionForm qf = new QuestionForm(qc, false, curType, originalIndex, curIndex);
+            LaunchQuestionsForm(qf);
+        }
 
+        private void LaunchQuestionsForm(QuestionForm qf)
+        {
+            qf.ShowDialog();
         }
 
         private void removeBtn_Click(object sender, EventArgs e)
         {
-            bool didRemove = qc.RemoveQuestion(allQuestionsGrid.CurrentRow.Index, allQuestionsGrid.CurrentRow.Cells["QuestionType"].Value.ToString(), (int) allQuestionsGrid.CurrentRow.Cells["OriginalId"].Value);
+            int curIndex = allQuestionsGrid.CurrentRow.Index;
+            int originalIndex = (int)allQuestionsGrid.CurrentRow.Cells["OriginalId"].Value;
+            string curType = allQuestionsGrid.CurrentRow.Cells["QuestionTable"].Value.ToString();
+
+            bool didRemove = qc.RemoveQuestion(curIndex, curType, originalIndex);
             if (didRemove)
             {
                 outputLbl.Text = "Removed row successfuly";

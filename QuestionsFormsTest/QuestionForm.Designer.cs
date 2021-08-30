@@ -32,11 +32,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.containerStarQuestions = new System.Windows.Forms.Panel();
+            this.input_NumOfStars = new System.Windows.Forms.NumericUpDown();
+            this.textbox4 = new System.Windows.Forms.Label();
             this.containerSmileyQuestions = new System.Windows.Forms.Panel();
             this.input_NumOfSmiley = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.input_NumOfStars = new System.Windows.Forms.NumericUpDown();
-            this.textbox4 = new System.Windows.Forms.Label();
             this.questionOrder = new System.Windows.Forms.NumericUpDown();
             this.containerSliderQuestions = new System.Windows.Forms.Panel();
             this.input_EndValueCaption = new System.Windows.Forms.TextBox();
@@ -50,10 +50,11 @@
             this.questionTypeCombo = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.controlBtn = new System.Windows.Forms.Button();
+            this.headerLbl = new System.Windows.Forms.Label();
             this.containerStarQuestions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.input_NumOfStars)).BeginInit();
             this.containerSmileyQuestions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_NumOfSmiley)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.input_NumOfStars)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionOrder)).BeginInit();
             this.containerSliderQuestions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_EndValue)).BeginInit();
@@ -62,17 +63,17 @@
             // 
             // questionText
             // 
-            this.questionText.Location = new System.Drawing.Point(12, 25);
+            this.questionText.Location = new System.Drawing.Point(12, 68);
             this.questionText.MaxLength = 250;
             this.questionText.Multiline = true;
             this.questionText.Name = "questionText";
-            this.questionText.Size = new System.Drawing.Size(323, 119);
+            this.questionText.Size = new System.Drawing.Size(349, 119);
             this.questionText.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 1;
@@ -81,7 +82,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 154);
+            this.label2.Location = new System.Drawing.Point(12, 197);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 13);
             this.label2.TabIndex = 2;
@@ -91,25 +92,48 @@
             // 
             this.containerStarQuestions.Controls.Add(this.input_NumOfStars);
             this.containerStarQuestions.Controls.Add(this.textbox4);
-            this.containerStarQuestions.Location = new System.Drawing.Point(12, 178);
+            this.containerStarQuestions.Location = new System.Drawing.Point(12, 227);
             this.containerStarQuestions.Name = "containerStarQuestions";
-            this.containerStarQuestions.Size = new System.Drawing.Size(323, 115);
+            this.containerStarQuestions.Size = new System.Drawing.Size(349, 115);
             this.containerStarQuestions.TabIndex = 4;
             this.containerStarQuestions.Visible = false;
+            // 
+            // input_NumOfStars
+            // 
+            this.input_NumOfStars.Location = new System.Drawing.Point(271, 4);
+            this.input_NumOfStars.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.input_NumOfStars.Name = "input_NumOfStars";
+            this.input_NumOfStars.Size = new System.Drawing.Size(73, 20);
+            this.input_NumOfStars.TabIndex = 7;
+            this.input_NumOfStars.Tag = "NumOfStars";
+            this.input_NumOfStars.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textbox4
+            // 
+            this.textbox4.AutoSize = true;
+            this.textbox4.Location = new System.Drawing.Point(0, 6);
+            this.textbox4.Name = "textbox4";
+            this.textbox4.Size = new System.Drawing.Size(129, 13);
+            this.textbox4.TabIndex = 5;
+            this.textbox4.Text = "Number of stars (up to 10)";
             // 
             // containerSmileyQuestions
             // 
             this.containerSmileyQuestions.Controls.Add(this.input_NumOfSmiley);
             this.containerSmileyQuestions.Controls.Add(this.label3);
-            this.containerSmileyQuestions.Location = new System.Drawing.Point(12, 175);
+            this.containerSmileyQuestions.Location = new System.Drawing.Point(12, 227);
             this.containerSmileyQuestions.Name = "containerSmileyQuestions";
-            this.containerSmileyQuestions.Size = new System.Drawing.Size(323, 115);
+            this.containerSmileyQuestions.Size = new System.Drawing.Size(349, 115);
             this.containerSmileyQuestions.TabIndex = 8;
             this.containerSmileyQuestions.Visible = false;
             // 
             // input_NumOfSmiley
             // 
-            this.input_NumOfSmiley.Location = new System.Drawing.Point(250, 4);
+            this.input_NumOfSmiley.Location = new System.Drawing.Point(271, 2);
             this.input_NumOfSmiley.Maximum = new decimal(new int[] {
             5,
             0,
@@ -134,38 +158,15 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 4);
+            this.label3.Location = new System.Drawing.Point(0, 4);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(175, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Number of smiley faces (from 2 to 5)";
             // 
-            // input_NumOfStars
-            // 
-            this.input_NumOfStars.Location = new System.Drawing.Point(250, 4);
-            this.input_NumOfStars.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.input_NumOfStars.Name = "input_NumOfStars";
-            this.input_NumOfStars.Size = new System.Drawing.Size(73, 20);
-            this.input_NumOfStars.TabIndex = 7;
-            this.input_NumOfStars.Tag = "NumOfStars";
-            this.input_NumOfStars.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textbox4
-            // 
-            this.textbox4.AutoSize = true;
-            this.textbox4.Location = new System.Drawing.Point(0, 6);
-            this.textbox4.Name = "textbox4";
-            this.textbox4.Size = new System.Drawing.Size(129, 13);
-            this.textbox4.TabIndex = 5;
-            this.textbox4.Text = "Number of stars (up to 10)";
-            // 
             // questionOrder
             // 
-            this.questionOrder.Location = new System.Drawing.Point(262, 152);
+            this.questionOrder.Location = new System.Drawing.Point(283, 195);
             this.questionOrder.Name = "questionOrder";
             this.questionOrder.Size = new System.Drawing.Size(73, 20);
             this.questionOrder.TabIndex = 6;
@@ -181,9 +182,9 @@
             this.containerSliderQuestions.Controls.Add(this.label5);
             this.containerSliderQuestions.Controls.Add(this.input_StartValue);
             this.containerSliderQuestions.Controls.Add(this.label4);
-            this.containerSliderQuestions.Location = new System.Drawing.Point(12, 175);
+            this.containerSliderQuestions.Location = new System.Drawing.Point(12, 227);
             this.containerSliderQuestions.Name = "containerSliderQuestions";
-            this.containerSliderQuestions.Size = new System.Drawing.Size(323, 176);
+            this.containerSliderQuestions.Size = new System.Drawing.Size(349, 176);
             this.containerSliderQuestions.TabIndex = 9;
             this.containerSliderQuestions.Visible = false;
             // 
@@ -193,13 +194,13 @@
             this.input_EndValueCaption.MaxLength = 250;
             this.input_EndValueCaption.Multiline = true;
             this.input_EndValueCaption.Name = "input_EndValueCaption";
-            this.input_EndValueCaption.Size = new System.Drawing.Size(218, 56);
+            this.input_EndValueCaption.Size = new System.Drawing.Size(239, 56);
             this.input_EndValueCaption.TabIndex = 13;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(-3, 122);
+            this.label7.Location = new System.Drawing.Point(0, 122);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 13);
             this.label7.TabIndex = 12;
@@ -211,13 +212,13 @@
             this.input_StartValueCaption.MaxLength = 250;
             this.input_StartValueCaption.Multiline = true;
             this.input_StartValueCaption.Name = "input_StartValueCaption";
-            this.input_StartValueCaption.Size = new System.Drawing.Size(218, 56);
+            this.input_StartValueCaption.Size = new System.Drawing.Size(239, 56);
             this.input_StartValueCaption.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(-3, 60);
+            this.label6.Location = new System.Drawing.Point(0, 60);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(96, 13);
             this.label6.TabIndex = 10;
@@ -225,7 +226,7 @@
             // 
             // input_EndValue
             // 
-            this.input_EndValue.Location = new System.Drawing.Point(250, 30);
+            this.input_EndValue.Location = new System.Drawing.Point(271, 30);
             this.input_EndValue.Name = "input_EndValue";
             this.input_EndValue.Size = new System.Drawing.Size(73, 20);
             this.input_EndValue.TabIndex = 9;
@@ -248,7 +249,7 @@
             // 
             // input_StartValue
             // 
-            this.input_StartValue.Location = new System.Drawing.Point(250, 4);
+            this.input_StartValue.Location = new System.Drawing.Point(272, 2);
             this.input_StartValue.Name = "input_StartValue";
             this.input_StartValue.Size = new System.Drawing.Size(73, 20);
             this.input_StartValue.TabIndex = 7;
@@ -263,7 +264,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(0, 6);
+            this.label4.Location = new System.Drawing.Point(1, 4);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 5;
@@ -272,7 +273,7 @@
             // questionTypeCombo
             // 
             this.questionTypeCombo.FormattingEnabled = true;
-            this.questionTypeCombo.Location = new System.Drawing.Point(380, 25);
+            this.questionTypeCombo.Location = new System.Drawing.Point(200, 12);
             this.questionTypeCombo.Name = "questionTypeCombo";
             this.questionTypeCombo.Size = new System.Drawing.Size(161, 21);
             this.questionTypeCombo.TabIndex = 7;
@@ -281,9 +282,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(380, 70);
+            this.button1.Location = new System.Drawing.Point(283, 425);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 23);
+            this.button1.Size = new System.Drawing.Size(78, 23);
             this.button1.TabIndex = 8;
             this.button1.Text = "Exit";
             this.button1.UseVisualStyleBackColor = true;
@@ -291,18 +292,29 @@
             // 
             // controlBtn
             // 
-            this.controlBtn.Location = new System.Drawing.Point(380, 99);
+            this.controlBtn.Location = new System.Drawing.Point(10, 425);
             this.controlBtn.Name = "controlBtn";
-            this.controlBtn.Size = new System.Drawing.Size(161, 23);
+            this.controlBtn.Size = new System.Drawing.Size(78, 23);
             this.controlBtn.TabIndex = 9;
             this.controlBtn.UseVisualStyleBackColor = true;
             this.controlBtn.Click += new System.EventHandler(this.controlBtn_Click);
+            // 
+            // headerLbl
+            // 
+            this.headerLbl.AutoSize = true;
+            this.headerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headerLbl.Location = new System.Drawing.Point(12, 13);
+            this.headerLbl.Name = "headerLbl";
+            this.headerLbl.Size = new System.Drawing.Size(130, 20);
+            this.headerLbl.TabIndex = 10;
+            this.headerLbl.Text = "Update Question";
             // 
             // QuestionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 366);
+            this.ClientSize = new System.Drawing.Size(373, 454);
+            this.Controls.Add(this.headerLbl);
             this.Controls.Add(this.containerSliderQuestions);
             this.Controls.Add(this.containerSmileyQuestions);
             this.Controls.Add(this.controlBtn);
@@ -314,18 +326,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.questionText);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(565, 405);
-            this.MinimumSize = new System.Drawing.Size(565, 405);
             this.Name = "QuestionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QuestionsForm";
             this.Load += new System.EventHandler(this.QuestionForm_Load);
             this.containerStarQuestions.ResumeLayout(false);
             this.containerStarQuestions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.input_NumOfStars)).EndInit();
             this.containerSmileyQuestions.ResumeLayout(false);
             this.containerSmileyQuestions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_NumOfSmiley)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.input_NumOfStars)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionOrder)).EndInit();
             this.containerSliderQuestions.ResumeLayout(false);
             this.containerSliderQuestions.PerformLayout();
@@ -360,5 +370,6 @@
         private System.Windows.Forms.ComboBox questionTypeCombo;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button controlBtn;
+        private System.Windows.Forms.Label headerLbl;
     }
 }

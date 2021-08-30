@@ -40,20 +40,24 @@ namespace QuestionsFormsTest
 
         private void QuestionForm_Load(object sender, EventArgs e)
         {
+            BindComboBox();
+            questionTypeCombo.SelectedValue = curType;
+
             if (isNew)
             {
                 curQuestion = qc.GetDataRowObject(curType);
+                controlBtn.Text = "Add";
+                headerLbl.Text = "New Question";
+                ShowExtraQuestionFields();
             }
             else
             {
+                questionTypeCombo.Enabled = false;
                 curQuestion = qc.GetQuestion(originalId, curType);
-                PopulateForm();
+                controlBtn.Text = "Update";
+                headerLbl.Text = "Update Question";
+                UpdateQuestionFields();
             }
-
-            BindComboBox();
-            controlBtn.Text = isNew ? "Add Question" : "Update Question";
-            questionTypeCombo.SelectedValue = curType;
-            UpdateQuestionFields();
         }
 
         private void BindComboBox()
@@ -88,12 +92,6 @@ namespace QuestionsFormsTest
             }
 
             Controls["container" + curType].Visible = true;
-        }
-
-        private void PopulateForm()
-        {
-            questionText.Text = curQuestion["Text"].ToString();
-            questionOrder.Value = (int) curQuestion["QOrder"];
         }
 
         private void controlBtn_Click(object sender, EventArgs e)
@@ -146,8 +144,7 @@ namespace QuestionsFormsTest
         private bool CheckQuestionFields()
         {
             bool isUpdatable = false;
-            string temp = curQuestion["Text"].ToString();
-            bool temp1 = questionText.Text.Equals(curQuestion["Text"].ToString());
+
             if (!questionText.Text.Equals(curQuestion["Text"].ToString()) || (int) curQuestion["QOrder"] != questionOrder.Value)
             {
                 isUpdatable = true;
@@ -177,7 +174,7 @@ namespace QuestionsFormsTest
             curType = questionTypeCombo.SelectedValue.ToString();
             isNew = true;
             curQuestion = qc.GetDataRowObject(curType);
-            UpdateQuestionFields();
+            ShowExtraQuestionFields();
         }
     }
 }

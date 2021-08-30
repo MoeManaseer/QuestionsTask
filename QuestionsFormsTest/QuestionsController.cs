@@ -1,10 +1,11 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 
 namespace QuestionsFormsTest
 {
     public class QuestionsController
     {
-        private DataSet questionsDataSet = new DataSet();
+        private DataSet questionsDataSet;
         private DatabaseController dbController = new DatabaseController();
 
         public DataSet getData()
@@ -76,21 +77,14 @@ namespace QuestionsFormsTest
 
         private void UpdateRowValues(DataRow newDataRow, DataRow oldDataRow, string type = "")
         {
-            try
-            {
-                newDataRow["Text"] = oldDataRow["Text"];
-                newDataRow["OriginalId"] = oldDataRow["Id"];
-                newDataRow["Order"] = oldDataRow["QOrder"];
+            newDataRow["Text"] = oldDataRow["Text"];
+            newDataRow["OriginalId"] = oldDataRow["Id"];
+            newDataRow["Order"] = oldDataRow["QOrder"];
 
-                if (!string.IsNullOrEmpty(type))
-                {
-                    newDataRow["QuestionTable"] = type;
-                    newDataRow["Question type"] = type.Replace("Questions", "");
-                }
-            }
-            catch
+            if (!string.IsNullOrEmpty(type))
             {
-
+                newDataRow["QuestionTable"] = type;
+                newDataRow["Question type"] = type.Replace("Questions", "");
             }
         }
 
@@ -100,9 +94,19 @@ namespace QuestionsFormsTest
 
             if (sqlExecuted)
             {
-                questionsDataSet.Tables["allTable"].Rows[index].Delete();
-                questionsDataSet.Tables[type].Rows.Find(originalId).Delete();
-                questionsDataSet.AcceptChanges();
+                try
+                {
+                    questionsDataSet.Tables["allTable"].Rows[index].Delete();
+                    questionsDataSet.Tables[type].Rows.Find(originalId).Delete();
+                }
+                catch (Exception e)
+                {
+                    Logger.WriteExceptionMessage(e);
+                }
+                finally
+                {
+                    questionsDataSet.AcceptChanges();
+                }
             }
 
             return sqlExecuted;
@@ -130,12 +134,22 @@ namespace QuestionsFormsTest
 
             if (newQuestionId != -1)
             {
-                newQuestion["Id"] = newQuestionId;
-                questionsDataSet.Tables[type].Rows.Add(newQuestion);
-                DataTable allTable = questionsDataSet.Tables["allTable"];
-                DataRow allTableNewRow = CreateNewFormattedQuestion(allTable, newQuestion, type);
-                allTable.Rows.Add(allTableNewRow);
-                questionsDataSet.AcceptChanges();
+                try
+                {
+                    newQuestion["Id"] = newQuestionId;
+                    questionsDataSet.Tables[type].Rows.Add(newQuestion);
+                    DataTable allTable = questionsDataSet.Tables["allTable"];
+                    DataRow allTableNewRow = CreateNewFormattedQuestion(allTable, newQuestion, type);
+                    allTable.Rows.Add(allTableNewRow);
+                }
+                catch (Exception e)
+                {
+                    Logger.WriteExceptionMessage(e);
+                }
+                finally
+                {
+                    questionsDataSet.AcceptChanges();
+                }
             }
 
             return newQuestionId != -1;

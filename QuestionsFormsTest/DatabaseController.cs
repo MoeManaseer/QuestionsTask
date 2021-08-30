@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text;
+using System.Windows.Forms;
 
 namespace QuestionsFormsTest
 {
@@ -14,14 +15,37 @@ namespace QuestionsFormsTest
         public DataSet GetAllQuestions()
         {
             DataSet tempSet = new DataSet();
-            using (con = new SqlConnection(CS))
+
+            try 
             {
+                con = new SqlConnection(CS);
+
                 string sqlStatment = "select * from SmileyQuestions;select * from SliderQuestions;select * from StarQuestions";
                 SqlDataAdapter dAdapter = new SqlDataAdapter(sqlStatment, con);
+
                 dAdapter.TableMappings.Add("Table", "SmileyQuestions");
                 dAdapter.TableMappings.Add("Table1", "SliderQuestions");
                 dAdapter.TableMappings.Add("Table2", "StarQuestions");
+
                 dAdapter.Fill(tempSet);
+            }
+            catch (Exception e)
+            {
+                Logger.WriteExceptionMessage(e);
+                CloseConnection();
+
+                string deleteMessage = "Fatal error in fetching data from database, please contact system admin..";
+                string deleteCaption = "Error";
+                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
+                MessageBoxIcon icon = MessageBoxIcon.Error;
+                DialogResult result;
+
+                result = MessageBox.Show(deleteMessage, deleteCaption, messageButtons, icon);
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    Application.Exit();
+                }
             }
 
             return tempSet;
@@ -31,8 +55,9 @@ namespace QuestionsFormsTest
         {
             int newQuestionId = 0;
 
-            using (con = new SqlConnection(CS))
+            try
             {
+                con = new SqlConnection(CS);
                 SqlCommand addCmd = new SqlCommand("Add_" + tableName, con);
                 addCmd.CommandType = CommandType.StoredProcedure;
 
@@ -52,7 +77,14 @@ namespace QuestionsFormsTest
                 addCmd.ExecuteNonQuery();
                 newQuestionId = Convert.ToInt32(addCmd.Parameters["@Id"].Value);
             }
-            
+            catch (Exception e)
+            {
+                Logger.WriteExceptionMessage(e);
+            }
+            finally
+            {
+                CloseConnection();
+            }
 
             return newQuestionId;
         }
@@ -61,8 +93,9 @@ namespace QuestionsFormsTest
         {
             bool didUpdate = false;
 
-            using (con = new SqlConnection(CS))
+            try
             {
+                con = new SqlConnection(CS);
                 SqlCommand editCmd = new SqlCommand("Update_" + tableName, con);
                 editCmd.CommandType = CommandType.StoredProcedure;
 
@@ -75,6 +108,14 @@ namespace QuestionsFormsTest
                 con.Open();
                 editCmd.ExecuteNonQuery();
                 didUpdate = true;
+            }
+            catch (Exception e)
+            {
+                Logger.WriteExceptionMessage(e);
+            }
+            finally
+            {
+                CloseConnection();
             }
 
             return didUpdate;
@@ -90,15 +131,33 @@ namespace QuestionsFormsTest
         {
             int affectedRows = 0;
             
-            using (con = new SqlConnection(CS))
+            try
             {
+                con = new SqlConnection(CS);
                 SqlCommand deleteCmd = new SqlCommand("delete from " + tableName + " where id = " + id, con);
 
                 con.Open();
                 affectedRows = deleteCmd.ExecuteNonQuery();
             }
+            catch (Exception e)
+            {
+                Logger.WriteExceptionMessage(e);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            
 
             return affectedRows == 1;
+        }
+
+        private void CloseConnection()
+        {
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
         }
     }
 }

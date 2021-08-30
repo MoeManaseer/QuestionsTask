@@ -83,6 +83,7 @@ namespace QuestionsFormsTest
                 {
                     deleteMessage = "The question was removed successfuly.";
                     icon = MessageBoxIcon.Asterisk;
+                    CheckList();
                 }
                 else
                 {

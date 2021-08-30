@@ -11,11 +11,6 @@ namespace QuestionsFormsTest
         private readonly string CS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         private SqlConnection con;
 
-        public DatabaseController()
-        {
-            con = new SqlConnection(CS);
-        }
-
         public DataSet GetAllQuestions()
         {
             DataSet tempSet = new DataSet();
@@ -85,6 +80,12 @@ namespace QuestionsFormsTest
             return didUpdate;
         }
 
+        /// <summary>
+        /// Deletes a question from the database
+        /// </summary>
+        /// <param name="tableName">The tablename in the database</param>
+        /// <param name="id">The id of the question to be removed</param>
+        /// <returns>bool if the question got deleted or not</returns>
         public bool DeleteQuestion(string tableName, int id)
         {
             int affectedRows = 0;

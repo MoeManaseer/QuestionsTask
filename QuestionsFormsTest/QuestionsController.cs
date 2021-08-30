@@ -27,10 +27,11 @@ namespace QuestionsFormsTest
             DataColumn text = new DataColumn("Text");
             DataColumn originalId = new DataColumn("OriginalId");
             originalId.DataType = System.Type.GetType("System.Int32");
-            DataColumn questionType = new DataColumn("QuestionType");
+            DataColumn questionType = new DataColumn("Question type");
             DataColumn questionTable = new DataColumn("QuestionTable");
 
             DataColumn qOrder = new DataColumn("Order");
+            qOrder.DataType = System.Type.GetType("System.Int32");
             DataColumn index = new DataColumn("Index");
             index.DataType = System.Type.GetType("System.Int32");
             index.AutoIncrement = true;
@@ -84,7 +85,7 @@ namespace QuestionsFormsTest
                 if (!string.IsNullOrEmpty(type))
                 {
                     newDataRow["QuestionTable"] = type;
-                    newDataRow["QuestionType"] = type.Replace("Questions", "");
+                    newDataRow["Question type"] = type.Replace("Questions", "");
                 }
             }
             catch

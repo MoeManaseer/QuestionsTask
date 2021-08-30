@@ -97,6 +97,7 @@
             // 
             this.outputLbl.AutoSize = true;
             this.outputLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.outputLbl.Location = new System.Drawing.Point(12, 421);
             this.outputLbl.Name = "outputLbl";
             this.outputLbl.Size = new System.Drawing.Size(0, 20);
@@ -113,6 +114,7 @@
             this.Controls.Add(this.removeBtn);
             this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.allQuestionsGrid);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(791, 489);
             this.MinimumSize = new System.Drawing.Size(791, 489);

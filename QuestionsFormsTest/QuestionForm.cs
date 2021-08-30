@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace QuestionsFormsTest
 {
@@ -18,6 +15,8 @@ namespace QuestionsFormsTest
         private bool isNew = true;
         private int originalId;
         private int index;
+        private bool isUpdated = false;
+        private Control questionsController;
         Dictionary<string, string> comboBoxDic = new Dictionary<string, string>();
 
         public QuestionForm(QuestionsController qc, bool isNew = true, string questionType = "SmileyQuestions", int originalId = 0, int index = 0)
@@ -31,17 +30,11 @@ namespace QuestionsFormsTest
             FillDictionaryItems();
         }
 
-        private void FillDictionaryItems()
-        {
-            comboBoxDic.Add("SmileyQuestions", "Smiley Question");
-            comboBoxDic.Add("SliderQuestions", "Slider Question");
-            comboBoxDic.Add("StarQuestions", "Star Question");
-        }
-
         private void QuestionForm_Load(object sender, EventArgs e)
         {
             BindComboBox();
             questionTypeCombo.SelectedValue = curType;
+            questionsController = Controls["containerQuestion"];
 
             if (isNew)
             {
@@ -60,6 +53,13 @@ namespace QuestionsFormsTest
             }
         }
 
+        private void FillDictionaryItems()
+        {
+            comboBoxDic.Add("SmileyQuestions", "Smiley Question");
+            comboBoxDic.Add("SliderQuestions", "Slider Question");
+            comboBoxDic.Add("StarQuestions", "Star Question");
+        }
+
         private void BindComboBox()
         {
             questionTypeCombo.DataSource = new BindingSource(comboBoxDic, null);
@@ -67,66 +67,17 @@ namespace QuestionsFormsTest
             questionTypeCombo.ValueMember = "Key";
         }
 
-        private void UpdateQuestionFields()
-        {
-            ShowExtraQuestionFields();
-
-            questionText.Text = curQuestion["Text"].ToString();
-            questionOrder.Value = (int) curQuestion["QOrder"];
-
-            foreach (Control questionControl in Controls["container" + curType].Controls)
-            {
-                if (questionControl.Name.Contains("input"))
-                {
-                    string curFieldName = questionControl.Name.Split('_')[1];
-                    questionControl.Text = curQuestion[curFieldName].ToString();
-                }
-            }
-        }
-
-        private void ShowExtraQuestionFields()
-        {
-            foreach (var value in comboBoxDic)
-            {
-                Controls["container" + value.Key].Visible = false;
-            }
-
-            Controls["container" + curType].Visible = true;
-        }
-
-        private void controlBtn_Click(object sender, EventArgs e)
-        {
-            bool didUpdate = isNew ? AddQuestion() : UpdateQuestion();
-
-            if (didUpdate)
-            {
-                if (isNew)
-                {
-                    curQuestion = qc.GetDataRowObject(curType);
-                }
-            }
-        }
-
         private bool AddQuestion()
         {
             FillQuestionRow();
+            bool didAdd = qc.AddQuestion(curQuestion, curType);
 
-            return qc.AddQuestion(curQuestion, curType);
-        }
-
-        private void FillQuestionRow()
-        {
-            curQuestion["Text"] = questionText.Text;
-            curQuestion["QOrder"] = questionOrder.Value;
-
-            foreach (Control questionControl in Controls["container" + curType].Controls)
+            if (didAdd)
             {
-                if (questionControl.Name.Contains("input"))
-                {
-                    string curFieldName = questionControl.Name.Split('_')[1];
-                    curQuestion[curFieldName] = questionControl.Text;
-                }
+                curQuestion = qc.GetDataRowObject(curType);
             }
+
+            return didAdd;
         }
 
         private bool UpdateQuestion()
@@ -137,20 +88,123 @@ namespace QuestionsFormsTest
             {
                 FillQuestionRow();
             }
+            else
+            {
+                string message = "There is nothing to update.";
+                string messageCaption = "Info";
+                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
+                MessageBoxIcon icon = MessageBoxIcon.Information;
+
+                MessageBox.Show(message, messageCaption, messageButtons, icon);
+            }
 
             return shouldUpdate ? qc.EditQuestion(curQuestion, index, originalId, curType) : false;
+        }
+
+        private void UpdateQuestionFields()
+        {
+            ShowExtraQuestionFields();
+
+            foreach (Control questionControl in questionsController.Controls)
+            {
+                if (questionControl.Name.Contains("input"))
+                {
+                    string curFieldName = questionControl.Name.Split('_')[1];
+                    questionControl.Text = curQuestion[curFieldName].ToString();
+                }
+            }
+
+            foreach (Control questionControl in questionsController.Controls["container" + curType].Controls)
+            {
+                if (questionControl.Name.Contains("input"))
+                {
+                    string curFieldName = questionControl.Name.Split('_')[1];
+                    questionControl.Text = curQuestion[curFieldName].ToString();
+                    curQuestion[curFieldName] = questionControl.Text;
+                }
+            }
+        }
+
+        private void ShowExtraQuestionFields()
+        {
+            foreach (var value in comboBoxDic)
+            {
+                questionsController.Controls["container" + value.Key].Visible = false;
+            }
+
+            questionsController.Controls["container" + curType].Visible = true;
+        }
+
+        private bool ValidateFields()
+        {
+            bool fieldsValid = true;
+            ArrayList controlNames = new ArrayList();
+
+            foreach (Control questionControl in questionsController.Controls)
+            {
+                if (questionControl.Name.Contains("input") && string.IsNullOrEmpty(questionControl.Text))
+                {
+                    fieldsValid = false;
+                    controlNames.Add(questionControl.Tag);
+                }
+            }
+
+            foreach (Control questionControl in questionsController.Controls["container" + curType].Controls)
+            {
+                if (questionControl.Name.Contains("input") && string.IsNullOrEmpty(questionControl.Text))
+                {
+                    fieldsValid = false;
+                    controlNames.Add(questionControl.Tag);
+                }
+            }
+
+            if (!fieldsValid)
+            {
+                StringBuilder message = new StringBuilder();
+                string messageCaption = "Error";
+                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
+                MessageBoxIcon icon = MessageBoxIcon.Error;
+
+                message.AppendLine("There are empty values.. please fill them.\n");
+                message.AppendLine("Empty values:-\n");
+
+                foreach (string controlName in controlNames)
+                {
+                    message.AppendLine("- " + controlName);
+                }
+
+                MessageBox.Show(message.ToString(), messageCaption, messageButtons, icon);
+            }
+
+            return fieldsValid;
+        }
+
+        private void FillQuestionRow()
+        {
+            foreach (Control questionControl in questionsController.Controls)
+            {
+                if (questionControl.Name.Contains("input"))
+                {
+                    string curFieldName = questionControl.Name.Split('_')[1];
+                    curQuestion[curFieldName] = questionControl.Text;
+                }
+            }
+
+            foreach(Control questionControl in questionsController.Controls["container" + curType].Controls)
+            {
+                if (questionControl.Name.Contains("input"))
+                {
+                    string curFieldName = questionControl.Name.Split('_')[1];
+                    curQuestion[curFieldName] = questionControl.Text;
+                }
+            }
         }
 
         private bool CheckQuestionFields()
         {
             bool isUpdatable = false;
 
-            if (!questionText.Text.Equals(curQuestion["Text"].ToString()) || (int) curQuestion["QOrder"] != questionOrder.Value)
-            {
-                isUpdatable = true;
-            }
-
-            foreach (Control questionControl in Controls["container" + curType].Controls)
+            foreach (Control questionControl in questionsController.Controls)
             {
                 if (questionControl.Name.Contains("input"))
                 {
@@ -160,13 +214,19 @@ namespace QuestionsFormsTest
                         isUpdatable = true;
                 }
             }
-            
-            return isUpdatable;
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            foreach (Control questionControl in questionsController.Controls["container" + curType].Controls)
+            {
+                if (questionControl.Name.Contains("input"))
+                {
+                    string curFieldName = questionControl.Name.Split('_')[1];
+
+                    if (!questionControl.Text.Equals(curQuestion[curFieldName].ToString()))
+                        isUpdatable = true;
+                }
+            }
+
+            return isUpdatable;
         }
 
         private void questionTypeCombo_DropDownClosed(object sender, EventArgs e)
@@ -175,6 +235,56 @@ namespace QuestionsFormsTest
             isNew = true;
             curQuestion = qc.GetDataRowObject(curType);
             ShowExtraQuestionFields();
+        }
+
+        private void controlBtn_Click(object sender, EventArgs e)
+        {
+            if (ValidateFields())
+            {
+                bool didUpdate = isNew ? AddQuestion() : UpdateQuestion();
+                this.isUpdated = true;
+                StringBuilder message = new StringBuilder();
+                string messageCaption = "";
+                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
+                MessageBoxIcon icon;
+                
+                if (didUpdate)
+                {
+                    icon = MessageBoxIcon.Information;
+                    messageCaption = "Success";
+                    message.AppendLine("The question was " + (isNew ? "added" : "updated") + " successfully.");
+                }
+                else
+                {
+                    icon = MessageBoxIcon.Error;
+                    messageCaption = "Error";
+                    message.AppendLine("Error " + (isNew ? "adding" : "updating") + " question.");
+                    message.AppendLine("Please retry again...");
+                }
+
+                MessageBox.Show(message.ToString(), messageCaption, messageButtons, icon);
+            }
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            string message = "Are you sure you want to exit?" + (isUpdated ? "" : " There are unsaved changes.");
+            string messageCaption = "Exit";
+            MessageBoxButtons messageButtons = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Warning;
+            DialogResult result;
+
+            result = MessageBox.Show(message, messageCaption, messageButtons, icon);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void input_EndStartValues_ValueChanged(object sender, EventArgs e)
+        {
+            input_EndValue.Value = Math.Max(input_EndValue.Value, input_StartValue.Value + 1);
         }
     }
 }

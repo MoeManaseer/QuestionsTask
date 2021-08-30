@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace QuestionsFormsTest
@@ -16,12 +15,13 @@ namespace QuestionsFormsTest
         {
             qc = new QuestionsController();
             allQuestionsGrid.DataSource = qc.getData().Tables["allTable"];
-            allQuestionsGrid.Columns["Text"].Width = 403;
-            allQuestionsGrid.Columns["Order"].Width = 114;
-            allQuestionsGrid.Columns["QuestionType"].Width = 114;
+            allQuestionsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            allQuestionsGrid.Columns["Text"].Width = 350;
+            allQuestionsGrid.Columns["Question type"].Width = 100;
             allQuestionsGrid.Columns["OriginalId"].Visible = false;
             allQuestionsGrid.Columns["Index"].Visible = false;
             allQuestionsGrid.Columns["QuestionTable"].Visible = false;
+            initControlsRecursive(this.Controls);
         }
 
         private void allQuestionsGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -38,6 +38,7 @@ namespace QuestionsFormsTest
         private void refreshBtn_Click(object sender, EventArgs e)
         {
             allQuestionsGrid.DataSource = qc.getData().Tables["allTable"];
+            outputLbl.Text = "Table updated";
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -62,20 +63,58 @@ namespace QuestionsFormsTest
 
         private void removeBtn_Click(object sender, EventArgs e)
         {
-            int curIndex = allQuestionsGrid.CurrentRow.Index;
-            int originalIndex = (int)allQuestionsGrid.CurrentRow.Cells["OriginalId"].Value;
-            string curType = allQuestionsGrid.CurrentRow.Cells["QuestionTable"].Value.ToString();
+            string deleteMessage = "Are you sure you want to delete this question? deleted questions are lost forever...";
+            string deleteCaption = "Delete question";
+            MessageBoxButtons messageButtons = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Warning;
+            DialogResult result;
 
-            bool didRemove = qc.RemoveQuestion(curIndex, curType, originalIndex);
-            if (didRemove)
+            result = MessageBox.Show(deleteMessage, deleteCaption, messageButtons, icon);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                outputLbl.Text = "Removed row successfuly";
-                outputLbl.ForeColor = Color.Green;
+                int curIndex = allQuestionsGrid.CurrentRow.Index;
+                int originalIndex = (int)allQuestionsGrid.CurrentRow.Cells["OriginalId"].Value;
+                string curType = allQuestionsGrid.CurrentRow.Cells["QuestionTable"].Value.ToString();
+
+                bool didRemove = qc.RemoveQuestion(curIndex, curType, originalIndex);
+
+                if (didRemove)
+                {
+                    deleteMessage = "The question was removed successfuly.";
+                    icon = MessageBoxIcon.Asterisk;
+                }
+                else
+                {
+                    deleteMessage = "An error happend while deleting the question, please refresh and try again.";
+                    icon = MessageBoxIcon.Error;
+                }
+
+                messageButtons = MessageBoxButtons.OK;
+                MessageBox.Show(deleteMessage, deleteCaption, messageButtons, icon);
             }
-            else
+        }
+
+        private void CheckList()
+        {
+            if (allQuestionsGrid.RowCount == 0)
             {
-                outputLbl.Text = "An error happened while removing the row, please refresh and try again.";
-                outputLbl.ForeColor = Color.Red;
+                ToggleButtons(false);
+            }
+        }
+
+        private void initControlsRecursive(Control.ControlCollection coll)
+        {
+            foreach (Control c in coll)
+            {
+                if (!c.Name.Equals("refreshBtn"))
+                {
+                    c.MouseClick += (sender, e) => {
+                        outputLbl.Text = "";
+                    };
+                }
+
+                initControlsRecursive(c.Controls);
             }
         }
     }

@@ -81,78 +81,6 @@ namespace QuestionsFormsTest
         }
 
         /// <summary>
-        /// Adds a new question
-        /// </summary>
-        /// <returns>wehether or not the question got added</returns>
-        private bool AddQuestion()
-        {
-            FillQuestionRow();
-            bool didAdd = qc.AddQuestion(curQuestion, curType);
-            StringBuilder message = new StringBuilder();
-            string messageCaption = "";
-            MessageBoxButtons messageButtons = MessageBoxButtons.OK;
-            MessageBoxIcon icon;
-
-            if (didAdd)
-            {
-                curQuestion = qc.GetDataRowObject(curType);
-                icon = MessageBoxIcon.Information;
-                messageCaption = "Success";
-                message.AppendLine("The question was added successfully.");
-            }
-            else
-            {
-                icon = MessageBoxIcon.Error;
-                messageCaption = "Error";
-                message.AppendLine("Error adding the question in the database..");
-                message.AppendLine("Please refresh the data and try again...");
-            }
-
-            MessageBox.Show(message.ToString(), messageCaption, messageButtons, icon);
-
-            return didAdd;
-        }
-
-        /// <summary>
-        /// Updates a question
-        /// </summary>
-        /// <returns>Wehether or not the question got updated</returns>
-        private bool UpdateQuestion()
-        {
-            bool shouldUpdate = CheckQuestionFields();
-            bool didUpdate = false;
-
-            StringBuilder message = new StringBuilder();
-            string messageCaption = "";
-            MessageBoxButtons messageButtons = MessageBoxButtons.OK;
-            MessageBoxIcon icon;
-
-            if (shouldUpdate)
-            {
-                FillQuestionRow();
-                didUpdate = qc.EditQuestion(curQuestion, index, originalId, curType);
-
-                if (didUpdate)
-                {
-                    icon = MessageBoxIcon.Information;
-                    messageCaption = "Success";
-                    message.AppendLine("The question was updated successfully.");
-                }
-                else
-                {
-                    icon = MessageBoxIcon.Error;
-                    messageCaption = "Error";
-                    message.AppendLine("Error editing the question in the database..");
-                    message.AppendLine("Please refresh the data and try again...");
-                }
-
-                MessageBox.Show(message.ToString(), messageCaption, messageButtons, icon);
-            }
-
-            return didUpdate && shouldUpdate;
-        }
-
-        /// <summary>
         /// Updates the form fields with data from the dataRow
         /// </summary>
         private void UpdateQuestionFields()
@@ -317,9 +245,37 @@ namespace QuestionsFormsTest
 
         private void controlBtn_Click(object sender, EventArgs e)
         {
-            if (ValidateFields())
+            if (ValidateFields() && (isNew || CheckQuestionFields()))
             {
-                this.isUpdated = isNew ? AddQuestion() : UpdateQuestion();
+                FillQuestionRow();
+                bool actionSuccess = isNew ? qc.AddQuestion(curQuestion, curType) : qc.EditQuestion(curQuestion, index, originalId, curType);
+                this.isUpdated = actionSuccess;
+
+                StringBuilder message = new StringBuilder();
+                string messageCaption = "";
+                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
+                MessageBoxIcon icon;
+
+                if (actionSuccess)
+                {
+                    icon = MessageBoxIcon.Information;
+                    messageCaption = "Success";
+                    message.AppendLine("The question was " + (isNew ? "Added" : "Edited") +" successfully.");
+                }
+                else
+                {
+                    icon = MessageBoxIcon.Error;
+                    messageCaption = "Error";
+                    message.AppendLine("Error in " + (isNew ? "Adding" : "Editing") + " the question in the database..");
+                    message.AppendLine("Please refresh the data and try again...");
+                }
+
+                MessageBox.Show(message.ToString(), messageCaption, messageButtons, icon);
+
+                if (isNew)
+                {
+                    curQuestion = qc.GetDataRowObject(curType);
+                }
             }
         }
 

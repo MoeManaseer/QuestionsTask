@@ -10,7 +10,7 @@ namespace QuestionsFormsTest
     public partial class QuestionForm : Form
     {
         private QuestionsController qc;
-        private string curType;
+        private string curType = "SmileyQuestions";
         private DataRow curQuestion;
         private bool isNew = true;
         private int originalId;
@@ -19,7 +19,15 @@ namespace QuestionsFormsTest
         private Control questionsController;
         Dictionary<string, string> comboBoxDic = new Dictionary<string, string>();
 
-        public QuestionForm(QuestionsController qc, bool isNew = true, string questionType = "SmileyQuestions", int originalId = 0, int index = 0)
+        public QuestionForm(QuestionsController qc)
+        {
+            InitializeComponent();
+            this.qc = qc;
+            curQuestion = qc.GetDataRowObject(curType);
+            FillDictionaryItems();
+        }
+
+        public QuestionForm(QuestionsController qc, bool isNew, string questionType, int originalId, int index)
         {
             InitializeComponent();
             this.qc = qc;
@@ -27,6 +35,7 @@ namespace QuestionsFormsTest
             this.originalId = originalId;
             this.index = index;
             curType = questionType;
+            curQuestion = qc.GetQuestion(originalId, curType);
             FillDictionaryItems();
         }
 
@@ -38,7 +47,6 @@ namespace QuestionsFormsTest
 
             if (isNew)
             {
-                curQuestion = qc.GetDataRowObject(curType);
                 controlBtn.Text = "Add";
                 headerLbl.Text = "New Question";
                 ShowExtraQuestionFields();
@@ -46,7 +54,6 @@ namespace QuestionsFormsTest
             else
             {
                 questionTypeCombo.Enabled = false;
-                curQuestion = qc.GetQuestion(originalId, curType);
                 controlBtn.Text = "Update";
                 headerLbl.Text = "Update Question";
                 UpdateQuestionFields();
@@ -81,11 +88,27 @@ namespace QuestionsFormsTest
         {
             FillQuestionRow();
             bool didAdd = qc.AddQuestion(curQuestion, curType);
+            StringBuilder message = new StringBuilder();
+            string messageCaption = "";
+            MessageBoxButtons messageButtons = MessageBoxButtons.OK;
+            MessageBoxIcon icon;
 
             if (didAdd)
             {
                 curQuestion = qc.GetDataRowObject(curType);
+                icon = MessageBoxIcon.Information;
+                messageCaption = "Success";
+                message.AppendLine("The question was added successfully.");
             }
+            else
+            {
+                icon = MessageBoxIcon.Error;
+                messageCaption = "Error";
+                message.AppendLine("Error adding the question in the database..");
+                message.AppendLine("Please refresh the data and try again...");
+            }
+
+            MessageBox.Show(message.ToString(), messageCaption, messageButtons, icon);
 
             return didAdd;
         }
@@ -97,22 +120,36 @@ namespace QuestionsFormsTest
         private bool UpdateQuestion()
         {
             bool shouldUpdate = CheckQuestionFields();
+            bool didUpdate = false;
+
+            StringBuilder message = new StringBuilder();
+            string messageCaption = "";
+            MessageBoxButtons messageButtons = MessageBoxButtons.OK;
+            MessageBoxIcon icon;
 
             if (shouldUpdate)
             {
                 FillQuestionRow();
-            }
-            else
-            {
-                string message = "There is nothing to update.";
-                string messageCaption = "Info";
-                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
-                MessageBoxIcon icon = MessageBoxIcon.Information;
+                didUpdate = qc.EditQuestion(curQuestion, index, originalId, curType);
 
-                MessageBox.Show(message, messageCaption, messageButtons, icon);
+                if (didUpdate)
+                {
+                    icon = MessageBoxIcon.Information;
+                    messageCaption = "Success";
+                    message.AppendLine("The question was updated successfully.");
+                }
+                else
+                {
+                    icon = MessageBoxIcon.Error;
+                    messageCaption = "Error";
+                    message.AppendLine("Error editing the question in the database..");
+                    message.AppendLine("Please refresh the data and try again...");
+                }
+
+                MessageBox.Show(message.ToString(), messageCaption, messageButtons, icon);
             }
 
-            return shouldUpdate ? qc.EditQuestion(curQuestion, index, originalId, curType) : false;
+            return didUpdate && shouldUpdate;
         }
 
         /// <summary>
@@ -257,6 +294,16 @@ namespace QuestionsFormsTest
                 }
             }
 
+            if (!isUpdatable)
+            {
+                string message = "Update failed.. nothing to update!";
+                string messageCaption = "Error";
+                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
+                MessageBoxIcon icon = MessageBoxIcon.Error;
+
+                MessageBox.Show(message, messageCaption, messageButtons, icon);
+            }
+
             return isUpdatable;
         }
 
@@ -272,28 +319,7 @@ namespace QuestionsFormsTest
         {
             if (ValidateFields())
             {
-                bool didUpdate = isNew ? AddQuestion() : UpdateQuestion();
-                this.isUpdated = true;
-                StringBuilder message = new StringBuilder();
-                string messageCaption = "";
-                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
-                MessageBoxIcon icon;
-                
-                if (didUpdate)
-                {
-                    icon = MessageBoxIcon.Information;
-                    messageCaption = "Success";
-                    message.AppendLine("The question was " + (isNew ? "added" : "updated") + " successfully.");
-                }
-                else
-                {
-                    icon = MessageBoxIcon.Error;
-                    messageCaption = "Error";
-                    message.AppendLine("Error " + (isNew ? "adding" : "updating") + " question.");
-                    message.AppendLine("Please retry again...");
-                }
-
-                MessageBox.Show(message.ToString(), messageCaption, messageButtons, icon);
+                this.isUpdated = isNew ? AddQuestion() : UpdateQuestion();
             }
         }
 

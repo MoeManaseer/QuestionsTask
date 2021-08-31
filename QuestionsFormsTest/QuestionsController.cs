@@ -218,6 +218,7 @@ namespace QuestionsFormsTest
         /// <returns>an empty DataRow</returns>
         public DataRow GetDataRowObject(string tableName)
         {
+            DataTable tb = questionsDataSet.Tables[tableName];
             return questionsDataSet.Tables[tableName].NewRow();
         }
     }

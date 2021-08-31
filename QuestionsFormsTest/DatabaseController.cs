@@ -108,7 +108,7 @@ namespace QuestionsFormsTest
         /// <returns>Bool wehether the question was updated in the database or not</returns>
         public bool EditQuestion(DataRow updatedRow, string tableName, int id)
         {
-            bool didUpdate = false;
+            int didUpdate = 0;
 
             try
             {
@@ -123,8 +123,7 @@ namespace QuestionsFormsTest
                 }
 
                 con.Open();
-                editCmd.ExecuteNonQuery();
-                didUpdate = true;
+                didUpdate = editCmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
@@ -135,7 +134,7 @@ namespace QuestionsFormsTest
                 CloseConnection();
             }
 
-            return didUpdate;
+            return didUpdate == 1;
         }
 
         /// <summary>

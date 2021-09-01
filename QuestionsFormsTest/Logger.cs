@@ -9,46 +9,66 @@ namespace QuestionsFormsTest
         /// <summary>
         /// Helper function to write exceptions to a txt file
         /// </summary>
-        /// <param name="e">The exception that was thrown</param>
-        public static void WriteExceptionMessage(Exception e)
+        /// <param name="pThrownException">The exception that was thrown</param>
+        public static void WriteExceptionMessage(Exception pThrownException)
         {
-            DateTime dateTime = DateTime.Now;
-            string curDate = dateTime.ToString("MM-dd");
-            string curFile = Environment.CurrentDirectory + "\\" + curDate + "-log.txt";
-            CheckFile(curFile);
+            try
+            {
+                DateTime tDateTime = DateTime.Now;
+                string tCurrentDate = tDateTime.ToString("MM-dd");
+                string tFilePath = Environment.CurrentDirectory + "\\" + tCurrentDate + "-log.txt";
+                CheckFile(tFilePath);
 
-            StringBuilder errorString = new StringBuilder();
-            errorString.AppendLine(dateTime.ToString("MM/dd HH:mm:ss") + " :-");
-            errorString.AppendLine(e.Message);
-            errorString.AppendLine(e.StackTrace);
-            errorString.AppendLine(e.HelpLink);
+                StringBuilder tErrorString = new StringBuilder();
+                tErrorString.AppendLine(tDateTime.ToString("MM/dd HH:mm:ss") + " :-");
+                tErrorString.AppendLine(pThrownException.Message);
+                tErrorString.AppendLine(pThrownException.StackTrace);
+                tErrorString.AppendLine(pThrownException.HelpLink);
 
-
-            WriteExceptionMessageToFile(errorString.ToString(), curFile);
+                WriteExceptionMessageToFile(tErrorString.ToString(), tFilePath);
+            }
+            catch (Exception tException)
+            {
+                Console.WriteLine(tException.Message);
+            }
         }
 
         /// <summary>
         /// Writes the exception string to the specific file
         /// </summary>
-        /// <param name="errorString">The string to be written to the file</param>
-        /// <param name="curFile">The file string path</param>
-        private static void WriteExceptionMessageToFile(string errorString, string curFile)
+        /// <param name="pErrorString">The string to be written to the file</param>
+        /// <param name="pFilePath">The file string path</param>
+        private static void WriteExceptionMessageToFile(string pErrorString, string pFilePath)
         {
-            using (StreamWriter sw = File.AppendText(curFile))
+            try
             {
-                sw.Write(errorString);
+                using (StreamWriter sw = File.AppendText(pFilePath))
+                {
+                    sw.Write(pErrorString);
+                }
+            }
+            catch (Exception tException)
+            {
+                Console.WriteLine(tException.Message);
             }
         }
 
         /// <summary>
         /// Helper function to check if the file exists, if it doesn't create it
         /// </summary>
-        /// <param name="curFile">The file string path</param>
-        private static void CheckFile(string curFile)
+        /// <param name="pFilePath">The file string path</param>
+        private static void CheckFile(string pFilePath)
         {
-            if (!File.Exists(curFile))
+            try
             {
-                File.Create(curFile).Close();
+                if (!File.Exists(pFilePath))
+                {
+                    File.Create(pFilePath).Close();
+                }
+            }
+            catch (Exception tException)
+            {
+                Console.WriteLine(tException.Message);
             }
         }
     }

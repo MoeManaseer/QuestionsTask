@@ -3,180 +3,323 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace QuestionsFormsTest
 {
     public class DatabaseController
     {
-        private readonly string CS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
-        private SqlConnection con;
-
-        /// <summary>
-        /// Gets the tables from the database and returns it as a dataset to be used
-        /// </summary>
-        /// <returns>DataSet the data from the database</returns>
-        public DataSet GetAllQuestions()
+        private string ConnectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString.ToString();
+        private SqlConnection SQLConnection;
+        public DatabaseController()
         {
-            DataSet tempSet = new DataSet();
-
-            try 
+            try
             {
-                con = new SqlConnection(CS);
-
-                string sqlStatment = "select * from SmileyQuestions;select * from SliderQuestions;select * from StarQuestions";
-                SqlDataAdapter dAdapter = new SqlDataAdapter(sqlStatment, con);
-
-                dAdapter.TableMappings.Add("Table", "SmileyQuestions");
-                dAdapter.TableMappings.Add("Table1", "SliderQuestions");
-                dAdapter.TableMappings.Add("Table2", "StarQuestions");
-
-                dAdapter.Fill(tempSet);
+                //ConstructConnectionString();
             }
             catch (Exception e)
             {
                 Logger.WriteExceptionMessage(e);
-                CloseConnection();
+            }
+        }
 
-                string deleteMessage = "Fatal error in fetching data from database, please contact system admin..";
-                string deleteCaption = "Error";
-                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
-                MessageBoxIcon icon = MessageBoxIcon.Error;
-                DialogResult result;
-
-                result = MessageBox.Show(deleteMessage, deleteCaption, messageButtons, icon);
-
-                if (result == System.Windows.Forms.DialogResult.OK)
+        /// <summary>
+        /// Changes the values for the connection string
+        /// </summary>
+        /// <param name="pConnectionData">List of key value pairs of the new connection string data</param>
+        public void ChangeConnectionString(List<KeyValuePair<string, string>> pConnectionData)
+        {
+            try
+            {
+                foreach (KeyValuePair<string, string> tKeyValuePair in pConnectionData)
                 {
-                    Application.Exit();
+                    ConfigurationManager.AppSettings[tKeyValuePair.Key] = tKeyValuePair.Value;
+                }
+
+                ConstructConnectionString();
+            }
+            catch (Exception e)
+            {
+                Logger.WriteExceptionMessage(e);
+            }
+        }
+
+        /// <summary>
+        /// Constructs the connection string then assigns it to the connection string variable
+        /// </summary>
+        private void ConstructConnectionString()
+        {
+            try
+            {
+                string DataSource = ConfigurationManager.AppSettings["DataSource"];
+                string DatabaseName = ConfigurationManager.AppSettings["Database"];
+                string Username = ConfigurationManager.AppSettings["UserId"];
+                string Password = ConfigurationManager.AppSettings["Password"];
+
+                ConnectionString = "data source = " + DataSource + "; database = " + DatabaseName + "; uid = " + Username + "; password = " + Password;
+            }
+            catch (Exception e)
+            {
+                Logger.WriteExceptionMessage(e);
+            }
+        }
+        
+        /// <summary>
+        /// Gets data from the database based on the given table names and constructs the DataSet
+        /// </summary>
+        /// <param name="pQuestionsDataSet">The dataset to be constructed</param>
+        /// <param name="pTableNames">The table names to get from the database</param>
+        /// <returns>a result code to be used to determine if success or failure</returns>
+        public int GetData(DataSet pQuestionsDataSet, string[] pTableNames)
+        {
+            SqlCommand tSQLCommand = null;
+            SqlDataReader tSQLReader = null;
+            int tResultCode = 0;
+
+            try 
+            {
+                SQLConnection = new SqlConnection(ConnectionString);
+                StringBuilder SqlStatementString = new StringBuilder();
+
+                foreach (string tTableName in pTableNames)
+                {
+                    SqlStatementString.Append("SELECT * FROM " + tTableName + "Questions;");
+                }
+
+                tSQLCommand = new SqlCommand(SqlStatementString.ToString(), SQLConnection);
+                SQLConnection.Open();
+                tSQLReader = tSQLCommand.ExecuteReader(CommandBehavior.KeyInfo);
+
+                foreach (string tTableName in pTableNames)
+                {
+                    DataTable tNewTableSchema = tSQLReader.GetSchemaTable();
+                    DataTable tNewTable = new DataTable();
+                    foreach (DataRow tRow in tNewTableSchema.Rows)
+                    {
+                        string tNewColName = tRow.Field<string>("ColumnName");
+                        Type tNewColType = tRow.Field<Type>("DataType");
+                        tNewTable.Columns.Add(tNewColName, tNewColType);
+                    }
+
+                    while (tSQLReader.Read())
+                    {
+                        var tNewTableRow = tNewTable.Rows.Add();
+                        foreach (DataColumn col in tNewTable.Columns)
+                        {
+                            tNewTableRow[col.ColumnName] = tSQLReader[col.ColumnName];
+                        }
+                    }
+
+                    pQuestionsDataSet.Tables.Add(tNewTable);
+                    tSQLReader.NextResult();
+                }
+            }
+            catch (SqlException tSQLException)
+            {
+                Logger.WriteExceptionMessage(tSQLException);
+                tResultCode = tSQLException.Number;
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+                tResultCode = 1;
+            }
+            finally
+            {
+                try
+                {
+                    tSQLReader.Close();
+                    tSQLCommand.Dispose();
+                    SQLConnection.Close();
+                    pQuestionsDataSet.AcceptChanges();
+                }
+                catch (Exception tException)
+                {
+                    Logger.WriteExceptionMessage(tException);
                 }
             }
 
-            return tempSet;
+            return tResultCode;
         }
 
         /// <summary>
         /// Adds a new question to the database
         /// </summary>
-        /// <param name="newRow">The datarow to be added to the database</param>
-        /// <param name="tableName">The table in which the question should be inserted to</param>
-        /// <returns>Int the new question Id from the database</returns>
-        public int AddNewQuestion(DataRow newRow, string tableName)
+        /// <param name="pQuestionRow">The new question to be added to the database</param>
+        /// <returns>a result code to be used to determine if success or failure</returns>
+        public int AddQuestion(DataRow pQuestionRow)
         {
-            int newQuestionId = 0;
+            SqlTransaction tSQLTransaction = null;
+            SqlCommand tSQLCommand = null;
+            int tResultCode = 0;
 
             try
             {
-                con = new SqlConnection(CS);
-                SqlCommand addCmd = new SqlCommand("Add_" + tableName, con);
-                addCmd.CommandType = CommandType.StoredProcedure;
+                string tTableName = pQuestionRow.Table.TableName;
 
-                foreach (DataColumn curCol in newRow.Table.Columns)
+                SQLConnection = new SqlConnection(ConnectionString);
+                SQLConnection.Open();
+                tSQLTransaction = SQLConnection.BeginTransaction();
+
+                tSQLCommand = new SqlCommand("Add_" + tTableName, SQLConnection, tSQLTransaction);
+                tSQLCommand.CommandType = CommandType.StoredProcedure;
+
+                foreach (DataColumn tCurrentColumn in pQuestionRow.Table.Columns)
                 {
-                    string colName = curCol.ToString();
-                    if (!colName.Equals("Id"))
+                    string tCurrentColumnName = tCurrentColumn.ToString();
+
+                    if (!tCurrentColumnName.Equals("Id"))
                     {
-                        addCmd.Parameters.Add(new SqlParameter("@" + colName, newRow[colName]));
+                        tSQLCommand.Parameters.Add(new SqlParameter("@" + tCurrentColumnName, pQuestionRow[tCurrentColumnName]));
                     }
                 }
 
-                addCmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int));
-                addCmd.Parameters["@Id"].Direction = ParameterDirection.Output;
+                tSQLCommand.ExecuteNonQuery();
+                tSQLTransaction.Commit();
 
-                con.Open();
-                addCmd.ExecuteNonQuery();
-                newQuestionId = Convert.ToInt32(addCmd.Parameters["@Id"].Value);
             }
-            catch (Exception e)
+            catch (SqlException tSQLException)
             {
-                Logger.WriteExceptionMessage(e);
+                tSQLTransaction.Rollback();
+                Logger.WriteExceptionMessage(tSQLException);
+                tResultCode = tSQLException.Number;
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+                tResultCode = 1;
             }
             finally
             {
-                CloseConnection();
+                try
+                {
+                    tSQLCommand.Dispose();
+                    tSQLTransaction.Dispose();
+                    SQLConnection.Close();
+                }
+                catch (Exception tException)
+                {
+                    Logger.WriteExceptionMessage(tException);
+                }
             }
 
-            return newQuestionId;
+            return tResultCode;
         }
 
         /// <summary>
         /// Edits a question in the database
         /// </summary>
-        /// <param name="updatedRow">The updated datarow</param>
-        /// <param name="tableName">The table name of which the datarow belongs to</param>
-        /// <param name="id">The question original id in the database</param>
-        /// <returns>Bool wehether the question was updated in the database or not</returns>
-        public bool EditQuestion(DataRow updatedRow, string tableName, int id)
+        /// <param name="pQuestionRow">The question that should be edited in the database</param>
+        /// <returns>a result code to be used to determine if success or failure</returns>
+        public int EditQuestion(DataRow pQuestionRow)
         {
-            int didUpdate = 0;
+            SqlTransaction tSQLTransaction = null;
+            SqlCommand tSQLCommand = null;
+            int tResultCode = 0;
 
             try
             {
-                con = new SqlConnection(CS);
-                SqlCommand editCmd = new SqlCommand("Update_" + tableName, con);
-                editCmd.CommandType = CommandType.StoredProcedure;
+                string tTableName = pQuestionRow.Table.TableName;
 
-                foreach (DataColumn curCol in updatedRow.Table.Columns)
+                SQLConnection = new SqlConnection(ConnectionString);
+                SQLConnection.Open();
+                tSQLTransaction = SQLConnection.BeginTransaction();
+
+                tSQLCommand = new SqlCommand("Update_" + tTableName, SQLConnection, tSQLTransaction);
+                tSQLCommand.CommandType = CommandType.StoredProcedure;
+
+                foreach (DataColumn tCurrentColumn in pQuestionRow.Table.Columns)
                 {
-                    string colName = curCol.ToString();
-                    editCmd.Parameters.Add(new SqlParameter("@" + colName, updatedRow[colName]));
+                    string tCurrentColumnName = tCurrentColumn.ToString();
+                    tSQLCommand.Parameters.Add(new SqlParameter("@" + tCurrentColumnName, pQuestionRow[tCurrentColumnName]));
                 }
 
-                con.Open();
-                didUpdate = editCmd.ExecuteNonQuery();
+                tResultCode = tSQLCommand.ExecuteNonQuery() != 0 ? 0 : 2;
+
+                tSQLTransaction.Commit();
+            }
+            catch (SqlException tSQLException)
+            {
+                tSQLTransaction.Rollback();
+                Logger.WriteExceptionMessage(tSQLException);
+                tResultCode = tSQLException.Number;
             }
             catch (Exception e)
             {
                 Logger.WriteExceptionMessage(e);
+                tResultCode = 1;
             }
             finally
             {
-                CloseConnection();
+                try
+                {
+                    tSQLCommand.Dispose();
+                    tSQLTransaction.Dispose();
+                    SQLConnection.Close();
+                }
+                catch (Exception tException)
+                {
+                    Logger.WriteExceptionMessage(tException);
+                }
             }
 
-            return didUpdate == 1;
+            return tResultCode;
         }
 
         /// <summary>
         /// Deletes a question from the database
         /// </summary>
-        /// <param name="tableName">The tablename in the database</param>
-        /// <param name="id">The id of the question to be removed</param>
-        /// <returns>bool if the question got deleted or not</returns>
-        public bool DeleteQuestion(string tableName, int id)
+        /// <param name="pQuestionRow">The question row that should be removed</param>
+        /// <returns>a result code to be used to determine if success or failure</returns>
+        public int DeleteQuestion(DataRow pQuestionRow)
         {
-            int affectedRows = 0;
-            
+            SqlTransaction tSQLTransaction = null;
+            SqlCommand tSQLCommand = null;
+            int tResultCode = 0;
+
             try
             {
-                con = new SqlConnection(CS);
-                SqlCommand deleteCmd = new SqlCommand("delete from " + tableName + " where id = " + id, con);
+                string tTableName = pQuestionRow.Table.TableName;
+                int tQuestionId = Convert.ToInt32(pQuestionRow["Id"]);
 
-                con.Open();
-                affectedRows = deleteCmd.ExecuteNonQuery();
+                SQLConnection = new SqlConnection(ConnectionString);
+                SQLConnection.Open();
+                tSQLTransaction = SQLConnection.BeginTransaction();
+
+                tSQLCommand = new SqlCommand("Delete_" + tTableName, SQLConnection, tSQLTransaction);
+                tSQLCommand.CommandType = CommandType.StoredProcedure;
+                tSQLCommand.Parameters.Add(new SqlParameter("@Id", pQuestionRow));
+                tResultCode = tSQLCommand.ExecuteNonQuery() != 0 ? 0 : 2;
+
+                tSQLTransaction.Commit();
+            }
+            catch (SqlException tSQLException)
+            {
+                tSQLTransaction.Rollback();
+                Logger.WriteExceptionMessage(tSQLException);
+                tResultCode = tSQLException.Number;
             }
             catch (Exception e)
             {
+                tSQLTransaction.Rollback();
                 Logger.WriteExceptionMessage(e);
+                tResultCode = 1;
             }
             finally
             {
-                CloseConnection();
+                try
+                {
+                    tSQLCommand.Dispose();
+                    tSQLTransaction.Dispose();
+                    SQLConnection.Close();
+                }
+                catch (Exception tException)
+                {
+                    Logger.WriteExceptionMessage(tException);
+                }
             }
             
-
-            return affectedRows == 1;
-        }
-
-        /// <summary>
-        /// Helper function to close the connection if it was open
-        /// </summary>
-        private void CloseConnection()
-        {
-            if (con.State == ConnectionState.Open)
-            {
-                con.Close();
-            }
+            return tResultCode;
         }
     }
 }

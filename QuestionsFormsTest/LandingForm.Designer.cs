@@ -1,6 +1,6 @@
 ﻿namespace QuestionsFormsTest
 {
-    partial class Form1
+    partial class LandingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -59,7 +59,6 @@
             this.refreshBtn.TabIndex = 1;
             this.refreshBtn.Text = "Refresh";
             this.refreshBtn.UseVisualStyleBackColor = true;
-            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
             // removeBtn
             // 
@@ -103,7 +102,7 @@
             this.outputLbl.Size = new System.Drawing.Size(0, 20);
             this.outputLbl.TabIndex = 5;
             // 
-            // Form1
+            // LandingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -118,9 +117,10 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(791, 489);
             this.MinimumSize = new System.Drawing.Size(791, 489);
-            this.Name = "Form1";
+            this.Name = "LandingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Questions Landing Form";
+            this.Load += new System.EventHandler(this.LandingFrom_Load);
             ((System.ComponentModel.ISupportInitialize)(this.allQuestionsGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

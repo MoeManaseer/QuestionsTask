@@ -9,65 +9,137 @@ namespace QuestionsFormsTest
 {
     public partial class QuestionForm : Form
     {
-        private QuestionsController qc;
-        private string curType = "SmileyQuestions";
-        private DataRow curQuestion;
-        private bool isNew = true;
-        private int originalId;
-        private int index;
-        private bool isUpdated = false;
-        private Control questionsController;
-        Dictionary<string, string> comboBoxDic = new Dictionary<string, string>();
+        private QuestionsController QuestionsController;
+        private string CurrentQuestionType;
+        private DataRow CurrentQuestion;
+        private int CurrentQuestionId;
+        private bool IsUpdated;
+        private List<Control> QuestionsInputFieldList;
+        private Dictionary<string, string> QuestionTypesDictionary;
+        private string[] QuestionTypes;
 
-        public QuestionForm(QuestionsController qc)
+        public QuestionForm(QuestionsController pQuestionsController, string[] pQuestionTypes)
         {
-            InitializeComponent();
-            this.qc = qc;
-            curQuestion = qc.GetDataRowObject(curType);
-            FillDictionaryItems();
+            try
+            {
+                InitializeComponent();
+                QuestionsController = pQuestionsController;
+                CurrentQuestionId = -1;
+                CurrentQuestionType = "SmileyQuestions";
+                QuestionTypes = pQuestionTypes;
+                QuestionTypesDictionary = new Dictionary<string, string>();
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
         }
 
-        public QuestionForm(QuestionsController qc, bool isNew, string questionType, int originalId, int index)
+        public QuestionForm(QuestionsController pQuestionsController, string pQuestionType, int pQuestionId, string[] pQuestionTypes)
         {
-            InitializeComponent();
-            this.qc = qc;
-            this.isNew = isNew;
-            this.originalId = originalId;
-            this.index = index;
-            curType = questionType;
-            curQuestion = qc.GetQuestion(originalId, curType);
-            FillDictionaryItems();
+            try
+            {
+                InitializeComponent();
+                QuestionsController = pQuestionsController;
+                CurrentQuestionId = pQuestionId;
+                CurrentQuestionType = pQuestionType;
+                QuestionTypes = pQuestionTypes;
+                QuestionTypesDictionary = new Dictionary<string, string>();
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
         }
 
         private void QuestionForm_Load(object sender, EventArgs e)
         {
-            BindComboBox();
-            questionTypeCombo.SelectedValue = curType;
-            questionsController = Controls["containerQuestion"];
+            try
+            {
+                int tResponseCode = QuestionsController.GetQuestionRow(CurrentQuestionType, CurrentQuestionId, ref CurrentQuestion);
 
-            if (isNew)
-            {
-                controlBtn.Text = "Add";
-                headerLbl.Text = "New Question";
-                ShowExtraQuestionFields();
+                if (tResponseCode == 0)
+                {
+                    FillQuestionTypes();
+                    BindComboBox();
+                    questionTypeCombo.SelectedValue = CurrentQuestionType;
+                    UpdateQuestionsInputFieldList();
+                    IsUpdated = false;
+
+                    if (CurrentQuestionId == -1)
+                    {
+                        controlBtn.Text = "Add";
+                        headerLbl.Text = "New Question";
+                        ShowExtraQuestionFields();
+                    }
+                    else
+                    {
+                        questionTypeCombo.Enabled = false;
+                        controlBtn.Text = "Update";
+                        headerLbl.Text = "Update Question";
+                        UpdateQuestionFields();
+                    }
+                }
+                else
+                {
+                    string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
+                    string tMessageCaption = "Error";
+                    MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
+                    MessageBoxIcon tIcon = MessageBoxIcon.Error;
+
+                    MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
+                }
             }
-            else
+            catch (Exception tException)
             {
-                questionTypeCombo.Enabled = false;
-                controlBtn.Text = "Update";
-                headerLbl.Text = "Update Question";
-                UpdateQuestionFields();
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
-        /// <summary>
-        /// Fills the dicitonary with the table names
-        /// </summary>
-        private void FillDictionaryItems()
+        private void FillQuestionTypes()
         {
-            comboBoxDic.Add("SmileyQuestions", "Smiley Question");
-            comboBoxDic.Add("SliderQuestions", "Slider Question");
-            comboBoxDic.Add("StarQuestions", "Star Question");
+            try
+            {
+                foreach (string tQuestionType in QuestionTypes)
+                {
+                    QuestionTypesDictionary.Add(tQuestionType + "Questions", tQuestionType);
+                }
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
+        }
+
+        private void UpdateQuestionsInputFieldList()
+        {
+            try
+            {
+                QuestionsInputFieldList = new List<Control>();
+
+                Control tQuestionDataContainer = Controls["containerQuestion"];
+                Control tQuestionExtraDataContainer = tQuestionDataContainer.Controls["container" + CurrentQuestionType];
+
+                foreach (Control tQuestionInputField in tQuestionDataContainer.Controls)
+                {
+                    if (tQuestionInputField.Name.Contains("input"))
+                    {
+                        QuestionsInputFieldList.Add(tQuestionInputField);
+                    }
+                }
+
+                foreach (Control tQuestionExtraInputField in tQuestionExtraDataContainer.Controls)
+                {
+                    if (tQuestionExtraInputField.Name.Contains("input"))
+                    {
+                        QuestionsInputFieldList.Add(tQuestionExtraInputField);
+                    }
+                }
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
         }
 
         /// <summary>
@@ -75,9 +147,16 @@ namespace QuestionsFormsTest
         /// </summary>
         private void BindComboBox()
         {
-            questionTypeCombo.DataSource = new BindingSource(comboBoxDic, null);
-            questionTypeCombo.DisplayMember = "Value";
-            questionTypeCombo.ValueMember = "Key";
+            try
+            {
+                questionTypeCombo.DataSource = new BindingSource(QuestionTypesDictionary, null);
+                questionTypeCombo.DisplayMember = "Value";
+                questionTypeCombo.ValueMember = "Key";
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
         }
 
         /// <summary>
@@ -85,25 +164,19 @@ namespace QuestionsFormsTest
         /// </summary>
         private void UpdateQuestionFields()
         {
-            ShowExtraQuestionFields();
-
-            foreach (Control questionControl in questionsController.Controls)
+            try
             {
-                if (questionControl.Name.Contains("input"))
+                ShowExtraQuestionFields();
+
+                foreach (Control tQuestionInputField in QuestionsInputFieldList)
                 {
-                    string curFieldName = questionControl.Name.Split('_')[1];
-                    questionControl.Text = curQuestion[curFieldName].ToString();
+                    string tCurrentFieldName = tQuestionInputField.Name.Split('_')[1];
+                    tQuestionInputField.Text = CurrentQuestion[tCurrentFieldName].ToString();
                 }
             }
-
-            foreach (Control questionControl in questionsController.Controls["container" + curType].Controls)
+            catch (Exception tException)
             {
-                if (questionControl.Name.Contains("input"))
-                {
-                    string curFieldName = questionControl.Name.Split('_')[1];
-                    questionControl.Text = curQuestion[curFieldName].ToString();
-                    curQuestion[curFieldName] = questionControl.Text;
-                }
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -112,192 +185,202 @@ namespace QuestionsFormsTest
         /// </summary>
         private void ShowExtraQuestionFields()
         {
-            foreach (var value in comboBoxDic)
+            try
             {
-                questionsController.Controls["container" + value.Key].Visible = false;
-            }
+                Control QuestionDataContainer = Controls["containerQuestion"];
 
-            questionsController.Controls["container" + curType].Visible = true;
+                foreach (var tQuestionExtraDataContainer in QuestionTypesDictionary)
+                {
+                    QuestionDataContainer.Controls["container" + tQuestionExtraDataContainer.Key].Visible = false;
+                }
+
+                QuestionDataContainer.Controls["container" + CurrentQuestionType].Visible = true;
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
         }
 
-        /// <summary>
-        /// Checks the form fields for empty values, if they exist show the user
-        /// </summary>
-        /// <returns></returns>
         private bool ValidateFields()
         {
-            bool fieldsValid = true;
-            ArrayList controlNames = new ArrayList();
+            ArrayList tControlNames = new ArrayList();
 
-            foreach (Control questionControl in questionsController.Controls)
+            try
             {
-                if (questionControl.Name.Contains("input") && string.IsNullOrEmpty(questionControl.Text))
+                foreach (Control tQuestionInputField in QuestionsInputFieldList)
                 {
-                    fieldsValid = false;
-                    controlNames.Add(questionControl.Tag);
-                }
-            }
-
-            foreach (Control questionControl in questionsController.Controls["container" + curType].Controls)
-            {
-                if (questionControl.Name.Contains("input") && string.IsNullOrEmpty(questionControl.Text))
-                {
-                    fieldsValid = false;
-                    controlNames.Add(questionControl.Tag);
-                }
-            }
-
-            if (!fieldsValid)
-            {
-                StringBuilder message = new StringBuilder();
-                string messageCaption = "Error";
-                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
-                MessageBoxIcon icon = MessageBoxIcon.Error;
-
-                message.AppendLine("There are empty values.. please fill them.\n");
-                message.AppendLine("Empty values:-\n");
-
-                foreach (string controlName in controlNames)
-                {
-                    message.AppendLine("- " + controlName);
+                    if (string.IsNullOrEmpty(tQuestionInputField.Text))
+                        tControlNames.Add(tQuestionInputField.Tag);
                 }
 
-                MessageBox.Show(message.ToString(), messageCaption, messageButtons, icon);
+                if (tControlNames.Count != 0)
+                {
+                    StringBuilder tMessageString = new StringBuilder();
+                    string tMessageCaption = "Error";
+                    MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
+                    MessageBoxIcon tIcon = MessageBoxIcon.Error;
+
+                    tMessageString.AppendLine("There are empty values.. please fill them.\n");
+                    tMessageString.AppendLine("Empty values:-\n");
+
+                    foreach (string tControlName in tControlNames)
+                    {
+                        tMessageString.AppendLine("- " + tControlName);
+                    }
+
+                    MessageBox.Show(tMessageString.ToString(), tMessageCaption, tMessageButtons, tIcon);
+                }
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
             }
 
-            return fieldsValid;
+            return tControlNames.Count == 0;
         }
 
-        /// <summary>
-        /// Updates the datarow object with the current data in the form
-        /// </summary>
         private void FillQuestionRow()
         {
-            foreach (Control questionControl in questionsController.Controls)
+            try
             {
-                if (questionControl.Name.Contains("input"))
+                foreach (Control tQuestionInputField in QuestionsInputFieldList)
                 {
-                    string curFieldName = questionControl.Name.Split('_')[1];
-                    curQuestion[curFieldName] = questionControl.Text;
+                    string curFieldName = tQuestionInputField.Name.Split('_')[1];
+                    CurrentQuestion[curFieldName] = tQuestionInputField.Text;
                 }
             }
-
-            foreach(Control questionControl in questionsController.Controls["container" + curType].Controls)
+            catch (Exception tException)
             {
-                if (questionControl.Name.Contains("input"))
-                {
-                    string curFieldName = questionControl.Name.Split('_')[1];
-                    curQuestion[curFieldName] = questionControl.Text;
-                }
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
-        /// <summary>
-        /// Checks wehether the data from the dataRow is different than the data in the form inputs
-        /// </summary>
-        /// <returns>wehether or not the data is the same</returns>
         private bool CheckQuestionFields()
         {
-            bool isUpdatable = false;
+            bool tIsUpdatable = false;
 
-            foreach (Control questionControl in questionsController.Controls)
+            try
             {
-                if (questionControl.Name.Contains("input"))
+                foreach (Control tQuestionInputField in QuestionsInputFieldList)
                 {
-                    string curFieldName = questionControl.Name.Split('_')[1];
+                    string tCurrentFieldName = tQuestionInputField.Name.Split('_')[1];
 
-                    if (!questionControl.Text.Equals(curQuestion[curFieldName].ToString()))
-                        isUpdatable = true;
+                    if (!tQuestionInputField.Text.Equals(CurrentQuestion[tCurrentFieldName].ToString()))
+                    {
+                        tIsUpdatable = true;
+                        break;
+                    }
+                }
+
+                if (!tIsUpdatable)
+                {
+                    string message = "Update failed.. nothing to update!";
+                    string messageCaption = "Error";
+                    MessageBoxButtons messageButtons = MessageBoxButtons.OK;
+                    MessageBoxIcon icon = MessageBoxIcon.Error;
+
+                    MessageBox.Show(message, messageCaption, messageButtons, icon);
                 }
             }
-
-            foreach (Control questionControl in questionsController.Controls["container" + curType].Controls)
+            catch (Exception tException)
             {
-                if (questionControl.Name.Contains("input"))
-                {
-                    string curFieldName = questionControl.Name.Split('_')[1];
-
-                    if (!questionControl.Text.Equals(curQuestion[curFieldName].ToString()))
-                        isUpdatable = true;
-                }
+                Logger.WriteExceptionMessage(tException);
             }
 
-            if (!isUpdatable)
-            {
-                string message = "Update failed.. nothing to update!";
-                string messageCaption = "Error";
-                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
-                MessageBoxIcon icon = MessageBoxIcon.Error;
-
-                MessageBox.Show(message, messageCaption, messageButtons, icon);
-            }
-
-            return isUpdatable;
+            return tIsUpdatable;
         }
 
         private void questionTypeCombo_DropDownClosed(object sender, EventArgs e)
         {
-            curType = questionTypeCombo.SelectedValue.ToString();
-            isNew = true;
-            curQuestion = qc.GetDataRowObject(curType);
-            ShowExtraQuestionFields();
+            try
+            {
+                CurrentQuestionType = questionTypeCombo.SelectedValue.ToString();
+                QuestionsController.GetQuestionRow(CurrentQuestionType, CurrentQuestionId, ref CurrentQuestion);
+                UpdateQuestionsInputFieldList();
+                ShowExtraQuestionFields();
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
         }
 
         private void controlBtn_Click(object sender, EventArgs e)
         {
-            if (ValidateFields() && (isNew || CheckQuestionFields()))
+            try
             {
-                FillQuestionRow();
-                bool actionSuccess = isNew ? qc.AddQuestion(curQuestion, curType) : qc.EditQuestion(curQuestion, index, originalId, curType);
-                this.isUpdated = actionSuccess;
+                bool tIsNew = CurrentQuestionId == -1;
 
-                StringBuilder message = new StringBuilder();
-                string messageCaption = "";
-                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
-                MessageBoxIcon icon;
-
-                if (actionSuccess)
+                if (ValidateFields() && (tIsNew || CheckQuestionFields()))
                 {
-                    icon = MessageBoxIcon.Information;
-                    messageCaption = "Success";
-                    message.AppendLine("The question was " + (isNew ? "Added" : "Edited") +" successfully.");
-                }
-                else
-                {
-                    icon = MessageBoxIcon.Error;
-                    messageCaption = "Error";
-                    message.AppendLine("Error in " + (isNew ? "Adding" : "Editing") + " the question in the database..");
-                    message.AppendLine("Please refresh the data and try again...");
-                }
+                    FillQuestionRow();
+                    int tResponseCode = tIsNew ? QuestionsController.AddQuestion(CurrentQuestion) : QuestionsController.EditQuestion(CurrentQuestion);
+                    this.IsUpdated = tResponseCode == 0;
 
-                MessageBox.Show(message.ToString(), messageCaption, messageButtons, icon);
+                    string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
+                    string tMessageCaption = "";
+                    MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
+                    MessageBoxIcon tIcon;
 
-                if (isNew)
-                {
-                    curQuestion = qc.GetDataRowObject(curType);
+                    if (tResponseCode == 0)
+                    {
+                        tIcon = MessageBoxIcon.Information;
+                        tMessageCaption = "Success";
+                    }
+                    else
+                    {
+                        tIcon = MessageBoxIcon.Error;
+                        tMessageCaption = "Error";
+                    }
+
+                    MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
+
+                    if (tIsNew)
+                    {
+                        QuestionsController.GetQuestionRow(CurrentQuestionType, -1, ref CurrentQuestion);
+                    }
                 }
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            string message = "Are you sure you want to exit?" + (isUpdated ? "" : " There are unsaved changes.");
-            string messageCaption = "Exit";
-            MessageBoxButtons messageButtons = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Warning;
-            DialogResult result;
-
-            result = MessageBox.Show(message, messageCaption, messageButtons, icon);
-
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            try
             {
-                this.Close();
+                string tMessage = "Are you sure you want to exit?" + (IsUpdated ? "" : " There are unsaved changes.");
+                string tMessageCaption = "Exit";
+                MessageBoxButtons tMessageButtons = MessageBoxButtons.YesNo;
+                MessageBoxIcon tIcon = MessageBoxIcon.Warning;
+                DialogResult tResult;
+
+                tResult = MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
+
+                if (tResult == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
         private void input_EndStartValues_ValueChanged(object sender, EventArgs e)
         {
-            input_EndValue.Value = Math.Max(input_EndValue.Value, Math.Min(input_StartValue.Value + 1, 100));
+            try
+            {
+                input_EndValue.Value = Math.Max(input_EndValue.Value, Math.Min(input_StartValue.Value + 1, 100));
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
         }
     }
 }

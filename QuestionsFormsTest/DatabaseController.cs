@@ -126,16 +126,12 @@ namespace QuestionsFormsTest
             }
             finally
             {
-                try
+                if (SQLConnection.State == ConnectionState.Open)
                 {
                     tSQLReader.Close();
                     tSQLCommand.Dispose();
                     SQLConnection.Close();
                     pQuestionsDataSet.AcceptChanges();
-                }
-                catch (Exception tException)
-                {
-                    Logger.WriteExceptionMessage(tException);
                 }
             }
 
@@ -191,15 +187,11 @@ namespace QuestionsFormsTest
             }
             finally
             {
-                try
+                if (SQLConnection.State == ConnectionState.Open)
                 {
                     tSQLCommand.Dispose();
                     tSQLTransaction.Dispose();
                     SQLConnection.Close();
-                }
-                catch (Exception tException)
-                {
-                    Logger.WriteExceptionMessage(tException);
                 }
             }
 
@@ -251,15 +243,11 @@ namespace QuestionsFormsTest
             }
             finally
             {
-                try
+                if (SQLConnection.State == ConnectionState.Open)
                 {
                     tSQLCommand.Dispose();
                     tSQLTransaction.Dispose();
                     SQLConnection.Close();
-                }
-                catch (Exception tException)
-                {
-                    Logger.WriteExceptionMessage(tException);
                 }
             }
 
@@ -307,15 +295,11 @@ namespace QuestionsFormsTest
             }
             finally
             {
-                try
+                if (SQLConnection.State == ConnectionState.Open)
                 {
                     tSQLCommand.Dispose();
                     tSQLTransaction.Dispose();
                     SQLConnection.Close();
-                }
-                catch (Exception tException)
-                {
-                    Logger.WriteExceptionMessage(tException);
                 }
             }
             

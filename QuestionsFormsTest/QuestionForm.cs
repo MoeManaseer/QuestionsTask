@@ -54,9 +54,11 @@ namespace QuestionsFormsTest
 
         private void QuestionForm_Load(object sender, EventArgs e)
         {
+            int tResponseCode = 0;
+
             try
             {
-                int tResponseCode = QuestionsController.GetQuestionRow(CurrentQuestionType, CurrentQuestionId, ref CurrentQuestion);
+                tResponseCode = QuestionsController.GetQuestionRow(CurrentQuestionType, CurrentQuestionId, ref CurrentQuestion);
 
                 if (tResponseCode == 0)
                 {
@@ -82,20 +84,25 @@ namespace QuestionsFormsTest
                 }
                 else
                 {
-                    string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
-                    string tMessageCaption = "Error";
-                    MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
-                    MessageBoxIcon tIcon = MessageBoxIcon.Error;
-
-                    MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
+                    throw new Exception();
                 }
             }
             catch (Exception tException)
             {
                 Logger.WriteExceptionMessage(tException);
+
+                string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
+                string tMessageCaption = "Error";
+                MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
+                MessageBoxIcon tIcon = MessageBoxIcon.Error;
+
+                MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
             }
         }
 
+        /// <summary>
+        /// Fills the question types from the string array to the Dictionary and maps them.
+        /// </summary>
         private void FillQuestionTypes()
         {
             try
@@ -111,6 +118,9 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Updates the question input controls and inserts them into the QuestionsInputFieldList
+        /// </summary>
         private void UpdateQuestionsInputFieldList()
         {
             try
@@ -160,7 +170,7 @@ namespace QuestionsFormsTest
         }
 
         /// <summary>
-        /// Updates the form fields with data from the dataRow
+        /// Updates the form fields with data from the current question data
         /// </summary>
         private void UpdateQuestionFields()
         {
@@ -202,6 +212,10 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Checks if any of the question input fields are empty, if so show a user an error message with what is empty
+        /// </summary>
+        /// <returns></returns>
         private bool ValidateFields()
         {
             ArrayList tControlNames = new ArrayList();
@@ -240,6 +254,9 @@ namespace QuestionsFormsTest
             return tControlNames.Count == 0;
         }
 
+        /// <summary>
+        /// Fills the current question datarow with the data from the question input fields
+        /// </summary>
         private void FillQuestionRow()
         {
             try
@@ -256,6 +273,10 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Compares the current question row data with the input fields, to see if the question should be updated or they are the same
+        /// </summary>
+        /// <returns>If the question datarow has the same values in the input fields or not</returns>
         private bool CheckQuestionFields()
         {
             bool tIsUpdatable = false;
@@ -291,6 +312,11 @@ namespace QuestionsFormsTest
             return tIsUpdatable;
         }
 
+        /// <summary>
+        /// Event listener that fires whenever the questionTypeCombo changes It's values then updates the form to that corresponding question type
+        /// </summary>
+        /// <param name="sender">The control that fired the event</param>
+        /// <param name="e">Extra data about the event</param>
         private void questionTypeCombo_DropDownClosed(object sender, EventArgs e)
         {
             try
@@ -306,6 +332,11 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Fires whenever the Add/Update button gets clicked, then calls the corresponding function to Add/Update the question
+        /// </summary>
+        /// <param name="sender">The control that fired the event</param>
+        /// <param name="e">Extra data about the event</param>
         private void controlBtn_Click(object sender, EventArgs e)
         {
             try
@@ -348,6 +379,12 @@ namespace QuestionsFormsTest
             }
         }
 
+
+        /// <summary>
+        /// Fires whenever the user hits the exit button, then shows a confirmation message of closing the form
+        /// </summary>
+        /// <param name="sender">The control that fired the event</param>
+        /// <param name="e">Extra data about the event</param>
         private void exitButton_Click(object sender, EventArgs e)
         {
             try
@@ -371,6 +408,11 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Validator function that makes sure that the ending field is always less than the starting field
+        /// </summary>
+        /// <param name="sender">The control that fired the event</param>
+        /// <param name="e">Extra data about the event</param>
         private void input_EndStartValues_ValueChanged(object sender, EventArgs e)
         {
             try

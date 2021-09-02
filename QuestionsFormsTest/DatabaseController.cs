@@ -15,7 +15,7 @@ namespace QuestionsFormsTest
         {
             try
             {
-                //ConstructConnectionString();
+                ConstructConnectionString();
             }
             catch (Exception e)
             {

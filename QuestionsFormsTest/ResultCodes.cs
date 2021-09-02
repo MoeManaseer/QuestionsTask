@@ -31,13 +31,13 @@ namespace QuestionsFormsTest
                         tCodeMessage = "Incorrect SQL syntax, please contact an admin.\n";
                         break;
                     case 4060:
-                        tCodeMessage = "Coudln't connect to database, please check your connection settings.\n";
+                        tCodeMessage = "Couldn't connect to database, please check your connection settings.\n";
                         break;
                     case 18456:
                         tCodeMessage = "Connection to database denied, please check your username and password.\n";
                         break;
                     case 229:
-                        tCodeMessage = "Unauthorized user, can't execute sql.\n";
+                        tCodeMessage = "Unauthorized user, can't get data from the database.\n";
                         break;
                     case -1:
                         tCodeMessage = "Operation was unsuccessful. please try again.\n";

@@ -24,9 +24,11 @@ namespace QuestionsFormsTest
 
         private void LandingFrom_Load(object sender, EventArgs e)
         {
+            int tResponseCode = 0;
+
             try
             {
-                int tResponseCode = QuestionsControllerObject.FillQuestionsDataSet();
+                tResponseCode = QuestionsControllerObject.FillQuestionsDataSet();
 
                 if (tResponseCode == 0)
                 {
@@ -39,22 +41,26 @@ namespace QuestionsFormsTest
                 }
                 else
                 {
-                    string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
-                    string tCaption = "Error";
-                    MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
-                    MessageBoxIcon tIcon = MessageBoxIcon.Error;
-
-                    MessageBox.Show(tMessage, tCaption, tMessageButtons, tIcon);
-
-                    DisableForm();
+                    throw new Exception();
                 }
             }
             catch (Exception tException)
             {
                 Logger.WriteExceptionMessage(tException);
+                string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
+                string tCaption = "Error";
+                MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
+                MessageBoxIcon tIcon = MessageBoxIcon.Error;
+
+                MessageBox.Show(tMessage, tCaption, tMessageButtons, tIcon);
+
+                DisableForm();
             }
         }
 
+        /// <summary>
+        /// Helper function that disables all controls in the form
+        /// </summary>
         private void DisableForm()
         {
             try
@@ -82,6 +88,10 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Helper function that disables/enabels the edit/add buttons
+        /// </summary>
+        /// <param name="pValue">bool value to enable/disable the form add/edit buttons</param>
         private void ToggleButtons(bool pValue)
         {
             try
@@ -95,6 +105,11 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// On click function that launches the question form to add a new question
+        /// </summary>
+        /// <param name="sender">The control that fired the event</param>
+        /// <param name="e">Extra data about the event</param>
         private void addBtn_Click(object sender, EventArgs e)
         {
             try
@@ -108,6 +123,11 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// On click function that launches the question form to edit the selected question
+        /// </summary>
+        /// <param name="sender">The control that fired the event</param>
+        /// <param name="e">Extra data about the event</param>
         private void editBtn_Click(object sender, EventArgs e)
         {
             try
@@ -123,6 +143,11 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// On click function that removes the currently selected question after getting confirmation from the user
+        /// </summary>
+        /// <param name="sender">The control that fired the event</param>
+        /// <param name="e">Extra data about the event</param>
         private void removeBtn_Click(object sender, EventArgs e)
         {
             try
@@ -161,6 +186,9 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Helper function that checks whether the questiosn data grid is empty or not, if it is disable the edit/delete buttons
+        /// </summary>
         private void CheckList()
         {
             try

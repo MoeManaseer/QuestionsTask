@@ -18,8 +18,10 @@ namespace QuestionsFormsTest
             {
                 DatabaseController = new DatabaseController();
                 QuestionsDataSet = new DataSet();
+                // Get all the question types
                 TableNames = new string[pQuestionTypes.Length + 1];
                 Array.Copy(pQuestionTypes, TableNames, pQuestionTypes.Length);
+                // Append the All type to the array so that we can get the AllQuestions table
                 TableNames[pQuestionTypes.Length] = "All";
             }
             catch (Exception tException)
@@ -28,8 +30,14 @@ namespace QuestionsFormsTest
             }
         }
 
-        private void MapTables()
+        /// <summary>
+        /// Maps the tables with their correct table name and sets the Id as a primary key for each of them
+        /// </summary>
+        /// <returns>a result code to be used to determine if success or failure</returns>
+        private int MapTables()
         {
+            int tResponseCode = 0;
+
             try
             {
                 for (int i = 0; i < QuestionsDataSet.Tables.Count; i++)
@@ -45,10 +53,17 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
+                tResponseCode = 5;
                 Logger.WriteExceptionMessage(tException);
             }
+
+            return tResponseCode;
         }
 
+        /// <summary>
+        /// Fills the dataset with the data from the database and then maps the tables
+        /// </summary>
+        /// <returns>a result code to be used to determine if success or failure</returns>
         public int FillQuestionsDataSet()
         {
             int tResponseCode = 0;
@@ -56,7 +71,11 @@ namespace QuestionsFormsTest
             try
             {
                 tResponseCode = DatabaseController.GetData(QuestionsDataSet, TableNames);
-                MapTables();
+
+                if (tResponseCode == 0)
+                {
+                    tResponseCode = MapTables();
+                }
             }
             catch (Exception tException)
             {
@@ -67,6 +86,13 @@ namespace QuestionsFormsTest
             return tResponseCode;
         }
 
+        /// <summary>
+        /// Sets a questionRow to a new row based on the type that was providee
+        /// </summary>
+        /// <param name="pQuestionType">The type of the question</param>
+        /// <param name="pQuestionId">The Id of the question</param>
+        /// <param name="pQuestionRow">The datarow to fill the data in</param>
+        /// <returns>a result code to be used to determine if success or failure</returns>
         public int GetQuestionRow(string pQuestionType, int pQuestionId, ref DataRow pQuestionRow)
         {
             int tResponseCode = 0;
@@ -85,6 +111,11 @@ namespace QuestionsFormsTest
             return tResponseCode;
         }
 
+        /// <summary>
+        /// Adds a new question to the database
+        /// </summary>
+        /// <param name="pQuestionRow">The question to be added</param>
+        /// <returns>a result code to be used to determine if success or failure</returns>
         public int AddQuestion(DataRow pQuestionRow)
         {
             int tDidAdd = 1;
@@ -129,6 +160,11 @@ namespace QuestionsFormsTest
             return tDidAdd;
         }
 
+        /// <summary>
+        /// Edits a new question in the database
+        /// </summary>
+        /// <param name="pQuestionRow">The question to be edited</param>
+        /// <returns>a result code to be used to determine if success or failure</returns>
         public int EditQuestion(DataRow pQuestionRow)
         {
             int tDidEdit = 1;
@@ -167,6 +203,11 @@ namespace QuestionsFormsTest
             return tDidEdit;
         }
 
+        /// <summary>
+        /// Removes a question from the database
+        /// </summary>
+        /// <param name="pQuestionId">The id of the question that should be removed</param>
+        /// <returns>a result code to be used to determine if success or failure</returns>
         public int RemoveQuestion(int pQuestionId)
         {
             int tDidDelete = 1;

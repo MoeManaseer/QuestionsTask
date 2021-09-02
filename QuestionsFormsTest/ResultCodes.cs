@@ -4,6 +4,11 @@ namespace QuestionsFormsTest
 {
     public static class ResultCodes
     {
+        /// <summary>
+        /// Helper function that gets the corrosponding string for the code number that we send it
+        /// </summary>
+        /// <param name="pCodeNumber">The code number</param>
+        /// <returns>A string message corosponding to the code number we sent it</returns>
         public static string GetCodeMessage(int pCodeNumber)
         {
             string tCodeMessage = "Empty Message";
@@ -43,7 +48,7 @@ namespace QuestionsFormsTest
                         tCodeMessage = "Operation was unsuccessful. please try again.\n";
                         break;
                     default:
-                        tCodeMessage = "Unkown error occured, please contact admin.\n";
+                        tCodeMessage = "Unkown error occured, please restart the application.\n";
                         break;
                 }
             }

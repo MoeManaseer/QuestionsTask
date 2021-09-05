@@ -214,6 +214,7 @@ namespace QuestionDatabase
             }
             catch (Exception tException)
             {
+                tSQLTransaction.Rollback();
                 Logger.WriteExceptionMessage(tException);
                 tResultCode = (int)ResultCodesEnum.CODE_FAILUER;
             }

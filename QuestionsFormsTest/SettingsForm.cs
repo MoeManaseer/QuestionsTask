@@ -39,6 +39,9 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Updates the settings field with the data from the connection string object
+        /// </summary>
         private void UpdateSettingFields()
         {
             try
@@ -65,6 +68,9 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Toggles the username and password buttons on and off based on the value of the Security type
+        /// </summary>
         private void CheckIntegratedSecurityValue()
         {
             try
@@ -84,6 +90,10 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// Helper function that toggles the username/password buttons based on the value given
+        /// </summary>
+        /// <param name="pValue">whether to show the username/password buttons</param>
         private void ToggleUsernamePasswordFields(bool pValue)
         {
             try
@@ -98,6 +108,10 @@ namespace QuestionsFormsTest
             
         }
 
+        /// <summary>
+        /// Helper function that loops thro the props of the connection string class and gets the corosponding input field for it
+        /// then assigns the value of the object prop to the value of the input field
+        /// </summary>
         private void FillConnectionStringFields()
         {
             try
@@ -118,6 +132,11 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// On click listener for the test button to test out the currently inputted connection string data
+        /// </summary>
+        /// <param name="sender">The control that fired the event</param>
+        /// <param name="e">Extra data about the event</param>
         private void testBtn_Click(object sender, EventArgs e)
         {
             try
@@ -156,6 +175,11 @@ namespace QuestionsFormsTest
             }
         }
 
+        /// <summary>
+        /// On click listener for the save button which saves data to the app.config file then changes the connection string in the database object
+        /// </summary>
+        /// <param name="sender">The control that fired the event</param>
+        /// <param name="e">Extra data about the event</param>
         private void saveBtn_Click(object sender, EventArgs e)
         {
             try

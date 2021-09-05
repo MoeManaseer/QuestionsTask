@@ -4,6 +4,8 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using Logger;
+using Result;
 
 namespace QuestionsFormsTest
 {
@@ -31,7 +33,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -48,19 +50,19 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
         private void QuestionForm_Load(object sender, EventArgs e)
         {
-            int tResponseCode = 0;
+            int tResponseCode = (int) ResultCodesEnum.SUCCESS;
 
             try
             {
                 tResponseCode = QuestionsController.GetQuestionRow(CurrentQuestionType, CurrentQuestionId, ref CurrentQuestion);
 
-                if (tResponseCode == 0)
+                if (tResponseCode == (int)ResultCodesEnum.SUCCESS)
                 {
                     FillQuestionTypes();
                     BindComboBox();
@@ -89,7 +91,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
 
                 string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
                 string tMessageCaption = "Error";
@@ -114,7 +116,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -148,7 +150,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -165,7 +167,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -186,7 +188,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -208,7 +210,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -248,7 +250,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
 
             return tControlNames.Count == 0;
@@ -269,7 +271,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -306,7 +308,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
 
             return tIsUpdatable;
@@ -328,7 +330,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -347,14 +349,14 @@ namespace QuestionsFormsTest
                 {
                     FillQuestionRow();
                     int tResponseCode = tIsNew ? QuestionsController.AddQuestion(CurrentQuestion) : QuestionsController.EditQuestion(CurrentQuestion);
-                    this.IsUpdated = tResponseCode == 0;
+                    this.IsUpdated = tResponseCode == (int) ResultCodesEnum.SUCCESS;
 
                     string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
                     string tMessageCaption = "";
                     MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
                     MessageBoxIcon tIcon;
 
-                    if (tResponseCode == 0)
+                    if (this.IsUpdated)
                     {
                         tIcon = MessageBoxIcon.Information;
                         tMessageCaption = "Success";
@@ -375,7 +377,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -404,7 +406,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -421,7 +423,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
     }

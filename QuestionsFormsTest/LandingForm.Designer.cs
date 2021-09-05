@@ -34,6 +34,9 @@
             this.editBtn = new System.Windows.Forms.Button();
             this.addBtn = new System.Windows.Forms.Button();
             this.outputLbl = new System.Windows.Forms.Label();
+            this.settingsBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.allQuestionsGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,26 +47,27 @@
             this.allQuestionsGrid.BackgroundColor = System.Drawing.SystemColors.Control;
             this.allQuestionsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allQuestionsGrid.GridColor = System.Drawing.SystemColors.Control;
-            this.allQuestionsGrid.Location = new System.Drawing.Point(12, 12);
+            this.allQuestionsGrid.Location = new System.Drawing.Point(12, 33);
             this.allQuestionsGrid.Name = "allQuestionsGrid";
             this.allQuestionsGrid.ReadOnly = true;
-            this.allQuestionsGrid.Size = new System.Drawing.Size(674, 406);
+            this.allQuestionsGrid.Size = new System.Drawing.Size(461, 397);
             this.allQuestionsGrid.TabIndex = 0;
             this.allQuestionsGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.allQuestionsGrid_RowEnter);
             // 
             // refreshBtn
             // 
-            this.refreshBtn.Location = new System.Drawing.Point(692, 12);
+            this.refreshBtn.Location = new System.Drawing.Point(398, 467);
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(75, 23);
             this.refreshBtn.TabIndex = 1;
-            this.refreshBtn.Text = "Refresh";
+            this.refreshBtn.Text = "Exit";
             this.refreshBtn.UseVisualStyleBackColor = true;
+            this.refreshBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // removeBtn
             // 
             this.removeBtn.Enabled = false;
-            this.removeBtn.Location = new System.Drawing.Point(692, 135);
+            this.removeBtn.Location = new System.Drawing.Point(398, 436);
             this.removeBtn.Name = "removeBtn";
             this.removeBtn.Size = new System.Drawing.Size(75, 23);
             this.removeBtn.TabIndex = 2;
@@ -74,7 +78,7 @@
             // editBtn
             // 
             this.editBtn.Enabled = false;
-            this.editBtn.Location = new System.Drawing.Point(692, 106);
+            this.editBtn.Location = new System.Drawing.Point(93, 436);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(75, 23);
             this.editBtn.TabIndex = 3;
@@ -84,7 +88,7 @@
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(692, 41);
+            this.addBtn.Location = new System.Drawing.Point(12, 436);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(75, 23);
             this.addBtn.TabIndex = 4;
@@ -102,11 +106,42 @@
             this.outputLbl.Size = new System.Drawing.Size(0, 20);
             this.outputLbl.TabIndex = 5;
             // 
+            // settingsBtn
+            // 
+            this.settingsBtn.Location = new System.Drawing.Point(317, 467);
+            this.settingsBtn.Name = "settingsBtn";
+            this.settingsBtn.Size = new System.Drawing.Size(75, 23);
+            this.settingsBtn.TabIndex = 7;
+            this.settingsBtn.Text = "Settings";
+            this.settingsBtn.UseVisualStyleBackColor = true;
+            this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 21);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "All questions";
+            // 
+            // label2
+            // 
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.Location = new System.Drawing.Point(12, 462);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(461, 2);
+            this.label2.TabIndex = 9;
+            // 
             // LandingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 450);
+            this.ClientSize = new System.Drawing.Size(485, 497);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.settingsBtn);
             this.Controls.Add(this.outputLbl);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.editBtn);
@@ -115,8 +150,8 @@
             this.Controls.Add(this.allQuestionsGrid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(791, 489);
-            this.MinimumSize = new System.Drawing.Size(791, 489);
+            this.MaximumSize = new System.Drawing.Size(501, 536);
+            this.MinimumSize = new System.Drawing.Size(501, 536);
             this.Name = "LandingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Questions Landing Form";
@@ -135,6 +170,9 @@
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Label outputLbl;
+        private System.Windows.Forms.Button settingsBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

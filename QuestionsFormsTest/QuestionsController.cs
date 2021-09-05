@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Logger;
+using QuestionsDatabase;
+using System;
 using System.Data;
+using Result;
 
 namespace QuestionsFormsTest
 {
     public class QuestionsController
     {
-        private DatabaseController DatabaseController;
-
+        public DatabaseController DatabaseController { get; private set; }
         public DataSet QuestionsDataSet { get; private set; }
         public string[] TableNames { get; private set; }
 
@@ -26,7 +26,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -36,7 +36,7 @@ namespace QuestionsFormsTest
         /// <returns>a result code to be used to determine if success or failure</returns>
         private int MapTables()
         {
-            int tResponseCode = 0;
+            int tResponseCode = (int) ResultCodesEnum.SUCCESS;
 
             try
             {
@@ -53,8 +53,8 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                tResponseCode = 5;
-                Logger.WriteExceptionMessage(tException);
+                tResponseCode = (int) ResultCodesEnum.DATA_FILLING_ERROR;
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
 
             return tResponseCode;
@@ -66,21 +66,21 @@ namespace QuestionsFormsTest
         /// <returns>a result code to be used to determine if success or failure</returns>
         public int FillQuestionsDataSet()
         {
-            int tResponseCode = 0;
+            int tResponseCode = (int) ResultCodesEnum.SUCCESS;
 
             try
             {
                 tResponseCode = DatabaseController.GetData(QuestionsDataSet, TableNames);
 
-                if (tResponseCode == 0)
+                if ((int) ResultCodesEnum.SUCCESS == tResponseCode)
                 {
                     tResponseCode = MapTables();
                 }
             }
             catch (Exception tException)
             {
-                tResponseCode = 5;
-                Logger.WriteExceptionMessage(tException);
+                tResponseCode = (int)ResultCodesEnum.DATA_FILLING_ERROR;
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
 
             return tResponseCode;
@@ -95,7 +95,7 @@ namespace QuestionsFormsTest
         /// <returns>a result code to be used to determine if success or failure</returns>
         public int GetQuestionRow(string pQuestionType, int pQuestionId, ref DataRow pQuestionRow)
         {
-            int tResponseCode = 0;
+            int tResponseCode = (int) ResultCodesEnum.SUCCESS;
 
             try
             {
@@ -104,8 +104,8 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                tResponseCode = 5;
-                Logger.WriteExceptionMessage(tException);
+                tResponseCode = (int) ResultCodesEnum.DATA_FILLING_ERROR;
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
 
             return tResponseCode;
@@ -118,13 +118,13 @@ namespace QuestionsFormsTest
         /// <returns>a result code to be used to determine if success or failure</returns>
         public int AddQuestion(DataRow pQuestionRow)
         {
-            int tDidAdd = 1;
+            int tDidAdd = (int) ResultCodesEnum.SUCCESS;
 
             try
             {
                 tDidAdd = DatabaseController.AddQuestion(pQuestionRow);
 
-                if (tDidAdd == 0)
+                if (tDidAdd == (int) ResultCodesEnum.SUCCESS)
                 {
                     DataRow tFormattedQuestionRow = QuestionsDataSet.Tables["AllQuestions"].NewRow();
 
@@ -153,8 +153,8 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                tDidAdd = 10;
-                Logger.WriteExceptionMessage(tException);
+                tDidAdd = (int) ResultCodesEnum.CURRENT_DATA_INVALID;
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
 
             return tDidAdd;
@@ -167,13 +167,13 @@ namespace QuestionsFormsTest
         /// <returns>a result code to be used to determine if success or failure</returns>
         public int EditQuestion(DataRow pQuestionRow)
         {
-            int tDidEdit = 1;
+            int tDidEdit = (int) ResultCodesEnum.SUCCESS;
 
             try
             {
                 tDidEdit = DatabaseController.EditQuestion(pQuestionRow);
 
-                if (tDidEdit == 0)
+                if (tDidEdit == (int) ResultCodesEnum.SUCCESS)
                 {
                     pQuestionRow.AcceptChanges();
                     string tFindExpression = "OriginalId = " + pQuestionRow["Id"] + " AND Type = '" + pQuestionRow.Table.TableName.Replace("Questions", "") + "'";
@@ -196,8 +196,8 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                tDidEdit = 10;
-                Logger.WriteExceptionMessage(tException);
+                tDidEdit = (int) ResultCodesEnum.DATA_FILLING_ERROR;
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
 
             return tDidEdit;
@@ -210,7 +210,7 @@ namespace QuestionsFormsTest
         /// <returns>a result code to be used to determine if success or failure</returns>
         public int RemoveQuestion(int pQuestionId)
         {
-            int tDidDelete = 1;
+            int tDidDelete = (int) ResultCodesEnum.SUCCESS;
 
             try
             {
@@ -221,7 +221,7 @@ namespace QuestionsFormsTest
 
                 tDidDelete = DatabaseController.DeleteQuestion(tQuestionInOriginalTable);
 
-                if (tDidDelete == 0)
+                if (tDidDelete == (int) ResultCodesEnum.SUCCESS)
                 {
                     tQuestionInOriginalTable.Delete();
                     tQuestionDataRow.Delete();
@@ -232,8 +232,8 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                tDidDelete = 10;
-                Logger.WriteExceptionMessage(tException);
+                tDidDelete = (int) ResultCodesEnum.DATA_FILLING_ERROR;
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
 
             return tDidDelete;

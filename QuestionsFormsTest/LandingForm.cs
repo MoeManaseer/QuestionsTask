@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Logger;
+using Result;
+using System;
 using System.Windows.Forms;
 
 namespace QuestionsFormsTest
@@ -18,24 +20,23 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
         private void LandingFrom_Load(object sender, EventArgs e)
         {
-            int tResponseCode = 0;
+            int tResponseCode = (int) ResultCodesEnum.SUCCESS;
 
             try
             {
                 tResponseCode = QuestionsControllerObject.FillQuestionsDataSet();
 
-                if (tResponseCode == 0)
+                if (tResponseCode == (int)ResultCodesEnum.SUCCESS)
                 {
                     allQuestionsGrid.DataSource = QuestionsControllerObject.QuestionsDataSet.Tables["AllQuestions"];
                     allQuestionsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    allQuestionsGrid.Columns["Text"].Width = 250;
-                    allQuestionsGrid.Columns["QOrder"].Width = 30;
+                    allQuestionsGrid.Columns["Text"].Width = 180;
                     allQuestionsGrid.Columns["OriginalId"].Visible = false;
                     allQuestionsGrid.Columns["Id"].Visible = false;
                 }
@@ -46,7 +47,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
                 string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
                 string tCaption = "Error";
                 MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
@@ -72,7 +73,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -84,7 +85,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -101,7 +102,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -119,7 +120,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -139,7 +140,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -166,7 +167,7 @@ namespace QuestionsFormsTest
 
                     tMessage = ResultCodes.GetCodeMessage(tResponseCode);
 
-                    if (tResponseCode == 0)
+                    if (tResponseCode == (int) ResultCodesEnum.SUCCESS)
                     {
                         tIcon = MessageBoxIcon.Asterisk;
                         CheckList();
@@ -182,7 +183,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
 
@@ -200,7 +201,43 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                Logger.WriteExceptionMessage(tException);
+                LoggerUtilities.WriteExceptionMessage(tException);
+            }
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string tMessage = "Are you sure you want to exit?";
+                string tMessageCaption = "Exit";
+                MessageBoxButtons tMessageButtons = MessageBoxButtons.YesNo;
+                MessageBoxIcon tIcon = MessageBoxIcon.Warning;
+                DialogResult tResult;
+
+                tResult = MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
+
+                if (tResult == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception tException)
+            {
+                LoggerUtilities.WriteExceptionMessage(tException);
+            }
+        }
+
+        private void settingsBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SettingsForm tSettingsForm = new SettingsForm(QuestionsControllerObject.DatabaseController);
+                tSettingsForm.ShowDialog();
+            }
+            catch (Exception tException)
+            {
+                LoggerUtilities.WriteExceptionMessage(tException);
             }
         }
     }

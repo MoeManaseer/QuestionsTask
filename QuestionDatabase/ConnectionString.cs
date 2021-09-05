@@ -52,11 +52,22 @@ namespace QuestionDatabase
 
         public void ApplyChanges()
         {
-            ConfigurationManager.AppSettings["DataSource"] = DataSource;
-            ConfigurationManager.AppSettings["Database"] = DatabaseName;
-            ConfigurationManager.AppSettings["IntegratedSecurity"] = IntegratedSecurity;
-            ConfigurationManager.AppSettings["Username"] = Username;
-            ConfigurationManager.AppSettings["Password"] = Password;
+            try
+            {
+                var tConfigurationManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+                tConfigurationManager.AppSettings.Settings["DataSource"].Value = DataSource;
+                tConfigurationManager.AppSettings.Settings["Database"].Value = DatabaseName;
+                tConfigurationManager.AppSettings.Settings["IntegratedSecurity"].Value = IntegratedSecurity;
+                tConfigurationManager.AppSettings.Settings["Username"].Value = Username;
+                tConfigurationManager.AppSettings.Settings["Password"].Value = Password;
+
+                tConfigurationManager.Save(ConfigurationSaveMode.Modified);
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
         }
 
         public override string ToString()

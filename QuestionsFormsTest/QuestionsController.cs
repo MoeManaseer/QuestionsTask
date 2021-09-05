@@ -17,7 +17,6 @@ namespace QuestionsFormsTest
             try
             {
                 DatabaseController = new DatabaseController();
-                QuestionsDataSet = new DataSet();
                 // Get all the question types
                 TableNames = new string[pQuestionTypes.Length + 1];
                 Array.Copy(pQuestionTypes, TableNames, pQuestionTypes.Length);
@@ -70,6 +69,7 @@ namespace QuestionsFormsTest
 
             try
             {
+                QuestionsDataSet = new DataSet();
                 tResponseCode = DatabaseController.GetData(QuestionsDataSet, TableNames);
 
                 if ((int) ResultCodesEnum.SUCCESS == tResponseCode)

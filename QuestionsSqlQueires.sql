@@ -1,23 +1,28 @@
-﻿CREATE DATABASE [QuestionsDB]
+﻿IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'QuestionsDB')
+	BEGIN
+		CREATE DATABASE [QuestionsDB]
+	END
 GO
 
 USE [QuestionsDB]
 GO
 
-CREATE TABLE [dbo].[AllQuestions](
+IF OBJECT_ID(N'[dbo].[AllQuestions]', N'U') IS NULL  
+   CREATE TABLE [dbo].[AllQuestions](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[OriginalId] [int] NOT NULL,
 	[Text] [varchar](250) NOT NULL,
 	[Order] [int] NOT NULL,
 	[Type] [varchar](50) NOT NULL,
- CONSTRAINT [PK_AllQuestions] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)
-) ON [PRIMARY]
+	 CONSTRAINT [PK_AllQuestions] PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	)
+	) ON [PRIMARY]
 GO
 
-CREATE TABLE [dbo].[SliderQuestions](
+IF OBJECT_ID(N'[dbo].[SliderQuestions]', N'U') IS NULL  
+   CREATE TABLE [dbo].[SliderQuestions](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Text] [varchar](250) NOT NULL,
 	[Order] [int] NOT NULL,
@@ -25,39 +30,41 @@ CREATE TABLE [dbo].[SliderQuestions](
 	[EndValue] [int] NOT NULL,
 	[StartValueCaption] [varchar](250) NOT NULL,
 	[EndValueCaption] [varchar](250) NOT NULL,
- CONSTRAINT [PK_SliderQuestions] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)
-) ON [PRIMARY]
+	 CONSTRAINT [PK_SliderQuestions] PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	)
+	) ON [PRIMARY]
 GO
 
-CREATE TABLE [dbo].[SmileyQuestions](
+IF OBJECT_ID(N'[dbo].[SmileyQuestions]', N'U') IS NULL  
+   CREATE TABLE [dbo].[SmileyQuestions](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Text] [varchar](255) NOT NULL,
 	[Order] [int] NOT NULL,
 	[NumOfSmiley] [int] NOT NULL,
- CONSTRAINT [PK_SmileyQuestions] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-) 
-) ON [PRIMARY]
+	CONSTRAINT [PK_SmileyQuestions] PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	) 
+	) ON [PRIMARY]
 GO
 
+IF OBJECT_ID(N'[dbo].[StarQuestions]', N'U') IS NULL  
+   
 CREATE TABLE [dbo].[StarQuestions](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Text] [varchar](250) NOT NULL,
 	[Order] [int] NOT NULL,
 	[NumOfStars] [int] NOT NULL,
- CONSTRAINT [PK_StarsQuestions] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-) 
-) ON [PRIMARY]
+	CONSTRAINT [PK_StarsQuestions] PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	) 
+	) ON [PRIMARY]
 GO
 
-
- CREATE OR ALTER PROCEDURE [dbo].Add_StarQuestions
+CREATE OR ALTER PROCEDURE [dbo].Add_StarQuestions
  (@Text VARCHAR(255),    @Order  INT,    @NumOfStars INT, @Id INT = NULL OUTPUT, @AllQuestionsId INT = NULL output  )
  AS  
  BEGIN   
@@ -69,7 +76,7 @@ GO
 END  
 GO
 
- CREATE OR ALTER PROCEDURE [dbo].Add_SliderQuestions  
+CREATE OR ALTER PROCEDURE [dbo].Add_SliderQuestions  
  (    @Text VARCHAR(250),    @Order  INT,    @StartValue INT,    @EndValue INT,    @StartValueCaption VARCHAR(250),    @EndValueCaption VARCHAR(250), @Id INT = NULL OUTPUT, @AllQuestionsId INT = NULL output  )  
  AS  
  BEGIN   
@@ -81,7 +88,7 @@ GO
 END 
 GO
 
- CREATE OR ALTER PROCEDURE [dbo].Add_SmileyQuestions  
+CREATE OR ALTER PROCEDURE [dbo].Add_SmileyQuestions  
  (    @Text VARCHAR(255),    @Order  INT,    @NumOfSmiley INT, @Id INT = NULL OUTPUT, @AllQuestionsId INT = NULL output  )  
  AS  
  BEGIN   
@@ -93,7 +100,7 @@ GO
 END  
 GO
 
- CREATE OR ALTER PROCEDURE [dbo].Update_StarQuestions  
+CREATE OR ALTER PROCEDURE [dbo].Update_StarQuestions  
 (    @Text VARCHAR(255),    @Order  INT,    @NumOfStars INT,    @Id INT  )  
 AS  
 BEGIN   

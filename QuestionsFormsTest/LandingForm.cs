@@ -26,19 +26,29 @@ namespace QuestionsFormsTest
 
         private void LandingFrom_Load(object sender, EventArgs e)
         {
-            int tResponseCode = (int) ResultCodesEnum.SUCCESS;
+            try
+            {
+                LoadUpdateForm();
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
+        }
+
+        public void LoadUpdateForm()
+        {
+            int tResponseCode = (int)ResultCodesEnum.SUCCESS;
 
             try
             {
                 tResponseCode = QuestionsControllerObject.FillQuestionsDataSet();
 
-                if (tResponseCode == (int)ResultCodesEnum.SUCCESS)
+                if (tResponseCode == (int) ResultCodesEnum.SUCCESS)
                 {
-                    allQuestionsGrid.DataSource = QuestionsControllerObject.QuestionsDataSet.Tables["AllQuestions"];
-                    allQuestionsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    allQuestionsGrid.Columns["Text"].Width = 180;
-                    allQuestionsGrid.Columns["OriginalId"].Visible = false;
-                    allQuestionsGrid.Columns["Id"].Visible = false;
+                    SetQuestionsGrid();
+                    ToggleFormControls(true);
+                    CheckList();
                 }
                 else
                 {
@@ -54,6 +64,57 @@ namespace QuestionsFormsTest
                 MessageBoxIcon tIcon = MessageBoxIcon.Error;
 
                 MessageBox.Show(tMessage, tCaption, tMessageButtons, tIcon);
+                ToggleFormControls(false);
+                EmptyAllQuestionsGrid();
+            }
+        }
+
+        private void EmptyAllQuestionsGrid()
+        {
+            try
+            {
+                allQuestionsGrid.DataSource = null;
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
+        }
+
+        private void SetQuestionsGrid()
+        {
+            try
+            {
+                allQuestionsGrid.DataSource = QuestionsControllerObject.QuestionsDataSet.Tables["AllQuestions"];
+                allQuestionsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                allQuestionsGrid.Columns["Text"].Width = 180;
+                allQuestionsGrid.Columns["OriginalId"].Visible = false;
+                allQuestionsGrid.Columns["Id"].Visible = false;
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
+        }
+
+        /// <summary>
+        /// Helper function that disables all controls in the form
+        /// </summary>
+        private void ToggleFormControls(bool pValue)
+        {
+            try
+            {
+                foreach (Control tFormControl in Controls)
+                {
+                    if (!tFormControl.Name.Equals("settingsPanel"))
+                    {
+                        tFormControl.Enabled = pValue;
+                    }
+                }
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -213,6 +274,7 @@ namespace QuestionsFormsTest
             try
             {
                 SettingsForm tSettingsForm = new SettingsForm(QuestionsControllerObject.DatabaseController);
+                tSettingsForm.Owner = this;
                 tSettingsForm.ShowDialog();
             }
             catch (Exception tException)

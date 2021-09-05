@@ -37,7 +37,9 @@
             this.settingsBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.settingsPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.allQuestionsGrid)).BeginInit();
+            this.settingsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // allQuestionsGrid
@@ -56,7 +58,7 @@
             // 
             // refreshBtn
             // 
-            this.refreshBtn.Location = new System.Drawing.Point(398, 467);
+            this.refreshBtn.Location = new System.Drawing.Point(110, 0);
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(75, 23);
             this.refreshBtn.TabIndex = 1;
@@ -108,7 +110,7 @@
             // 
             // settingsBtn
             // 
-            this.settingsBtn.Location = new System.Drawing.Point(317, 467);
+            this.settingsBtn.Location = new System.Drawing.Point(29, 0);
             this.settingsBtn.Name = "settingsBtn";
             this.settingsBtn.Size = new System.Drawing.Size(75, 23);
             this.settingsBtn.TabIndex = 7;
@@ -134,19 +136,27 @@
             this.label2.Size = new System.Drawing.Size(461, 2);
             this.label2.TabIndex = 9;
             // 
+            // settingsPanel
+            // 
+            this.settingsPanel.Controls.Add(this.settingsBtn);
+            this.settingsPanel.Controls.Add(this.refreshBtn);
+            this.settingsPanel.Location = new System.Drawing.Point(288, 467);
+            this.settingsPanel.Name = "settingsPanel";
+            this.settingsPanel.Size = new System.Drawing.Size(185, 22);
+            this.settingsPanel.TabIndex = 10;
+            // 
             // LandingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 497);
+            this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.settingsBtn);
             this.Controls.Add(this.outputLbl);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.removeBtn);
-            this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.allQuestionsGrid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -154,9 +164,10 @@
             this.MinimumSize = new System.Drawing.Size(501, 536);
             this.Name = "LandingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Questions Landing Form";
+            this.Text = "Questions Form";
             this.Load += new System.EventHandler(this.LandingFrom_Load);
             ((System.ComponentModel.ISupportInitialize)(this.allQuestionsGrid)).EndInit();
+            this.settingsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,6 +184,7 @@
         private System.Windows.Forms.Button settingsBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel settingsPanel;
     }
 }
 

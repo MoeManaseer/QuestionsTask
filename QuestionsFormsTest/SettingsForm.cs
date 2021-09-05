@@ -30,6 +30,7 @@ namespace QuestionsFormsTest
         {
             try
             {
+                Form tForm = this.Owner;
                 ConnectionValuesContainer = Controls["connectionContainer"];
                 UpdateSettingFields();
             }
@@ -218,6 +219,9 @@ namespace QuestionsFormsTest
                 }
 
                 MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
+
+                LandingForm tLandingForm = (LandingForm) Owner;
+                tLandingForm.LoadUpdateForm();
                 this.Close();
             }
             catch (Exception tException)

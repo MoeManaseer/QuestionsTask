@@ -58,7 +58,7 @@ namespace ResultCodes
                         tCodeMessage = "Something wrong happend while filling the data, please retry or restart the applciation.\n";
                         break;
                     case ResultCodesEnum.CURRENT_DATA_INVALID:
-                        tCodeMessage = "The operation was succesful at the database, but seomthing wrong happend, please restart the application to see the new changes.\n";
+                        tCodeMessage = "The operation was succesful at the database, but something wrong happend, please restart the application to see the new changes.\n";
                         break;
                     case ResultCodesEnum.SERVER_CONNECTION_FAILURE:
                         tCodeMessage = "Connection to server failure, please check the connection settings.\n";

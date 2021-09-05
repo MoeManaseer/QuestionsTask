@@ -174,7 +174,7 @@ namespace QuestionDatabase
         /// </summary>
         /// <param name="pQuestionRow">The new question to be added to the database</param>
         /// <returns>a result code to be used to determine if success or failure</returns>
-        public int AddQuestion(DataRow pQuestionRow)
+        public int AddQuestion(DataRow pQuestionRow, ref int pQuestionId, ref int pQuestionAllTableId)
         {
             SqlTransaction tSQLTransaction = null;
             SqlCommand tSQLCommand = null;
@@ -203,7 +203,15 @@ namespace QuestionDatabase
                     }
                 }
 
+                tSQLCommand.Parameters.Add("@Id", SqlDbType.Int);
+                tSQLCommand.Parameters["@Id"].Direction = ParameterDirection.Output;
+
+                tSQLCommand.Parameters.Add("@AllQuestionsId", SqlDbType.Int);
+                tSQLCommand.Parameters["@AllQuestionsId"].Direction = ParameterDirection.Output;
+
                 tSQLCommand.ExecuteNonQuery();
+                pQuestionId = Convert.ToInt32(tSQLCommand.Parameters["@Id"].Value);
+                pQuestionAllTableId = Convert.ToInt32(tSQLCommand.Parameters["@AllQuestionsId"].Value);
                 tSQLTransaction.Commit();
             }
             catch (SqlException tSQLException)

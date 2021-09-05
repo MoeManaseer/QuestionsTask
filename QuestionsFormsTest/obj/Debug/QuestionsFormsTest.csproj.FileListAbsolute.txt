@@ -113,3 +113,4 @@ C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\bin\Debug\R
 C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\bin\Debug\LoggerUtils.pdb
 C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\bin\Debug\QuestionDatabase.pdb
 C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\bin\Debug\ResultCodes.pdb
+C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\obj\Debug\QuestionsFormsTest.LandingForm.resources

@@ -45,7 +45,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.input_DataSource = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.connectionTestOutput = new System.Windows.Forms.Label();
             this.connectionContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -157,16 +156,10 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // connectionTestOutput
-            // 
-            resources.ApplyResources(this.connectionTestOutput, "connectionTestOutput");
-            this.connectionTestOutput.Name = "connectionTestOutput";
-            // 
             // SettingsForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.connectionTestOutput);
             this.Controls.Add(this.connectionContainer);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.saveBtn);
@@ -202,6 +195,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox input_DataSource;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label connectionTestOutput;
     }
 }

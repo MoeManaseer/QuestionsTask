@@ -54,26 +54,6 @@ namespace QuestionsFormsTest
                 MessageBoxIcon tIcon = MessageBoxIcon.Error;
 
                 MessageBox.Show(tMessage, tCaption, tMessageButtons, tIcon);
-
-                DisableForm();
-            }
-        }
-
-        /// <summary>
-        /// Helper function that disables all controls in the form
-        /// </summary>
-        private void DisableForm()
-        {
-            try
-            {
-                foreach (Control tFormControl in Controls)
-                {
-                    tFormControl.Enabled = false;
-                }
-            }
-            catch (Exception tException)
-            {
-                Logger.WriteExceptionMessage(tException);
             }
         }
 

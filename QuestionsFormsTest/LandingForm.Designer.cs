@@ -78,7 +78,7 @@
             // editBtn
             // 
             this.editBtn.Enabled = false;
-            this.editBtn.Location = new System.Drawing.Point(93, 436);
+            this.editBtn.Location = new System.Drawing.Point(317, 436);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(75, 23);
             this.editBtn.TabIndex = 3;
@@ -88,7 +88,7 @@
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(12, 436);
+            this.addBtn.Location = new System.Drawing.Point(236, 436);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(75, 23);
             this.addBtn.TabIndex = 4;

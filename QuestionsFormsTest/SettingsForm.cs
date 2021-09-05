@@ -149,11 +149,14 @@ namespace QuestionsFormsTest
                 FillConnectionStringFields();
                 int tResponseCode = DatabaseController.TestDatabaseConnection(ConnectionString);
                 string tResultMessage = "";
+                MessageBoxIcon tIcon = MessageBoxIcon.Error;
+
 
                 switch ((ResultCodesEnum) tResponseCode)
                 {
                     case ResultCodesEnum.SUCCESS:
                         tResultMessage = "Connection success";
+                        tIcon = MessageBoxIcon.Information;
                         break;
                     case ResultCodesEnum.DATABASE_AUTHENTICATION_FAILUER:
                         tResultMessage = "User not authenticated";
@@ -172,7 +175,10 @@ namespace QuestionsFormsTest
                         break;
                 }
 
-                connectionTestOutput.Text = tResultMessage;
+                string tMessageCaption = "Connection test result";
+                MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
+
+                MessageBox.Show(tResultMessage, tMessageCaption, tMessageButtons, tIcon);
             }
             catch (Exception tException)
             {
@@ -212,6 +218,7 @@ namespace QuestionsFormsTest
                 }
 
                 MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
+                this.Close();
             }
             catch (Exception tException)
             {

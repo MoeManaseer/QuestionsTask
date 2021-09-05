@@ -7,14 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestionsFormsTest", "Quest
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E6ECE95-3DFA-41CA-997D-5AFE5BB7D72F}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Desktop\QuestionsQuerys.sql = ..\..\..\Desktop\QuestionsQuerys.sql
+		QuestionsSqlQueires.sql = QuestionsSqlQueires.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestionDatabase", "QuestionDatabase\QuestionDatabase.csproj", "{A63C6101-46DC-400E-82C8-04208AFD4B98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerUtils", "LoggerUtils\LoggerUtils.csproj", "{416FE0F4-598E-44E7-BEEA-B6A3F4DADD83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerUtils", "LoggerUtils\LoggerUtils.csproj", "{416FE0F4-598E-44E7-BEEA-B6A3F4DADD83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResultCodes", "ResultCodes\ResultCodes.csproj", "{206269F4-7FF5-4261-82CC-2082D14836B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResultCodes", "ResultCodes\ResultCodes.csproj", "{206269F4-7FF5-4261-82CC-2082D14836B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

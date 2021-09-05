@@ -147,10 +147,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="testBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 171</value>
+    <value>228, 171</value>
   </data>
   <data name="testBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 23</value>
@@ -171,7 +171,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;testBtn.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 210</value>
@@ -192,10 +192,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="saveBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 215</value>
+    <value>187, 215</value>
   </data>
   <data name="saveBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -216,10 +216,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;saveBtn.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="exitBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 215</value>
+    <value>268, 215</value>
   </data>
   <data name="exitBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -228,7 +228,7 @@
     <value>14</value>
   </data>
   <data name="exitBtn.Text" xml:space="preserve">
-    <value>Exit</value>
+    <value>Cancel</value>
   </data>
   <data name="&gt;&gt;exitBtn.Name" xml:space="preserve">
     <value>exitBtn</value>
@@ -240,7 +240,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;exitBtn.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;input_Password.Name" xml:space="preserve">
     <value>input_Password</value>
@@ -381,7 +381,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;connectionContainer.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="input_Password.Location" type="System.Drawing.Point, System.Drawing">
     <value>114, 108</value>
@@ -632,30 +632,6 @@
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="connectionTestOutput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 176</value>
-  </data>
-  <data name="connectionTestOutput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 23</value>
-  </data>
-  <data name="connectionTestOutput.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="connectionTestOutput.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
-  </data>
-  <data name="&gt;&gt;connectionTestOutput.Name" xml:space="preserve">
-    <value>connectionTestOutput</value>
-  </data>
-  <data name="&gt;&gt;connectionTestOutput.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;connectionTestOutput.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;connectionTestOutput.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -676,7 +652,7 @@
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>SettingsForm</value>
+    <value>Connection Settings Form</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SettingsForm</value>

@@ -132,3 +132,211 @@ A network-related or instance-specific error occurred while establishing a conne
    at System.Data.SqlClient.SqlConnection.Open()
    at QuestionDatabase.DatabaseController.TestDatabaseConnection(ConnectionString tConnectionString) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 65
 
+09/05 12:31:01 :-
+Column 'QOrder' does not belong to table SmileyQuestions.
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.set_Item(String columnName, Object value)
+   at QuestionsFormsTest.QuestionForm.FillQuestionRow() in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionForm.cs:line 269
+
+09/05 12:31:01 :-
+Cannot insert the value NULL into column 'Order', table 'QuestionsDB.dbo.SmileyQuestions'; column does not allow nulls. INSERT fails.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at QuestionDatabase.DatabaseController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 206
+
+09/05 12:33:31 :-
+Column 'Id' is constrained to be unique.  Value '1' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:34:19 :-
+Column 'Id' is constrained to be unique.  Value '1' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:34:21 :-
+Column 'Id' is constrained to be unique.  Value '2' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:34:36 :-
+Column 'Id' is constrained to be unique.  Value '1' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:34:37 :-
+Column 'Id' is constrained to be unique.  Value '2' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:34:39 :-
+Column 'Id' is constrained to be unique.  Value '3' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:34:40 :-
+Column 'Id' is constrained to be unique.  Value '4' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:34:41 :-
+Column 'Id' is constrained to be unique.  Value '5' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:34:42 :-
+Column 'Id' is constrained to be unique.  Value '6' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:49:45 :-
+Column 'Id' is constrained to be unique.  Value '1' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:51:55 :-
+Column 'Id' is constrained to be unique.  Value '1' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:51:57 :-
+Column 'Id' is constrained to be unique.  Value '2' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 12:53:25 :-
+Column 'Id' is constrained to be unique.  Value '1' is already present.
+   at System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   at System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   at System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at QuestionsFormsTest.QuestionsController.AddQuestion(DataRow pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 146
+
+09/05 13:22:15 :-
+Cannot open database "QuestionsDBsd" requested by the login. The login failed.
+Login failed for user 'SEDCO-ONLINE\Moutasem'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 115
+
+09/05 13:22:15 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LandingFrom_Load(Object sender, EventArgs e) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 45
+
+09/05 13:23:11 :-
+Cannot open database "QuestionsDBs" requested by the login. The login failed.
+Login failed for user 'SEDCO-ONLINE\Moutasem'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 115
+
+09/05 13:23:11 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LandingFrom_Load(Object sender, EventArgs e) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 45
+
+09/05 13:23:14 :-
+Object reference not set to an instance of an object.
+   at QuestionsFormsTest.QuestionsController.GetQuestionRow(String pQuestionType, Int32 pQuestionId, DataRow& pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 103
+
+09/05 13:23:14 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.QuestionForm.QuestionForm_Load(Object sender, EventArgs e) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionForm.cs:line 89
+
+09/05 13:23:18 :-
+Object reference not set to an instance of an object.
+   at QuestionsFormsTest.QuestionForm.questionTypeCombo_DropDownClosed(Object sender, EventArgs e) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionForm.cs:line 326
+
+09/05 13:23:21 :-
+Object reference not set to an instance of an object.
+   at QuestionsFormsTest.QuestionsController.GetQuestionRow(String pQuestionType, Int32 pQuestionId, DataRow& pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 103
+
+09/05 13:23:21 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.QuestionForm.QuestionForm_Load(Object sender, EventArgs e) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionForm.cs:line 89
+
+09/05 13:23:36 :-
+Object reference not set to an instance of an object.
+   at QuestionsFormsTest.QuestionsController.GetQuestionRow(String pQuestionType, Int32 pQuestionId, DataRow& pQuestionRow) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 103
+
+09/05 13:23:36 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.QuestionForm.QuestionForm_Load(Object sender, EventArgs e) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionForm.cs:line 89
+

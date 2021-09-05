@@ -122,11 +122,15 @@ namespace QuestionsFormsTest
 
             try
             {
-                tDidAdd = DatabaseController.AddQuestion(pQuestionRow);
+                int tNewQuestionId = 0;
+                int tNewQuestionAllTableId = 0;
+                tDidAdd = DatabaseController.AddQuestion(pQuestionRow, ref tNewQuestionId, ref tNewQuestionAllTableId);
 
                 if (tDidAdd == (int) ResultCodesEnum.SUCCESS)
                 {
                     DataRow tFormattedQuestionRow = QuestionsDataSet.Tables["AllQuestions"].NewRow();
+                    pQuestionRow["Id"] = tNewQuestionId;
+                    tFormattedQuestionRow["Id"] = tNewQuestionAllTableId;
 
                     foreach (DataColumn tQuestionColumn in pQuestionRow.Table.Columns)
                     {
@@ -136,7 +140,7 @@ namespace QuestionsFormsTest
                         {
                             tFormattedQuestionRow["OriginalId"] = pQuestionRow[tCurrentColumnName];
                         }
-                        else if (tCurrentColumnName == "Text" || tCurrentColumnName == "QOrder")
+                        else if (tCurrentColumnName == "Text" || tCurrentColumnName == "Order")
                         {
                             tFormattedQuestionRow[tCurrentColumnName] = pQuestionRow[tCurrentColumnName];
                         }
@@ -185,7 +189,7 @@ namespace QuestionsFormsTest
                     {
                         string tCurrentColumnName = tQuestionColumn.ColumnName;
 
-                        if (tCurrentColumnName == "Text" || tCurrentColumnName == "QOrder")
+                        if (tCurrentColumnName == "Text" || tCurrentColumnName == "Order")
                         {
                             tQuestionAllTableRow[tCurrentColumnName] = pQuestionRow[tCurrentColumnName];
                         }

@@ -37,7 +37,7 @@
             this.containerSmileyQuestions = new System.Windows.Forms.Panel();
             this.input_NumOfSmiley = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.input_QOrder = new System.Windows.Forms.NumericUpDown();
+            this.input_Order = new System.Windows.Forms.NumericUpDown();
             this.containerSliderQuestions = new System.Windows.Forms.Panel();
             this.input_EndValueCaption = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -56,7 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.input_NumOfStars)).BeginInit();
             this.containerSmileyQuestions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_NumOfSmiley)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.input_QOrder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.input_Order)).BeginInit();
             this.containerSliderQuestions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_EndValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.input_StartValue)).BeginInit();
@@ -168,14 +168,14 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Number of smiley faces (from 2 to 5)";
             // 
-            // input_QOrder
+            // input_Order
             // 
-            this.input_QOrder.Location = new System.Drawing.Point(272, 144);
-            this.input_QOrder.Name = "input_QOrder";
-            this.input_QOrder.Size = new System.Drawing.Size(73, 20);
-            this.input_QOrder.TabIndex = 4;
-            this.input_QOrder.Tag = "Question order";
-            this.input_QOrder.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.input_Order.Location = new System.Drawing.Point(272, 144);
+            this.input_Order.Name = "input_Order";
+            this.input_Order.Size = new System.Drawing.Size(73, 20);
+            this.input_Order.TabIndex = 4;
+            this.input_Order.Tag = "Question order";
+            this.input_Order.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // containerSliderQuestions
             // 
@@ -303,7 +303,7 @@
             // 
             // controlBtn
             // 
-            this.controlBtn.Location = new System.Drawing.Point(16, 399);
+            this.controlBtn.Location = new System.Drawing.Point(199, 399);
             this.controlBtn.Name = "controlBtn";
             this.controlBtn.Size = new System.Drawing.Size(78, 23);
             this.controlBtn.TabIndex = 19;
@@ -327,7 +327,7 @@
             this.containerQuestion.Controls.Add(this.containerStarQuestions);
             this.containerQuestion.Controls.Add(this.containerSmileyQuestions);
             this.containerQuestion.Controls.Add(this.label2);
-            this.containerQuestion.Controls.Add(this.input_QOrder);
+            this.containerQuestion.Controls.Add(this.input_Order);
             this.containerQuestion.Controls.Add(this.containerSliderQuestions);
             this.containerQuestion.Location = new System.Drawing.Point(16, 39);
             this.containerQuestion.Name = "containerQuestion";
@@ -350,7 +350,7 @@
             this.MinimumSize = new System.Drawing.Size(389, 471);
             this.Name = "QuestionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "QuestionsForm";
+            this.Text = "Question Form";
             this.Load += new System.EventHandler(this.QuestionForm_Load);
             this.containerStarQuestions.ResumeLayout(false);
             this.containerStarQuestions.PerformLayout();
@@ -358,7 +358,7 @@
             this.containerSmileyQuestions.ResumeLayout(false);
             this.containerSmileyQuestions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_NumOfSmiley)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.input_QOrder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.input_Order)).EndInit();
             this.containerSliderQuestions.ResumeLayout(false);
             this.containerSliderQuestions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_EndValue)).EndInit();
@@ -381,7 +381,7 @@
         private System.Windows.Forms.NumericUpDown input_NumOfSmiley;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown input_NumOfStars;
-        private System.Windows.Forms.NumericUpDown input_QOrder;
+        private System.Windows.Forms.NumericUpDown input_Order;
         private System.Windows.Forms.Panel containerSliderQuestions;
         private System.Windows.Forms.TextBox input_EndValueCaption;
         private System.Windows.Forms.Label label7;

@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[AllQuestions](
  CONSTRAINT [PK_AllQuestions] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)
 ) ON [PRIMARY]
 GO
 
@@ -28,7 +28,7 @@ CREATE TABLE [dbo].[SliderQuestions](
  CONSTRAINT [PK_SliderQuestions] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+)
 ) ON [PRIMARY]
 GO
 
@@ -40,7 +40,7 @@ CREATE TABLE [dbo].[SmileyQuestions](
  CONSTRAINT [PK_SmileyQuestions] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) 
 ) ON [PRIMARY]
 GO
 
@@ -52,7 +52,7 @@ CREATE TABLE [dbo].[StarQuestions](
  CONSTRAINT [PK_StarsQuestions] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) 
 ) ON [PRIMARY]
 GO
 
@@ -93,7 +93,7 @@ GO
 END  
 GO
 
- CREATE PROCEDURE [dbo].Update_StarQuestions  
+ CREATE OR ALTER PROCEDURE [dbo].Update_StarQuestions  
 (    @Text VARCHAR(255),    @Order  INT,    @NumOfStars INT,    @Id INT  )  
 AS  
 BEGIN   
@@ -103,7 +103,7 @@ BEGIN
 END 
 GO
 
-CREATE PROCEDURE [dbo].Update_SliderQuestions  
+CREATE OR ALTER PROCEDURE [dbo].Update_SliderQuestions  
 (    @Text VARCHAR(250),    @Order  INT,    @StartValue INT,    @EndValue INT,    @StartValueCaption VARCHAR(250),    @EndValueCaption VARCHAR(250),    @Id INT  )
 AS  
 BEGIN   
@@ -113,7 +113,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [dbo].Update_SmileyQuestions  
+CREATE OR ALTER PROCEDURE [dbo].Update_SmileyQuestions  
 (    @Text VARCHAR(255),    @Order  INT,    @NumOfSmiley INT,    @Id INT  )  
 AS  
 BEGIN   
@@ -123,7 +123,7 @@ BEGIN
 END 
 GO
 
-CREATE PROCEDURE [dbo].Delete_StarQuestions  
+CREATE OR ALTER PROCEDURE [dbo].Delete_StarQuestions  
 (    @Id INT  )
 AS  
 BEGIN   
@@ -133,7 +133,7 @@ BEGIN
 END  
 GO
 
-CREATE PROCEDURE [dbo].Delete_SliderQuestions
+CREATE OR ALTER PROCEDURE [dbo].Delete_SliderQuestions
 (    @Id INT  )  
 AS  
 BEGIN   
@@ -143,7 +143,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [dbo].Delete_SmileyQuestions  
+CREATE OR ALTER PROCEDURE [dbo].Delete_SmileyQuestions  
 (    @Id INT  )
 AS  
 BEGIN   

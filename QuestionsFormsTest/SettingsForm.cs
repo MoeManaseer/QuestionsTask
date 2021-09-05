@@ -48,6 +48,8 @@ namespace QuestionsFormsTest
             {
                 Type tConnectionStringType = typeof(ConnectionString);
                 PropertyInfo[] tConnectionStringProporties = tConnectionStringType.GetProperties();
+
+                // Dynamically loop through the proporties of the connection string class and assigns the values of the input fields with the values in the connection string object
                 foreach (PropertyInfo tConnectionStringProporty in tConnectionStringProporties)
                 {
                     string tConnectionStringProportyName = tConnectionStringProporty.Name;
@@ -118,6 +120,9 @@ namespace QuestionsFormsTest
             {
                 Type tConnectionStringType = typeof(ConnectionString);
                 PropertyInfo[] tConnectionStringProporties = tConnectionStringType.GetProperties();
+                
+                // Dynamically loop through the proporties of the connection string class and assigns the values of the connection string object to the values
+                // of the input fields
                 foreach (PropertyInfo tConnectionStringProporty in tConnectionStringProporties)
                 {
                     string tConnectionStringProportyName = tConnectionStringProporty.Name;
@@ -157,7 +162,7 @@ namespace QuestionsFormsTest
                         tResultMessage = "Connection to database denied";
                         break;
                     case ResultCodesEnum.DATABASE_CONNECTION_FAILURE:
-                        tResultMessage = "Connectin to database failed";
+                        tResultMessage = "Connection to database failed";
                         break;
                     case ResultCodesEnum.SERVER_CONNECTION_FAILURE:
                         tResultMessage = "Connection to server failed";

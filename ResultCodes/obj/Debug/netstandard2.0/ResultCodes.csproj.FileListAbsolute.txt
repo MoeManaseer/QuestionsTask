@@ -1,0 +1,12 @@
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\bin\Debug\netstandard2.0\ResultCodes.deps.json
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\bin\Debug\netstandard2.0\ResultCodes.dll
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\bin\Debug\netstandard2.0\ResultCodes.pdb
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\bin\Debug\netstandard2.0\LoggerUtils.dll
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\bin\Debug\netstandard2.0\LoggerUtils.pdb
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.csprojAssemblyReference.cache
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.csproj.CoreCompileInputs.cache
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.AssemblyInfoInputs.cache
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.AssemblyInfo.cs
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.csproj.CopyComplete
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.dll
+C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.pdb

@@ -1,8 +1,8 @@
-﻿using Logger;
-using QuestionsDatabase;
+﻿using LoggerUtils;
+using QuestionDatabase;
+using ResultCodes;
 using System;
 using System.Data;
-using Result;
 
 namespace QuestionsFormsTest
 {
@@ -26,7 +26,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -54,7 +54,7 @@ namespace QuestionsFormsTest
             catch (Exception tException)
             {
                 tResponseCode = (int) ResultCodesEnum.DATA_FILLING_ERROR;
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
 
             return tResponseCode;
@@ -80,7 +80,7 @@ namespace QuestionsFormsTest
             catch (Exception tException)
             {
                 tResponseCode = (int)ResultCodesEnum.DATA_FILLING_ERROR;
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
 
             return tResponseCode;
@@ -105,7 +105,7 @@ namespace QuestionsFormsTest
             catch (Exception tException)
             {
                 tResponseCode = (int) ResultCodesEnum.DATA_FILLING_ERROR;
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
 
             return tResponseCode;
@@ -154,7 +154,7 @@ namespace QuestionsFormsTest
             catch (Exception tException)
             {
                 tDidAdd = (int) ResultCodesEnum.CURRENT_DATA_INVALID;
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
 
             return tDidAdd;
@@ -197,7 +197,7 @@ namespace QuestionsFormsTest
             catch (Exception tException)
             {
                 tDidEdit = (int) ResultCodesEnum.DATA_FILLING_ERROR;
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
 
             return tDidEdit;
@@ -233,7 +233,7 @@ namespace QuestionsFormsTest
             catch (Exception tException)
             {
                 tDidDelete = (int) ResultCodesEnum.DATA_FILLING_ERROR;
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
 
             return tDidDelete;

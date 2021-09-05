@@ -1,5 +1,5 @@
-﻿using Logger;
-using Result;
+﻿using LoggerUtils;
+using ResultCodes;
 using System;
 using System.Windows.Forms;
 
@@ -20,7 +20,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -47,8 +47,8 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
-                string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
+                Logger.WriteExceptionMessage(tException);
+                string tMessage = ResultCodesUtil.GetCodeMessage(tResponseCode);
                 string tCaption = "Error";
                 MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
                 MessageBoxIcon tIcon = MessageBoxIcon.Error;
@@ -73,7 +73,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -85,7 +85,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -102,7 +102,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -120,7 +120,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -140,7 +140,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -165,7 +165,7 @@ namespace QuestionsFormsTest
                     int tQuestionIndex = Convert.ToInt32(allQuestionsGrid.CurrentRow.Cells["Id"].Value);
                     int tResponseCode = QuestionsControllerObject.RemoveQuestion(tQuestionIndex);
 
-                    tMessage = ResultCodes.GetCodeMessage(tResponseCode);
+                    tMessage = ResultCodesUtil.GetCodeMessage(tResponseCode);
 
                     if (tResponseCode == (int) ResultCodesEnum.SUCCESS)
                     {
@@ -183,7 +183,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -201,7 +201,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -224,7 +224,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -237,7 +237,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
     }

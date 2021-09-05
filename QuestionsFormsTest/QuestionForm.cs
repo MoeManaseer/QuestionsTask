@@ -4,8 +4,8 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
-using Logger;
-using Result;
+using LoggerUtils;
+using ResultCodes;
 
 namespace QuestionsFormsTest
 {
@@ -33,7 +33,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -50,7 +50,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -91,9 +91,9 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
 
-                string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
+                string tMessage = ResultCodesUtil.GetCodeMessage(tResponseCode);
                 string tMessageCaption = "Error";
                 MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
                 MessageBoxIcon tIcon = MessageBoxIcon.Error;
@@ -116,7 +116,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -150,7 +150,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -167,7 +167,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -188,7 +188,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -210,7 +210,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -250,7 +250,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
 
             return tControlNames.Count == 0;
@@ -271,7 +271,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -308,7 +308,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
 
             return tIsUpdatable;
@@ -330,7 +330,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -351,7 +351,7 @@ namespace QuestionsFormsTest
                     int tResponseCode = tIsNew ? QuestionsController.AddQuestion(CurrentQuestion) : QuestionsController.EditQuestion(CurrentQuestion);
                     this.IsUpdated = tResponseCode == (int) ResultCodesEnum.SUCCESS;
 
-                    string tMessage = ResultCodes.GetCodeMessage(tResponseCode);
+                    string tMessage = ResultCodesUtil.GetCodeMessage(tResponseCode);
                     string tMessageCaption = "";
                     MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
                     MessageBoxIcon tIcon;
@@ -377,7 +377,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -406,7 +406,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -423,7 +423,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
     }

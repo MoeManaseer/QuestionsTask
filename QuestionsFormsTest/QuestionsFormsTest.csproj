@@ -33,14 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Logger">
-      <HintPath>..\..\Logger\Logger\bin\Debug\netstandard2.0\Logger.dll</HintPath>
+    <Reference Include="LoggerUtils">
+      <HintPath>..\LoggerUtils\bin\Debug\netstandard2.0\LoggerUtils.dll</HintPath>
     </Reference>
-    <Reference Include="QuestionsDatabase">
-      <HintPath>..\..\QuestionsDatabase\QuestionsDatabase\bin\Debug\QuestionsDatabase.dll</HintPath>
+    <Reference Include="QuestionDatabase">
+      <HintPath>..\QuestionDatabase\obj\Debug\QuestionDatabase.dll</HintPath>
     </Reference>
-    <Reference Include="Result">
-      <HintPath>..\..\Result\Result\bin\Debug\netstandard2.0\Result.dll</HintPath>
+    <Reference Include="ResultCodes">
+      <HintPath>..\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

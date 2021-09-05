@@ -1,11 +1,9 @@
-﻿using QuestionsDatabase;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows.Forms;
-using Result;
-using Logger;
-using System.Configuration;
 using System.Reflection;
+using QuestionDatabase;
+using LoggerUtils;
+using ResultCodes;
 
 namespace QuestionsFormsTest
 {
@@ -24,7 +22,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -37,7 +35,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -63,7 +61,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -82,7 +80,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -95,7 +93,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
             
         }
@@ -116,7 +114,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -154,7 +152,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -188,7 +186,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -211,7 +209,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
 
@@ -223,7 +221,7 @@ namespace QuestionsFormsTest
             }
             catch (Exception tException)
             {
-                LoggerUtilities.WriteExceptionMessage(tException);
+                Logger.WriteExceptionMessage(tException);
             }
         }
     }

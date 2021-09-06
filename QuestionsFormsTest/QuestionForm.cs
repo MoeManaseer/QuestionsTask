@@ -75,7 +75,6 @@ namespace QuestionsFormsTest
                         this.Text = "New Question";
                         this.Update();
                         controlBtn.Text = "Add";
-                        headerLbl.Text = "New question";
                         ShowExtraQuestionFields();
                     }
                     else
@@ -84,7 +83,6 @@ namespace QuestionsFormsTest
                         this.Update();
                         questionTypeCombo.Enabled = false;
                         controlBtn.Text = "Update";
-                        headerLbl.Text = "Update question";
                         UpdateQuestionFields();
                     }
                 }
@@ -375,7 +373,7 @@ namespace QuestionsFormsTest
                     {
                         LandingForm tLandingForm = (LandingForm) Owner;
                         tLandingForm.LoadUpdateForm();
-                        this.Close();
+                        Close();
                     }
 
                     MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);

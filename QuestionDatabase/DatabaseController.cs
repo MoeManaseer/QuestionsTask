@@ -188,8 +188,10 @@ namespace QuestionDatabase
                 tSQLTransaction = SQLConnection.BeginTransaction();
 
                 // Get the correct procedure based on the tablename
-                tSQLCommand = new SqlCommand("Add_" + tTableName, SQLConnection, tSQLTransaction);
-                tSQLCommand.CommandType = CommandType.StoredProcedure;
+                tSQLCommand = new SqlCommand("Add_" + tTableName, SQLConnection, tSQLTransaction)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
                 // Get every value from the datarow except for Id since it gets auto generated in the database
                 foreach (DataColumn tCurrentColumn in pQuestionRow.Table.Columns)
@@ -202,6 +204,7 @@ namespace QuestionDatabase
                     }
                 }
 
+                // get back the generated Ids from the database
                 tSQLCommand.Parameters.Add("@Id", SqlDbType.Int);
                 tSQLCommand.Parameters["@Id"].Direction = ParameterDirection.Output;
 
@@ -262,8 +265,10 @@ namespace QuestionDatabase
                 tSQLTransaction = SQLConnection.BeginTransaction();
 
                 // Get the correct procedure based on the tablename
-                tSQLCommand = new SqlCommand("Update_" + tTableName, SQLConnection, tSQLTransaction);
-                tSQLCommand.CommandType = CommandType.StoredProcedure;
+                tSQLCommand = new SqlCommand("Update_" + tTableName, SQLConnection, tSQLTransaction)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
                 // Insert the new values as params to be used in the procedure
                 foreach (DataColumn tCurrentColumn in pQuestionRow.Table.Columns)
@@ -325,8 +330,10 @@ namespace QuestionDatabase
                 tSQLTransaction = SQLConnection.BeginTransaction();
 
                 // Get the correct procedure based on the tablename
-                tSQLCommand = new SqlCommand("Delete_" + tTableName, SQLConnection, tSQLTransaction);
-                tSQLCommand.CommandType = CommandType.StoredProcedure;
+                tSQLCommand = new SqlCommand("Delete_" + tTableName, SQLConnection, tSQLTransaction)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
                 tSQLCommand.Parameters.Add(new SqlParameter("@Id", tQuestionId));
 
                 // If rows are affected, return 0 which is success, if not return 2 which means nothing happend

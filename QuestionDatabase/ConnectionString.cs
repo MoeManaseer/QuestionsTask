@@ -54,6 +54,8 @@ namespace QuestionDatabase
         {
             try
             {
+                // Set back the value of the current object to app.config settings
+
                 var tConfigurationManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
                 tConfigurationManager.AppSettings.Settings["DataSource"].Value = DataSource;

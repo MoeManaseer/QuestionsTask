@@ -52,6 +52,7 @@ namespace QuestionsFormsTest
                 }
                 else
                 {
+                    // Throw exception and disable form controls except for the setting/exit buttons
                     throw new Exception();
                 }
             }
@@ -104,6 +105,7 @@ namespace QuestionsFormsTest
         {
             try
             {
+                // Disable/Enable every control in the form except for the exit/settings buttons
                 foreach (Control tFormControl in Controls)
                 {
                     if (!tFormControl.Name.Equals("settingsPanel"))
@@ -156,8 +158,10 @@ namespace QuestionsFormsTest
         {
             try
             {
-                QuestionForm tQuestionForm = new QuestionForm(QuestionsControllerObject, QuestionTypes);
-                tQuestionForm.Owner = this;
+                QuestionForm tQuestionForm = new QuestionForm(QuestionsControllerObject, QuestionTypes)
+                {
+                    Owner = this
+                };
                 tQuestionForm.ShowDialog();
             }
             catch (Exception tException)
@@ -175,10 +179,13 @@ namespace QuestionsFormsTest
         {
             try
             {
+                // Extract current id and current question type from the current selected row
                 string tCurrentQuestionType = allQuestionsGrid.CurrentRow.Cells["Type"].Value.ToString() + "Questions";
                 int tCurrentQuestionOriginalId = (int)allQuestionsGrid.CurrentRow.Cells["OriginalId"].Value;
-                QuestionForm tQuestionForm = new QuestionForm(QuestionsControllerObject, tCurrentQuestionType, tCurrentQuestionOriginalId, QuestionTypes);
-                tQuestionForm.Owner = this;
+                QuestionForm tQuestionForm = new QuestionForm(QuestionsControllerObject, tCurrentQuestionType, tCurrentQuestionOriginalId, QuestionTypes)
+                {
+                    Owner = this
+                };
                 tQuestionForm.ShowDialog();
             }
             catch (Exception tException)
@@ -203,7 +210,7 @@ namespace QuestionsFormsTest
                 DialogResult tResult;
 
                 tResult = MessageBox.Show(tMessage, tCaption, tMessageButtons, tIcon);
-                if (tResult == System.Windows.Forms.DialogResult.Yes)
+                if (tResult == DialogResult.Yes)
                 {
                     int tQuestionIndex = Convert.ToInt32(allQuestionsGrid.CurrentRow.Cells["Id"].Value);
                     int tResponseCode = QuestionsControllerObject.RemoveQuestion(tQuestionIndex);
@@ -268,7 +275,7 @@ namespace QuestionsFormsTest
 
                 tResult = MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
 
-                if (tResult == System.Windows.Forms.DialogResult.Yes)
+                if (tResult == DialogResult.Yes)
                 {
                     this.Close();
                 }
@@ -283,8 +290,10 @@ namespace QuestionsFormsTest
         {
             try
             {
-                SettingsForm tSettingsForm = new SettingsForm(QuestionsControllerObject.DatabaseController);
-                tSettingsForm.Owner = this;
+                SettingsForm tSettingsForm = new SettingsForm(QuestionsControllerObject.DatabaseController)
+                {
+                    Owner = this
+                };
                 tSettingsForm.ShowDialog();
             }
             catch (Exception tException)

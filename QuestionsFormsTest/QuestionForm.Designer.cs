@@ -317,9 +317,9 @@
             this.headerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.headerLbl.Location = new System.Drawing.Point(14, 13);
             this.headerLbl.Name = "headerLbl";
-            this.headerLbl.Size = new System.Drawing.Size(107, 16);
+            this.headerLbl.Size = new System.Drawing.Size(61, 16);
             this.headerLbl.TabIndex = 10;
-            this.headerLbl.Text = "Update question";
+            this.headerLbl.Text = "Question";
             // 
             // containerQuestion
             // 

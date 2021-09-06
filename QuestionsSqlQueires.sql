@@ -1,4 +1,4 @@
-﻿IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'QuestionsDB')
+﻿IF DB_ID('QuestionsDB') IS NULL
 	BEGIN
 		CREATE DATABASE [QuestionsDB]
 	END
@@ -65,7 +65,7 @@ CREATE TABLE [dbo].[StarQuestions](
 GO
 
 CREATE OR ALTER PROCEDURE [dbo].Add_StarQuestions
- (@Text VARCHAR(255),    @Order  INT,    @NumOfStars INT, @Id INT = NULL OUTPUT, @AllQuestionsId INT = NULL output  )
+ (@Text VARCHAR(255),    @Order  INT,    @NumOfStars INT, @Id INT = NULL OUTPUT, @AllQuestionsId INT = NULL OUTPUT  )
  AS  
  BEGIN   
 	SET XACT_ABORT ON;      
@@ -77,7 +77,7 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE [dbo].Add_SliderQuestions  
- (    @Text VARCHAR(250),    @Order  INT,    @StartValue INT,    @EndValue INT,    @StartValueCaption VARCHAR(250),    @EndValueCaption VARCHAR(250), @Id INT = NULL OUTPUT, @AllQuestionsId INT = NULL output  )  
+ (    @Text VARCHAR(250),    @Order  INT,    @StartValue INT,    @EndValue INT,    @StartValueCaption VARCHAR(250),    @EndValueCaption VARCHAR(250), @Id INT = NULL OUTPUT, @AllQuestionsId INT = NULL OUTPUT  )  
  AS  
  BEGIN   
 	SET XACT_ABORT ON;
@@ -89,7 +89,7 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE [dbo].Add_SmileyQuestions  
- (    @Text VARCHAR(255),    @Order  INT,    @NumOfSmiley INT, @Id INT = NULL OUTPUT, @AllQuestionsId INT = NULL output  )  
+ (    @Text VARCHAR(255),    @Order  INT,    @NumOfSmiley INT, @Id INT = NULL OUTPUT, @AllQuestionsId INT = NULL OUTPUT  )  
  AS  
  BEGIN   
 	SET XACT_ABORT ON;
@@ -105,8 +105,8 @@ CREATE OR ALTER PROCEDURE [dbo].Update_StarQuestions
 AS  
 BEGIN   
 	 SET XACT_ABORT ON;      
-	 Update StarQuestions SET Text = @Text, [Order] = @Order, NumOfStars = @NumOfStars WHERE Id = @Id;   
-	 Update AllQuestions SET Text = @Text, [Order] = @Order WHERE OriginalId = @Id AND Type = 'Star';  
+	 UPDATE StarQuestions SET Text = @Text, [Order] = @Order, NumOfStars = @NumOfStars WHERE Id = @Id;   
+	 UPDATE AllQuestions SET Text = @Text, [Order] = @Order WHERE OriginalId = @Id AND Type = 'Star';  
 END 
 GO
 
@@ -115,8 +115,8 @@ CREATE OR ALTER PROCEDURE [dbo].Update_SliderQuestions
 AS  
 BEGIN   
 	SET XACT_ABORT ON;      
-	Update SliderQuestions SET Text = @Text, [Order] = @Order, StartValue = @StartValue, EndValue = @EndValue, StartValueCaption = @StartValueCaption, EndValueCaption = @EndValueCaption WHERE Id = @Id;   
-	Update AllQuestions SET Text = @Text, [Order] = @Order WHERE OriginalId = @Id AND Type = 'Slider';  
+	UPDATE SliderQuestions SET Text = @Text, [Order] = @Order, StartValue = @StartValue, EndValue = @EndValue, StartValueCaption = @StartValueCaption, EndValueCaption = @EndValueCaption WHERE Id = @Id;   
+	UPDATE AllQuestions SET Text = @Text, [Order] = @Order WHERE OriginalId = @Id AND Type = 'Slider';  
 END
 GO
 
@@ -126,7 +126,7 @@ AS
 BEGIN   
 	SET XACT_ABORT ON;      
 	UPDATE SmileyQuestions SET Text = @Text, [Order] = @Order, NumOfSmiley = @NumOfSmiley WHERE Id = @Id;   
-	Update AllQuestions SET Text = @Text, [Order] = @Order WHERE OriginalId = @Id AND Type = 'Smiley';  
+	UPDATE AllQuestions SET Text = @Text, [Order] = @Order WHERE OriginalId = @Id AND Type = 'Smiley';  
 END 
 GO
 
@@ -135,8 +135,8 @@ CREATE OR ALTER PROCEDURE [dbo].Delete_StarQuestions
 AS  
 BEGIN   
 	SET XACT_ABORT ON;      
-	DELETE FROM StarQuestions where Id = @Id;   
-	DELETE FROM AllQuestions where OriginalId = @Id AND Type = 'Star';  
+	DELETE FROM StarQuestions WHERE Id = @Id;   
+	DELETE FROM AllQuestions WHERE OriginalId = @Id AND Type = 'Star';  
 END  
 GO
 
@@ -145,8 +145,8 @@ CREATE OR ALTER PROCEDURE [dbo].Delete_SliderQuestions
 AS  
 BEGIN   
 	SET XACT_ABORT ON;      
-	DELETE FROM SliderQuestions where Id = @Id;   
-	DELETE FROM AllQuestions where OriginalId = @Id AND Type = 'Slider';  
+	DELETE FROM SliderQuestions WHERE Id = @Id;   
+	DELETE FROM AllQuestions WHERE OriginalId = @Id AND Type = 'Slider';  
 END
 GO
 
@@ -155,7 +155,7 @@ CREATE OR ALTER PROCEDURE [dbo].Delete_SmileyQuestions
 AS  
 BEGIN   
 	SET XACT_ABORT ON;      
-	DELETE FROM SmileyQuestions where Id = @Id;   
-	DELETE FROM AllQuestions where OriginalId = @Id AND Type = 'Smiley';  
+	DELETE FROM SmileyQuestions WHERE Id = @Id;   
+	DELETE FROM AllQuestions WHERE OriginalId = @Id AND Type = 'Smiley';  
 END  
 GO

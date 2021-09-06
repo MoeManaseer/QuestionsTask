@@ -227,7 +227,7 @@ namespace QuestionsFormsTest
 
                 LandingForm tLandingForm = (LandingForm) Owner;
                 tLandingForm.LoadUpdateForm();
-                this.Close();
+                Close();
             }
             catch (Exception tException)
             {
@@ -247,9 +247,9 @@ namespace QuestionsFormsTest
 
                 tResult = MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
 
-                if (tResult == System.Windows.Forms.DialogResult.Yes)
+                if (tResult == DialogResult.Yes)
                 {
-                    this.Close();
+                    Close();
                 }
             }
             catch (Exception tException)

@@ -35,7 +35,6 @@
             this.addBtn = new System.Windows.Forms.Button();
             this.outputLbl = new System.Windows.Forms.Label();
             this.settingsBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.settingsPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.allQuestionsGrid)).BeginInit();
@@ -51,12 +50,12 @@
             this.allQuestionsGrid.BackgroundColor = System.Drawing.SystemColors.Control;
             this.allQuestionsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allQuestionsGrid.GridColor = System.Drawing.SystemColors.Control;
-            this.allQuestionsGrid.Location = new System.Drawing.Point(12, 33);
+            this.allQuestionsGrid.Location = new System.Drawing.Point(12, 12);
             this.allQuestionsGrid.MultiSelect = false;
             this.allQuestionsGrid.Name = "allQuestionsGrid";
             this.allQuestionsGrid.ReadOnly = true;
             this.allQuestionsGrid.RowHeadersVisible = false;
-            this.allQuestionsGrid.Size = new System.Drawing.Size(461, 397);
+            this.allQuestionsGrid.Size = new System.Drawing.Size(461, 418);
             this.allQuestionsGrid.TabIndex = 0;
             this.allQuestionsGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.allQuestionsGrid_RowEnter);
             // 
@@ -122,16 +121,6 @@
             this.settingsBtn.UseVisualStyleBackColor = true;
             this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 21);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "All questions";
-            // 
             // label2
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -156,7 +145,6 @@
             this.ClientSize = new System.Drawing.Size(485, 497);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.outputLbl);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.editBtn);
@@ -168,7 +156,7 @@
             this.MinimumSize = new System.Drawing.Size(501, 536);
             this.Name = "LandingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Questions Form";
+            this.Text = "Questions";
             this.Load += new System.EventHandler(this.LandingFrom_Load);
             ((System.ComponentModel.ISupportInitialize)(this.allQuestionsGrid)).EndInit();
             this.settingsPanel.ResumeLayout(false);
@@ -186,7 +174,6 @@
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Label outputLbl;
         private System.Windows.Forms.Button settingsBtn;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel settingsPanel;
     }

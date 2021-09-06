@@ -30,7 +30,6 @@ namespace QuestionsFormsTest
         {
             try
             {
-                Form tForm = this.Owner;
                 ConnectionValuesContainer = Controls["connectionContainer"];
                 UpdateSettingFields();
             }
@@ -170,6 +169,12 @@ namespace QuestionsFormsTest
                         break;
                     case ResultCodesEnum.SERVER_CONNECTION_FAILURE:
                         tResultMessage = "Connection to server failed";
+                        break;
+                    case ResultCodesEnum.SERVER_PAUSED:
+                        tResultMessage = "Connection to server failed, server is paused";
+                        break;
+                    case ResultCodesEnum.SERVER_NOT_FOUND_OR_DOWN:
+                        tResultMessage = "Connection to server failed, server was not found or down";
                         break;
                     default:
                         tResultMessage = "Connection failure";

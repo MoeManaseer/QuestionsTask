@@ -46,12 +46,16 @@
             // 
             this.allQuestionsGrid.AllowUserToAddRows = false;
             this.allQuestionsGrid.AllowUserToDeleteRows = false;
+            this.allQuestionsGrid.AllowUserToResizeColumns = false;
+            this.allQuestionsGrid.AllowUserToResizeRows = false;
             this.allQuestionsGrid.BackgroundColor = System.Drawing.SystemColors.Control;
             this.allQuestionsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allQuestionsGrid.GridColor = System.Drawing.SystemColors.Control;
             this.allQuestionsGrid.Location = new System.Drawing.Point(12, 33);
+            this.allQuestionsGrid.MultiSelect = false;
             this.allQuestionsGrid.Name = "allQuestionsGrid";
             this.allQuestionsGrid.ReadOnly = true;
+            this.allQuestionsGrid.RowHeadersVisible = false;
             this.allQuestionsGrid.Size = new System.Drawing.Size(461, 397);
             this.allQuestionsGrid.TabIndex = 0;
             this.allQuestionsGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.allQuestionsGrid_RowEnter);

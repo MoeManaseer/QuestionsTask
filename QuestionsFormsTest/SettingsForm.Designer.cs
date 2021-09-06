@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.label1 = new System.Windows.Forms.Label();
             this.testBtn = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.saveBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
             this.connectionContainer = new System.Windows.Forms.Panel();
@@ -45,6 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.input_DataSource = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.connectionContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,12 +59,6 @@
             this.testBtn.Name = "testBtn";
             this.testBtn.UseVisualStyleBackColor = true;
             this.testBtn.Click += new System.EventHandler(this.testBtn_Click);
-            // 
-            // label7
-            // 
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
             // 
             // saveBtn
             // 
@@ -156,6 +150,12 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
+            // label7
+            // 
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
             // SettingsForm
             // 
             resources.ApplyResources(this, "$this");
@@ -181,7 +181,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button testBtn;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.Panel connectionContainer;
@@ -195,5 +194,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox input_DataSource;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label7;
     }
 }

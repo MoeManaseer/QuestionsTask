@@ -149,11 +149,15 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="testBtn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="testBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>228, 171</value>
+    <value>187, 182</value>
   </data>
   <data name="testBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 23</value>
+    <value>156, 23</value>
   </data>
   <data name="testBtn.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -173,29 +177,8 @@
   <data name="&gt;&gt;testBtn.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 210</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 2</value>
-  </data>
-  <data name="label7.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="saveBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>187, 215</value>
+    <value>187, 216</value>
   </data>
   <data name="saveBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -219,7 +202,7 @@
     <value>2</value>
   </data>
   <data name="exitBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 215</value>
+    <value>268, 216</value>
   </data>
   <data name="exitBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -366,7 +349,7 @@
     <value>16, 32</value>
   </data>
   <data name="connectionContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 133</value>
+    <value>327, 146</value>
   </data>
   <data name="connectionContainer.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -384,13 +367,13 @@
     <value>0</value>
   </data>
   <data name="input_Password.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 108</value>
+    <value>171, 124</value>
   </data>
   <data name="input_Password.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
     <value>*</value>
   </data>
   <data name="input_Password.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 20</value>
+    <value>156, 20</value>
   </data>
   <data name="input_Password.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -411,7 +394,7 @@
     <value>True</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-3, 111</value>
+    <value>16, 127</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
@@ -435,10 +418,10 @@
     <value>1</value>
   </data>
   <data name="input_Username.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 82</value>
+    <value>171, 98</value>
   </data>
   <data name="input_Username.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 20</value>
+    <value>156, 20</value>
   </data>
   <data name="input_Username.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -459,7 +442,7 @@
     <value>True</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-3, 85</value>
+    <value>16, 101</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
@@ -489,7 +472,7 @@
     <value>SQL Server Authentication</value>
   </data>
   <data name="input_IntegratedSecurity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 55</value>
+    <value>114, 63</value>
   </data>
   <data name="input_IntegratedSecurity.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 21</value>
@@ -513,7 +496,7 @@
     <value>True</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-3, 58</value>
+    <value>3, 66</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 13</value>
@@ -537,7 +520,7 @@
     <value>5</value>
   </data>
   <data name="input_DatabaseName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 29</value>
+    <value>114, 37</value>
   </data>
   <data name="input_DatabaseName.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 20</value>
@@ -561,7 +544,7 @@
     <value>True</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-3, 32</value>
+    <value>3, 40</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 13</value>
@@ -585,7 +568,7 @@
     <value>7</value>
   </data>
   <data name="input_DataSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 3</value>
+    <value>114, 11</value>
   </data>
   <data name="input_DataSource.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 20</value>
@@ -609,7 +592,7 @@
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-3, 6</value>
+    <value>3, 14</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 13</value>
@@ -632,6 +615,30 @@
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 211</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 2</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -639,15 +646,17 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>361, 247</value>
+    <value>361, 244</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>377, 286</value>
+    <value>377, 283</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>377, 286</value>
+    <value>377, 283</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>

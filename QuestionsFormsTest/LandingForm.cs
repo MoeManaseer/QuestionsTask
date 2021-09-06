@@ -88,8 +88,8 @@ namespace QuestionsFormsTest
                 allQuestionsGrid.DataSource = QuestionsControllerObject.QuestionsDataSet.Tables["AllQuestions"];
                 allQuestionsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 allQuestionsGrid.Columns["Text"].Width = 180;
+                allQuestionsGrid.Columns["Id"].Width = 50;
                 allQuestionsGrid.Columns["OriginalId"].Visible = false;
-                allQuestionsGrid.Columns["Id"].Visible = false;
             }
             catch (Exception tException)
             {
@@ -157,6 +157,7 @@ namespace QuestionsFormsTest
             try
             {
                 QuestionForm tQuestionForm = new QuestionForm(QuestionsControllerObject, QuestionTypes);
+                tQuestionForm.Owner = this;
                 tQuestionForm.ShowDialog();
             }
             catch (Exception tException)
@@ -177,6 +178,7 @@ namespace QuestionsFormsTest
                 string tCurrentQuestionType = allQuestionsGrid.CurrentRow.Cells["Type"].Value.ToString() + "Questions";
                 int tCurrentQuestionOriginalId = (int)allQuestionsGrid.CurrentRow.Cells["OriginalId"].Value;
                 QuestionForm tQuestionForm = new QuestionForm(QuestionsControllerObject, tCurrentQuestionType, tCurrentQuestionOriginalId, QuestionTypes);
+                tQuestionForm.Owner = this;
                 tQuestionForm.ShowDialog();
             }
             catch (Exception tException)
@@ -219,7 +221,15 @@ namespace QuestionsFormsTest
                     }
 
                     tMessageButtons = MessageBoxButtons.OK;
-                    MessageBox.Show(tMessage, tCaption, tMessageButtons, tIcon);
+
+                    if (ResultCodesUtil.IsSqlError(tResponseCode))
+                    {
+                        LoadUpdateForm();
+                    }
+                    else
+                    {
+                        MessageBox.Show(tMessage, tCaption, tMessageButtons, tIcon);
+                    }
                 }
             }
             catch (Exception tException)

@@ -72,15 +72,19 @@ namespace QuestionsFormsTest
 
                     if (CurrentQuestionId == -1)
                     {
+                        this.Text = "New Question";
+                        this.Update();
                         controlBtn.Text = "Add";
-                        headerLbl.Text = "New Question";
+                        headerLbl.Text = "New question";
                         ShowExtraQuestionFields();
                     }
                     else
                     {
+                        this.Text = "Update Question";
+                        this.Update();
                         questionTypeCombo.Enabled = false;
                         controlBtn.Text = "Update";
-                        headerLbl.Text = "Update Question";
+                        headerLbl.Text = "Update question";
                         UpdateQuestionFields();
                     }
                 }
@@ -356,7 +360,7 @@ namespace QuestionsFormsTest
                     MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
                     MessageBoxIcon tIcon;
 
-                    if (this.IsUpdated)
+                    if (IsUpdated)
                     {
                         tIcon = MessageBoxIcon.Information;
                         tMessageCaption = "Success";
@@ -367,11 +371,19 @@ namespace QuestionsFormsTest
                         tMessageCaption = "Error";
                     }
 
+                    if (ResultCodesUtil.IsSqlError(tResponseCode))
+                    {
+                        LandingForm tLandingForm = (LandingForm) Owner;
+                        tLandingForm.LoadUpdateForm();
+                        this.Close();
+                    }
+
                     MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
 
-                    if (tIsNew)
+                    // if action success close the form
+                    if (IsUpdated)
                     {
-                        QuestionsController.GetQuestionRow(CurrentQuestionType, -1, ref CurrentQuestion);
+                        Close();
                     }
                 }
             }

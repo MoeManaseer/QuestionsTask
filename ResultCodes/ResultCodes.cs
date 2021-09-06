@@ -7,18 +7,43 @@ namespace ResultCodes
     {
         SUCCESS = 0,
         CODE_FAILUER = 1,
-        QUESTION_OUT_OF_DATE = 2,
+        QUESTION_OUT_OF_DATE = 3,
         DATABASE_CONNECTION_FAILURE = 4060,
         DATABASE_AUTHENTICATION_FAILUER = 229,
         DATABASE_CONNECTION_DENIED = 18456,
         DATABASE_SQL_INCORRECT = 102,
         DATA_FILLING_ERROR = 5,
+        SERVER_PAUSED = 17142,
+        SERVER_NOT_FOUND_OR_DOWN = 2,
         CURRENT_DATA_INVALID = 10,
         SERVER_CONNECTION_FAILURE = 53,
     };
 
     public static class ResultCodesUtil
     {
+        public static bool IsSqlError(int pCodeNumber)
+        {
+            bool tIsSqlError = true;
+
+            try
+            {
+                if ((int) ResultCodesEnum.CODE_FAILUER == pCodeNumber ||
+                    (int) ResultCodesEnum.CURRENT_DATA_INVALID == pCodeNumber ||
+                    (int) ResultCodesEnum.DATA_FILLING_ERROR == pCodeNumber ||
+                    (int) ResultCodesEnum.SUCCESS == pCodeNumber ||
+                    (int)ResultCodesEnum.QUESTION_OUT_OF_DATE == pCodeNumber)
+                {
+                    tIsSqlError = false;
+                }
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
+
+            return tIsSqlError;
+        }
+
         /// <summary>
         /// Helper function that gets the corrosponding string for the code number that we send it
         /// </summary>
@@ -52,7 +77,7 @@ namespace ResultCodes
                         tCodeMessage = "Connection to database denied, please check your username and password.\n";
                         break;
                     case ResultCodesEnum.DATABASE_SQL_INCORRECT:
-                        tCodeMessage = "Incorrect SQL syntax, please contact an admin.\n";
+                        tCodeMessage = "Incorrect SQL syntax, please contact admin.\n";
                         break;
                     case ResultCodesEnum.DATA_FILLING_ERROR:
                         tCodeMessage = "Something wrong happend while filling the data, please retry or restart the applciation.\n";
@@ -62,6 +87,12 @@ namespace ResultCodes
                         break;
                     case ResultCodesEnum.SERVER_CONNECTION_FAILURE:
                         tCodeMessage = "Connection to server failure, please check the connection settings.\n";
+                        break;
+                    case ResultCodesEnum.SERVER_NOT_FOUND_OR_DOWN:
+                        tCodeMessage = "Connection to server failure, the server was not found or it is down, please contact admin.\n";
+                        break;
+                    case ResultCodesEnum.SERVER_PAUSED:
+                        tCodeMessage = "The server is currently paused, no new connections allowed, please contact admin.\n";
                         break;
                     default:
                         tCodeMessage = "Unkown error occured, please restart the application.\n";

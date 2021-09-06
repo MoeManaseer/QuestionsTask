@@ -53,7 +53,7 @@ namespace QuestionDatabase
         /// <returns>a result code to be used to determine if success or failure</returns>
         public int TestDatabaseConnection(ConnectionString tConnectionString)
         {
-            int tResultCode = 1;
+            int tResultCode = (int)ResultCodesEnum.SUCCESS;
             SqlCommand tSQLCommand = null;
 
             try
@@ -63,8 +63,7 @@ namespace QuestionDatabase
                 tSQLCommand = new SqlCommand("SELECT 1 FROM AllQuestions;", SQLConnection);
 
                 SQLConnection.Open();
-
-                tResultCode = tSQLCommand.ExecuteNonQuery() != 0 ? 0 : 2;
+                tSQLCommand.ExecuteNonQuery();
             }
             catch (SqlException tSQLException)
             {
@@ -74,7 +73,7 @@ namespace QuestionDatabase
             catch (Exception tException)
             {
                 Logger.WriteExceptionMessage(tException);
-                tResultCode = (int)ResultCodesEnum.CODE_FAILUER;
+                tResultCode = (int) ResultCodesEnum.CODE_FAILUER;
             }
             finally
             {
@@ -216,7 +215,10 @@ namespace QuestionDatabase
             }
             catch (SqlException tSQLException)
             {
-                tSQLTransaction.Rollback();
+                if (tSQLTransaction != null)
+                {
+                    tSQLTransaction.Rollback();
+                }
                 Logger.WriteExceptionMessage(tSQLException);
                 tResultCode = tSQLException.Number;
             }
@@ -276,7 +278,10 @@ namespace QuestionDatabase
             }
             catch (SqlException tSQLException)
             {
-                tSQLTransaction.Rollback();
+                if (tSQLTransaction != null)
+                {
+                    tSQLTransaction.Rollback();
+                }
                 Logger.WriteExceptionMessage(tSQLException);
                 tResultCode = tSQLException.Number;
             }
@@ -331,7 +336,10 @@ namespace QuestionDatabase
             }
             catch (SqlException tSQLException)
             {
-                tSQLTransaction.Rollback();
+                if (tSQLTransaction != null)
+                {
+                    tSQLTransaction.Rollback();
+                }
                 Logger.WriteExceptionMessage(tSQLException);
                 tResultCode = tSQLException.Number;
             }

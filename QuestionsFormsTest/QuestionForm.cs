@@ -352,7 +352,7 @@ namespace QuestionsFormsTest
                     FillQuestionRow();
                     int tResponseCode = tIsNew ? QuestionsController.AddQuestion(CurrentQuestion) : QuestionsController.EditQuestion(CurrentQuestion);
                     this.IsUpdated = tResponseCode == (int) ResultCodesEnum.SUCCESS;
-
+                    bool tomato = ResultCodesUtil.IsSqlError(tResponseCode);
                     string tMessage = ResultCodesUtil.GetCodeMessage(tResponseCode);
                     string tMessageCaption = "";
                     MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
@@ -369,11 +369,13 @@ namespace QuestionsFormsTest
                         tMessageCaption = "Error";
                     }
 
+                    // if this is a SqlError, update the questions controller dataset with new fresh values from the database
                     if (ResultCodesUtil.IsSqlError(tResponseCode))
                     {
                         LandingForm tLandingForm = (LandingForm) Owner;
                         tLandingForm.LoadUpdateForm();
                         Close();
+                        return;
                     }
 
                     MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);

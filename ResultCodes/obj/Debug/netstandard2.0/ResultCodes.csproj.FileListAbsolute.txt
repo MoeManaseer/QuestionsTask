@@ -10,3 +10,15 @@ C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstand
 C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.csproj.CopyComplete
 C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.dll
 C:\Users\moutasem\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.pdb
+D:\source\repos\QuestionsFormsTest\ResultCodes\bin\Debug\netstandard2.0\ResultCodes.deps.json
+D:\source\repos\QuestionsFormsTest\ResultCodes\bin\Debug\netstandard2.0\ResultCodes.dll
+D:\source\repos\QuestionsFormsTest\ResultCodes\bin\Debug\netstandard2.0\ResultCodes.pdb
+D:\source\repos\QuestionsFormsTest\ResultCodes\bin\Debug\netstandard2.0\LoggerUtils.dll
+D:\source\repos\QuestionsFormsTest\ResultCodes\bin\Debug\netstandard2.0\LoggerUtils.pdb
+D:\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.csprojAssemblyReference.cache
+D:\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.csproj.CoreCompileInputs.cache
+D:\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.AssemblyInfoInputs.cache
+D:\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.AssemblyInfo.cs
+D:\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.csproj.CopyComplete
+D:\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.dll
+D:\source\repos\QuestionsFormsTest\ResultCodes\obj\Debug\netstandard2.0\ResultCodes.pdb

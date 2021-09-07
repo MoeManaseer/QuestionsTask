@@ -87,8 +87,10 @@ namespace QuestionsFormsTest
             try
             {
                 allQuestionsGrid.DataSource = QuestionsControllerObject.QuestionsDataSet.Tables["AllQuestions"];
-                allQuestionsGrid.Columns["Text"].Width = 180;
-                allQuestionsGrid.Columns["Id"].Width = 50;
+                allQuestionsGrid.Columns["Text"].Width = 278;
+                allQuestionsGrid.Columns["Order"].Width = 60;
+                allQuestionsGrid.Columns["Type"].Width = 60;
+                allQuestionsGrid.Columns["Id"].Width = 60;
                 allQuestionsGrid.Columns["OriginalId"].Visible = false;
             }
             catch (Exception tException)

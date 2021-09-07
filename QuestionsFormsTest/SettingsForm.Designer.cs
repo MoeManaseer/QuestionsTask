@@ -132,7 +132,7 @@
             // 
             resources.ApplyResources(this.input_DatabaseName, "input_DatabaseName");
             this.input_DatabaseName.Name = "input_DatabaseName";
-            this.input_DatabaseName.Tag = "DatabaseName ";
+            this.input_DatabaseName.Tag = "Database name";
             // 
             // label3
             // 
@@ -143,7 +143,7 @@
             // 
             resources.ApplyResources(this.input_DataSource, "input_DataSource");
             this.input_DataSource.Name = "input_DataSource";
-            this.input_DataSource.Tag = "DataSource";
+            this.input_DataSource.Tag = "Server name";
             // 
             // label2
             // 

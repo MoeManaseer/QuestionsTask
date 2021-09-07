@@ -201,11 +201,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moutasem\\source\\repos\\QuestionsFormsTest\\ResultCodes\\ResultCodes.csproj",
+      "projectUniqueName": "D:\\source\\repos\\QuestionsFormsTest\\ResultCodes\\ResultCodes.csproj",
       "projectName": "ResultCodes",
-      "projectPath": "C:\\Users\\moutasem\\source\\repos\\QuestionsFormsTest\\ResultCodes\\ResultCodes.csproj",
+      "projectPath": "D:\\source\\repos\\QuestionsFormsTest\\ResultCodes\\ResultCodes.csproj",
       "packagesPath": "C:\\Users\\moutasem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moutasem\\source\\repos\\QuestionsFormsTest\\ResultCodes\\obj\\",
+      "outputPath": "D:\\source\\repos\\QuestionsFormsTest\\ResultCodes\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -224,8 +224,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\moutasem\\source\\repos\\QuestionsFormsTest\\LoggerUtils\\LoggerUtils.csproj": {
-              "projectPath": "C:\\Users\\moutasem\\source\\repos\\QuestionsFormsTest\\LoggerUtils\\LoggerUtils.csproj"
+            "D:\\source\\repos\\QuestionsFormsTest\\LoggerUtils\\LoggerUtils.csproj": {
+              "projectPath": "D:\\source\\repos\\QuestionsFormsTest\\LoggerUtils\\LoggerUtils.csproj"
             }
           }
         }

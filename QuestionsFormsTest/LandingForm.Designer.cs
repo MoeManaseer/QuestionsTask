@@ -47,7 +47,6 @@
             this.allQuestionsGrid.AllowUserToDeleteRows = false;
             this.allQuestionsGrid.AllowUserToResizeColumns = false;
             this.allQuestionsGrid.AllowUserToResizeRows = false;
-            this.allQuestionsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.allQuestionsGrid.BackgroundColor = System.Drawing.SystemColors.Control;
             this.allQuestionsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allQuestionsGrid.GridColor = System.Drawing.SystemColors.Control;

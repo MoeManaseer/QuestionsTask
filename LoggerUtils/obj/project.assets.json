@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moutasem\\source\\repos\\QuestionsFormsTest\\LoggerUtils\\LoggerUtils.csproj",
+      "projectUniqueName": "D:\\source\\repos\\QuestionsFormsTest\\LoggerUtils\\LoggerUtils.csproj",
       "projectName": "LoggerUtils",
-      "projectPath": "C:\\Users\\moutasem\\source\\repos\\QuestionsFormsTest\\LoggerUtils\\LoggerUtils.csproj",
+      "projectPath": "D:\\source\\repos\\QuestionsFormsTest\\LoggerUtils\\LoggerUtils.csproj",
       "packagesPath": "C:\\Users\\moutasem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moutasem\\source\\repos\\QuestionsFormsTest\\LoggerUtils\\obj\\",
+      "outputPath": "D:\\source\\repos\\QuestionsFormsTest\\LoggerUtils\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

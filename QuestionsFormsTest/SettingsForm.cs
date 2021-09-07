@@ -4,6 +4,8 @@ using System.Reflection;
 using QuestionDatabase;
 using LoggerUtils;
 using ResultCodes;
+using System.Text;
+using System.Collections;
 
 namespace QuestionsFormsTest
 {
@@ -146,6 +148,11 @@ namespace QuestionsFormsTest
         {
             try
             {
+                if (!CheckFormFields())
+                {
+                    return;
+                }
+
                 FillConnectionStringFields();
                 int tResponseCode = DatabaseController.TestDatabaseConnection(ConnectionString);
                 string tResultMessage = "";
@@ -201,6 +208,11 @@ namespace QuestionsFormsTest
         {
             try
             {
+                if (!CheckFormFields())
+                {
+                    return;
+                }
+
                 FillConnectionStringFields();
                 int tResponseCode = DatabaseController.ChangeConnectionString(ConnectionString);
 
@@ -233,6 +245,44 @@ namespace QuestionsFormsTest
             {
                 Logger.WriteExceptionMessage(tException);
             }
+        }
+
+        private bool CheckFormFields()
+        {
+            ArrayList tControlNames = new ArrayList();
+
+            try
+            {
+                foreach (Control tSettingsInputField in Controls["connectionContainer"].Controls)
+                {
+                    if (tSettingsInputField.Enabled && string.IsNullOrEmpty(tSettingsInputField.Text))
+                        tControlNames.Add(tSettingsInputField.Tag);
+                }
+
+                if (tControlNames.Count != 0)
+                {
+                    StringBuilder tMessageString = new StringBuilder();
+                    string tMessageCaption = "Error";
+                    MessageBoxButtons tMessageButtons = MessageBoxButtons.OK;
+                    MessageBoxIcon tIcon = MessageBoxIcon.Error;
+
+                    tMessageString.AppendLine("There are empty values.. please fill them.\n");
+                    tMessageString.AppendLine("Empty values:-\n");
+
+                    foreach (string tControlName in tControlNames)
+                    {
+                        tMessageString.AppendLine("- " + tControlName);
+                    }
+
+                    MessageBox.Show(tMessageString.ToString(), tMessageCaption, tMessageButtons, tIcon);
+                }
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
+
+            return tControlNames.Count == 0;
         }
 
         private void exitBtn_Click(object sender, EventArgs e)

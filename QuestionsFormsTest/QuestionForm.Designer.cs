@@ -289,7 +289,7 @@
             this.questionTypeCombo.Name = "questionTypeCombo";
             this.questionTypeCombo.Size = new System.Drawing.Size(161, 21);
             this.questionTypeCombo.TabIndex = 0;
-            this.questionTypeCombo.DropDownClosed += new System.EventHandler(this.questionTypeCombo_DropDownClosed);
+            this.questionTypeCombo.SelectedValueChanged += new System.EventHandler(this.questionTypeCombo_SelectedValueChanged);
             // 
             // exitButton
             // 

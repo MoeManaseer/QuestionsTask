@@ -308,7 +308,7 @@ namespace QuestionsFormsTest
             }
         }
 
-        private void input_IntegratedSecurity_DropDownClosed(object sender, EventArgs e)
+        private void input_IntegratedSecurity_SelectedValueChanged(object sender, EventArgs e)
         {
             try
             {

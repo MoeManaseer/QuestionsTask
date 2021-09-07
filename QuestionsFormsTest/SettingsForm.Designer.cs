@@ -121,7 +121,7 @@
             resources.ApplyResources(this.input_IntegratedSecurity, "input_IntegratedSecurity");
             this.input_IntegratedSecurity.Name = "input_IntegratedSecurity";
             this.input_IntegratedSecurity.Tag = "Integrated Security";
-            this.input_IntegratedSecurity.DropDownClosed += new System.EventHandler(this.input_IntegratedSecurity_DropDownClosed);
+            this.input_IntegratedSecurity.SelectedValueChanged += new System.EventHandler(this.input_IntegratedSecurity_SelectedValueChanged);
             // 
             // label4
             // 

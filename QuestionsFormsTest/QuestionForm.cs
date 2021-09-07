@@ -317,26 +317,6 @@ namespace QuestionsFormsTest
         }
 
         /// <summary>
-        /// Event listener that fires whenever the questionTypeCombo changes It's values then updates the form to that corresponding question type
-        /// </summary>
-        /// <param name="sender">The control that fired the event</param>
-        /// <param name="e">Extra data about the event</param>
-        private void questionTypeCombo_DropDownClosed(object sender, EventArgs e)
-        {
-            try
-            {
-                CurrentQuestionType = questionTypeCombo.SelectedValue.ToString();
-                QuestionsController.GetQuestionRow(CurrentQuestionType, CurrentQuestionId, ref CurrentQuestion);
-                UpdateQuestionsInputFieldList();
-                ShowExtraQuestionFields();
-            }
-            catch (Exception tException)
-            {
-                Logger.WriteExceptionMessage(tException);
-            }
-        }
-
-        /// <summary>
         /// Fires whenever the Add/Update button gets clicked, then calls the corresponding function to Add/Update the question
         /// </summary>
         /// <param name="sender">The control that fired the event</param>
@@ -432,6 +412,26 @@ namespace QuestionsFormsTest
             try
             {
                 input_EndValue.Value = Math.Max(input_EndValue.Value, Math.Min(input_StartValue.Value + 1, 100));
+            }
+            catch (Exception tException)
+            {
+                Logger.WriteExceptionMessage(tException);
+            }
+        }
+
+        /// <summary>
+        /// Event listener that fires whenever the questionTypeCombo changes It's values then updates the form to that corresponding question type
+        /// </summary>
+        /// <param name="sender">The control that fired the event</param>
+        /// <param name="e">Extra data about the event</param>
+        private void questionTypeCombo_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CurrentQuestionType = questionTypeCombo.SelectedValue.ToString();
+                QuestionsController.GetQuestionRow(CurrentQuestionType, CurrentQuestionId, ref CurrentQuestion);
+                UpdateQuestionsInputFieldList();
+                ShowExtraQuestionFields();
             }
             catch (Exception tException)
             {

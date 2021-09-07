@@ -87,7 +87,6 @@ namespace QuestionsFormsTest
             try
             {
                 allQuestionsGrid.DataSource = QuestionsControllerObject.QuestionsDataSet.Tables["AllQuestions"];
-                allQuestionsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 allQuestionsGrid.Columns["Text"].Width = 180;
                 allQuestionsGrid.Columns["Id"].Width = 50;
                 allQuestionsGrid.Columns["OriginalId"].Visible = false;

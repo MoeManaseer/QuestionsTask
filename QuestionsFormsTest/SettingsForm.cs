@@ -225,7 +225,7 @@ namespace QuestionsFormsTest
 
                 MessageBox.Show(tMessage, tMessageCaption, tMessageButtons, tIcon);
 
-                LandingForm tLandingForm = (LandingForm) Owner;
+                LandingForm tLandingForm = (LandingForm)Owner;
                 tLandingForm.LoadUpdateForm();
                 Close();
             }

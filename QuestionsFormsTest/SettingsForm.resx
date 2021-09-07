@@ -228,6 +228,9 @@
   <data name="input_Password.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 124</value>
   </data>
+  <data name="input_Password.MaxLength" type="System.Int32, mscorlib">
+    <value>128</value>
+  </data>
   <data name="input_Password.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
     <value>*</value>
   </data>
@@ -278,6 +281,9 @@
   </data>
   <data name="input_Username.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 98</value>
+  </data>
+  <data name="input_Username.MaxLength" type="System.Int32, mscorlib">
+    <value>128</value>
   </data>
   <data name="input_Username.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 20</value>
@@ -381,6 +387,9 @@
   <data name="input_DatabaseName.Location" type="System.Drawing.Point, System.Drawing">
     <value>114, 37</value>
   </data>
+  <data name="input_DatabaseName.MaxLength" type="System.Int32, mscorlib">
+    <value>128</value>
+  </data>
   <data name="input_DatabaseName.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 20</value>
   </data>
@@ -428,6 +437,9 @@
   </data>
   <data name="input_DataSource.Location" type="System.Drawing.Point, System.Drawing">
     <value>114, 11</value>
+  </data>
+  <data name="input_DataSource.MaxLength" type="System.Int32, mscorlib">
+    <value>128</value>
   </data>
   <data name="input_DataSource.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 20</value>

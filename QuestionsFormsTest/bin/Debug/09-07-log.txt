@@ -60,3 +60,272 @@ Login failed for user 'SEDCO-ONLINE\Moutasem'.
    at System.Data.SqlClient.SqlConnection.Open()
    at QuestionDatabase.DatabaseController.TestDatabaseConnection(ConnectionString tConnectionString) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 65
 
+09/07 10:06:04 :-
+The value's length for key 'data source' exceeds it's limit of '128'.
+   at System.Data.SqlClient.SqlConnectionString.ValidateValueLength(String value, Int32 limit, String key)
+   at System.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at System.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at System.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString, SqlCredential credential)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 104
+
+09/07 10:06:04 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LoadUpdateForm() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 56
+
+09/07 10:06:23 :-
+The value's length for key 'data source' exceeds it's limit of '128'.
+   at System.Data.SqlClient.SqlConnectionString.ValidateValueLength(String value, Int32 limit, String key)
+   at System.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at System.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at System.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString, SqlCredential credential)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 104
+
+09/07 10:06:23 :-
+Object reference not set to an instance of an object.
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 159
+   at QuestionsFormsTest.QuestionsController.FillQuestionsDataSet() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 73
+
+09/07 10:06:23 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LoadUpdateForm() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 56
+
+09/07 10:06:52 :-
+The value's length for key 'data source' exceeds it's limit of '128'.
+   at System.Data.SqlClient.SqlConnectionString.ValidateValueLength(String value, Int32 limit, String key)
+   at System.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at System.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at System.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString, SqlCredential credential)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 104
+
+09/07 10:07:17 :-
+The value's length for key 'data source' exceeds it's limit of '128'.
+   at System.Data.SqlClient.SqlConnectionString.ValidateValueLength(String value, Int32 limit, String key)
+   at System.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at System.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at System.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString, SqlCredential credential)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 104
+
+09/07 10:07:19 :-
+Object reference not set to an instance of an object.
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 159
+   at QuestionsFormsTest.QuestionsController.FillQuestionsDataSet() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 73
+
+09/07 10:07:19 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LoadUpdateForm() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 56
+
+09/07 10:07:39 :-
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 114
+
+09/07 10:07:44 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LoadUpdateForm() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 56
+
+09/07 10:07:53 :-
+The value's length for key 'initial catalog' exceeds it's limit of '128'.
+   at System.Data.SqlClient.SqlConnectionString.ValidateValueLength(String value, Int32 limit, String key)
+   at System.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at System.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at System.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString, SqlCredential credential)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 104
+
+09/07 10:07:56 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LoadUpdateForm() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 56
+
+09/07 10:08:39 :-
+The value's length for key 'initial catalog' exceeds it's limit of '128'.
+   at System.Data.SqlClient.SqlConnectionString.ValidateValueLength(String value, Int32 limit, String key)
+   at System.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at System.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at System.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString, SqlCredential credential)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 104
+
+09/07 10:08:41 :-
+Object reference not set to an instance of an object.
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 159
+   at QuestionsFormsTest.QuestionsController.FillQuestionsDataSet() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 73
+
+09/07 10:08:41 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LoadUpdateForm() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 56
+
+09/07 10:08:56 :-
+Cannot open database "tSettingsInputFieldtSettingsInputFieldtSettingsInputFieldtSettingsInputFieldtSettingsInputFieldtSettingsInputFieldtSettingsInput" requested by the login. The login failed.
+Login failed for user 'SEDCO-ONLINE\Moutasem'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at QuestionDatabase.DatabaseController.TestDatabaseConnection(ConnectionString tConnectionString) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 65
+
+09/07 10:09:18 :-
+The value's length for key 'initial catalog' exceeds it's limit of '128'.
+   at System.Data.SqlClient.SqlConnectionString.ValidateValueLength(String value, Int32 limit, String key)
+   at System.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at System.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at System.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString, SqlCredential credential)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 104
+
+09/07 10:09:25 :-
+Object reference not set to an instance of an object.
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 159
+   at QuestionsFormsTest.QuestionsController.FillQuestionsDataSet() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 73
+
+09/07 10:09:25 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LoadUpdateForm() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 56
+
+09/07 10:09:40 :-
+The value's length for key 'password' exceeds it's limit of '128'.
+   at System.Data.SqlClient.SqlConnectionString.ValidateValueLength(String value, Int32 limit, String key)
+   at System.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at System.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at System.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString, SqlCredential credential)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 104
+
+09/07 10:10:00 :-
+The value's length for key 'password' exceeds it's limit of '128'.
+   at System.Data.SqlClient.SqlConnectionString.ValidateValueLength(String value, Int32 limit, String key)
+   at System.Data.SqlClient.SqlConnectionString..ctor(String connectionString)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnectionOptions(String connectionString, DbConnectionOptions previous)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnectionPoolGroup(DbConnectionPoolKey key, DbConnectionPoolGroupOptions poolOptions, DbConnectionOptions& userConnectionOptions)
+   at System.Data.SqlClient.SqlConnection.ConnectionString_Set(DbConnectionPoolKey key)
+   at System.Data.SqlClient.SqlConnection.set_ConnectionString(String value)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString, SqlCredential credential)
+   at System.Data.SqlClient.SqlConnection..ctor(String connectionString)
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 104
+
+09/07 10:10:02 :-
+Object reference not set to an instance of an object.
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 159
+   at QuestionsFormsTest.QuestionsController.FillQuestionsDataSet() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\QuestionsController.cs:line 73
+
+09/07 10:10:02 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LoadUpdateForm() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 56
+
+09/07 10:10:08 :-
+Login failed for user 'moutasem'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at QuestionDatabase.DatabaseController.TestDatabaseConnection(ConnectionString tConnectionString) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 65
+
+09/07 10:10:12 :-
+Login failed for user 'moutasem'.
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at QuestionDatabase.DatabaseController.TestDatabaseConnection(ConnectionString tConnectionString) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 65
+
+09/07 10:10:27 :-
+Cannot open database "dasd" requested by the login. The login failed.
+Login failed for user 'moutasem'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at QuestionDatabase.DatabaseController.TestDatabaseConnection(ConnectionString tConnectionString) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 65
+
+09/07 10:10:46 :-
+Cannot open database "dasd" requested by the login. The login failed.
+Login failed for user 'moutasem'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at QuestionDatabase.DatabaseController.GetData(DataSet pQuestionsDataSet, String[] pTableNames) in C:\Users\moutasem\source\repos\QuestionsFormsTest\QuestionDatabase\DatabaseController.cs:line 114
+
+09/07 10:10:52 :-
+Exception of type 'System.Exception' was thrown.
+   at QuestionsFormsTest.LandingForm.LoadUpdateForm() in D:\source\repos\QuestionsFormsTest\QuestionsFormsTest\LandingForm.cs:line 56
+
